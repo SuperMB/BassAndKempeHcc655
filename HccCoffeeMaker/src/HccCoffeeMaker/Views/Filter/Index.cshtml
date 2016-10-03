@@ -1,18 +1,59 @@
-﻿@{
+﻿@*Filter Options Page*@ 
+
+@{
     ViewData["Title"] = "Filter Page";
 }
 
-Hellz yeah @ViewData["coffeeMakerType"]!
-<br />
 
 
 <style>
-    #div1 {
-        width: 350px;
-        height: 70px;
+    #dropField {
+        width: 960px;
+        height:auto;
+        min-height: 70px;
         padding: 10px;
         border: 1px solid #aaaaaa;
     }
+
+    .filterElement {
+        width: 100px;
+        height: 50px;
+        padding: 10px;
+        margin:10px;
+        color:blue;
+        background-color:aqua;
+        text-align:center;
+        border: 1px solid #000000;
+        border-radius:10px;   
+    }
+
+    .filterElement:hover {
+        background-color:blueviolet;
+        cursor:grab;
+    }
+
+    .priceOption {
+        width: 100px;
+        height: 50px;
+        padding: 10px;
+        margin:10px;
+        color:blue;
+        background-color:aqua;
+        text-align:center;
+        border: 1px solid #000000;
+        border-radius:10px;   
+    }
+
+    .addedFilter {
+        display:inline-block;
+        background-color:lightgrey;
+        border: 2px solid #aaaaaa;
+        border-radius: 10px;
+        min-width:200px;
+        margin:10px;
+    }
+
+
 </style>
 <script>
 function allowDrop(ev) {
@@ -26,15 +67,72 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
+    var copy = document.getElementById(data.concat("Added")).cloneNode(true);
+    copy.opacity = "1";
+    copy.style.display = "inline";
+    //ev.target.appendChild(copy);
+    document.getElementById("dropField").appendChild(copy);
+    document.getElementById("dropField").appendChild(document.createElement("br"));
 }
+document.addEventListener("dragstart", function (event) {
+    //event.dataTransfer.setData("Text", event.target.id);
+    event.target.style.opacity = "0.4";
+});
+
+document.addEventListener("dragend", function (event) {
+    event.target.style.opacity = "1";
+});
+
+/*
+document.addEventListener("drag", function (event) {
+    event.dataTransfer.setData("Text", event.target.id);
+    event.target.style.opacity = "0.4";
+});
+*/
 </script>
 
-<p>Drag the W3Schools image into the rectangle:</p>
-
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-<br>
-<img id="drag1" src="~/images/FrenchPress.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69">
-<div id="text1" draggable="true" ondragstart="drag(event)">
-    Howdy.
+<div style="height:50px;">
 </div>
+
+<div 
+
+<div style="height:50px;">
+    <span class="filterElement" id="price" draggable="true" ondragstart="drag(event)">
+        Price
+    </span>
+
+    <span class="filterElement" id="color" draggable="true" ondragstart="drag(event)">
+        Color
+    </span>
+</div>
+
+
+<div id="priceAdded" style="display:none">
+    <div class="addedFilter">
+        Price <br />
+        Minimum Price: <input type="number" name="minimumPrice" value="XX" style="width:50px; border-radius:10px;" />
+        <span style="width:20px;"></span>
+        Maximum Price: <input type="number" name="maximumPrice" value="YY" />
+    </div>
+</div>
+
+<div id="colorAdded" style="display:none">
+    <div class="addedFilter">
+        Color <br />
+        <input type="checkbox" name="color" value="Green" /> Green <br />
+        <input type="checkbox" name="color" value="Black" /> Black <br />
+        <input type="checkbox" name="color" value="Blue" /> Blue <br />
+        <input type="checkbox" name="color" value="Red" /> Red <br />
+        <input type="checkbox" name="color" value="Grey" /> Grey <br />
+        <input type="checkbox" name="color" value="Yellow" /> Yellow <br />
+    </div>
+</div>
+
+<div style="height:50px;"></div>
+<form asp-controller="InitialOptions" asp-action="Index" method="post">
+    Drop the desired Facets into the field below: <br />
+    <div id="dropField" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    
+    <br />
+    <input type="submit" value="Proceed With Selected Facets" />
+</form>
