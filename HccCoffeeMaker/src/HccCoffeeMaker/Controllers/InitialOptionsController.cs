@@ -11,10 +11,12 @@ namespace HccCoffeeMaker.Controllers
         public IActionResult Index()
         {
             string value = HttpContext.Request.Form["firstname"];
-            ViewData["value"] = value;
-            foreach(var data in HttpContext.Request.Form)
+            foreach(var key in HttpContext.Request.Form)
             {
-                ViewData[data.Key] = data.Key;
+                foreach(var data in HttpContext.Request.Form[key.Key])
+                {
+                    ViewData[key.Key + "." + data] = key.Key + "." + data;
+                }
             }
             return View();
         }
