@@ -14,7 +14,7 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
         }
         public AmazonProductModel(JObject jsonObject)
         {
-            //Reviews = new ICollection<ReviewModel>();
+            Reviews = new List<ReviewModel>();
             JProperty position = (JProperty)jsonObject.First.First.First;
             while (position != null)
             {
@@ -61,7 +61,7 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<ReviewModel> Reviews { get; set; }
+        public virtual List<ReviewModel> Reviews { get; set; }
         public string Url { get; set; }
         public double Price { get; set; }
         public double OverallRating { get; set; }

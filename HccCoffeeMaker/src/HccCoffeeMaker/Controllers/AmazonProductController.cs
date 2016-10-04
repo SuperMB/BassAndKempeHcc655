@@ -25,7 +25,10 @@ namespace HccCoffeeMaker.Controllers
         // GET: AmazonProduct
         public async Task<IActionResult> Index()
         {
-            return View(await _context.AmazonProductModels.ToListAsync());
+            var amazonProductModels = await _context.AmazonProductModels
+                .Include(s => s.Reviews)
+                .ToListAsync();
+            return View(amazonProductModels);
         }
 
         // GET: AmazonProduct/Details/5

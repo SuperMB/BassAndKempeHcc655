@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ImageLocation)
             </th>
             <th>
@@ -37,6 +40,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
                 <img src="@item.ImageLocation" style="max-width:200px;"/>
             </td>
             <td>
@@ -51,24 +57,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            @if(item.Reviews != null) {
+            <td>
                 @foreach (var review in item.Reviews)
                 {
-                    @if (review != null)
-                    {
-                        <td>
+                    <table style="margin:10px;">
+                        <div>
                             @Html.DisplayFor(modelItem => review.Title)
-                        </td>
-                        <td>
+                        </div>
+                        <div>
                             @Html.DisplayFor(modelItem => review.Rating)
-                        </td>
-                        <td>
+                        </div>
+                        <div>
                             @Html.DisplayFor(modelItem => review.Description)
-                        </td>
-                    }
+                        </div>
+                    </table>
                 }
-            }
-
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
