@@ -4,11 +4,24 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+    .productAttribute{
+        border-bottom:solid 1px #aaaaaa;
+        border-top:solid 1px #aaaaaa;
+        width:100%;
+    }
+
+    .productTitle{
+        font:bolder;
+    }
+</style>
+
 <h2>Index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@*<div>
 <table class="table">
     <thead>
         <tr>
@@ -67,7 +80,7 @@
                         <div>
                             @Html.DisplayFor(modelItem => review.Rating)
                         </div>
-                        <div>
+                        <div style="display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:300px;max-height:300px;">
                             @Html.DisplayFor(modelItem => review.Description)
                         </div>
                     </table>
@@ -82,3 +95,43 @@
 }
     </tbody>
 </table>
+</div>*@
+
+
+    @foreach (var item in Model)
+    {
+        <div style="border:solid 2px #aaaaaa; max-width:300px;float:left">
+            <div class="productAttribute">
+                <img src="@item.ImageLocation" style="max-width:100%;" />
+            </div>
+            @*<div class="productAttribute">
+                @Html.DisplayFor(modelItem => item.ID)
+            </div>*@
+            <div class="productAttribute productTitle" style="font:15px;">
+                @Html.DisplayFor(modelItem => item.Title)
+            </div>
+            <div class="productAttribute">
+                Aerage Rating - @Html.DisplayFor(modelItem => item.OverallRating)
+            </div>
+            <div class="productAttribute">
+                $@Html.DisplayFor(modelItem => item.Price)
+            </div>
+            <div class="productAttribute">
+                Description - @Html.DisplayFor(modelItem => item.Description)
+            </div>
+            <div class="productAttribute">
+                @foreach (var review in item.Reviews)
+                    {
+                        <div>
+                            @Html.DisplayFor(modelItem => review.Title)
+                        </div>
+                        <div>
+                            @Html.DisplayFor(modelItem => review.Rating)
+                        </div>
+                        <div style="overflow:hidden;text-overflow:ellipsis;max-height:300px;">
+                            @Html.DisplayFor(modelItem => review.Description)
+                        </div>
+                }
+            </div>
+        </div>
+    }
