@@ -9,7 +9,7 @@ namespace HccCoffeeMaker.Data
     {
         public static void Initialize(MyDatabaseContext myDatabaseContext)
         {
-            myDatabaseContext.Database.EnsureDeleted();
+            //myDatabaseContext.Database.EnsureDeleted();
             myDatabaseContext.Database.EnsureCreated();
         }
     }

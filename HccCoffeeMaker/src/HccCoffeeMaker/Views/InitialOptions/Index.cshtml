@@ -1,7 +1,19 @@
-﻿@{
+﻿@using HccCoffeeMaker.Models.CoffeeMakerModels;
+
+@{
 }
 
 You have reached the initial options page! @ViewData["value"]
 @foreach (var data in ViewData){
     <div>@data.Key</div>
 }
+
+@ViewData["poop"]
+
+<div>
+
+    @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
+    {
+        @Html.Partial("AmazonProductPartial", item);
+    }
+</div>
