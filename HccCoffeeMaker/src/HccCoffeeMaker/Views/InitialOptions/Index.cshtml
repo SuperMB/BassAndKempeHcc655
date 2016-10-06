@@ -1,19 +1,20 @@
-﻿@using HccCoffeeMaker.Models.CoffeeMakerModels;
+﻿@*Index for Initial Options*@
+
+@using HccCoffeeMaker.Models.CoffeeMakerModels;
 
 @{
 }
 
-You have reached the initial options page! @ViewData["value"]
-@foreach (var data in ViewData){
-    <div>@data.Key</div>
-}
 
-@ViewData["poop"]
-
-<div>
-
-    @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
-    {
-        @Html.Partial("AmazonProductPartial", item);
-    }
-</div>
+@*<div style="overflow-x:scroll;width:960px;height:600px;white-space:nowrap;">*@
+<table style="display:block;overflow-x:scroll;">
+    <tr>
+        @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
+        {
+            <td>
+                @Html.Partial("AmazonProductPartial", item)
+            </td>
+        }
+    </tr>
+</table>
+@*</div>*@

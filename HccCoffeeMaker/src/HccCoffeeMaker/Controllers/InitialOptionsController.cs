@@ -26,6 +26,8 @@ namespace HccCoffeeMaker.Controllers
         public async Task<IActionResult> Index()
         {
             string value = HttpContext.Request.Form["firstname"];
+            List<AmazonProductModel.PriceOptions> priceOptions = new List<AmazonProductModel.PriceOptions>();
+
             foreach(var key in HttpContext.Request.Form)
             {
                 foreach(var data in HttpContext.Request.Form[key.Key])
@@ -33,31 +35,17 @@ namespace HccCoffeeMaker.Controllers
                     ViewData[key.Key + "." + data] = key.Key + "." + data;
                     if(key.Key == "price")
                     {
-                        if(data == "price50To100")
-                        {
-                            var amazonProductModels = await _context.AmazonProductModels
-                                .Where(s => s.Price >= 50)
-                                .Where(s => s.Price <= 100)
-                                .Include(s => s.Reviews)
-                                .ToListAsync();
-
-                            ViewData["products"] = amazonProductModels;
-                        }
-                        if (data == "price0To50")
-                        {
-                            var amazonProductModels = await _context.AmazonProductModels
-                                .Where(s => s.Price >= 0)
-                                .Where(s => s.Price <= 50)
-                                .Include(s => s.Reviews)
-                                .ToListAsync();
-
-                            ViewData["products"] = amazonProductModels;
-                        }
+                        foreach (AmazonProductModel.PriceOptions priceOption in Enum.GetValues(typeof(AmazonProductModel.PriceOptions)))
+                            if (priceOption.ToString() == data)
+                                priceOptions.Add(priceOption);
                     }
                 }
             }
 
-
+            ViewData["products"] = await AmazonProductModel.Query(
+                context: _context,
+                priceOptions: priceOptions
+                );
 
             return View();
         }

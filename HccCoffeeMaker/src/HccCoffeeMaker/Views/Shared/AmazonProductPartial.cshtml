@@ -5,15 +5,34 @@
     border-bottom: solid 1px #aaaaaa;
     border-top: solid 1px #aaaaaa;
     width: 100%;
-}
-
-.productTitle {
-    font: bolder;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .previewImage {
     text-align: center;
     max-height: 200px;
+}
+
+.productImage {
+    height:220px;
+}
+
+.productTitle {
+    font: bolder;
+    height:50px;
+}
+
+.productRating {
+    height:25px;
+}
+
+.productDescription {
+    height:100px;
+}
+
+.productReviews {
+    height:250px;
 }
 
 #myImg {
@@ -43,7 +62,7 @@
 .modal-content {
     margin: auto;
     display: block;
-    width: 80%;
+    /*width: 80%;*/
     max-width: 700px;
 }
 
@@ -114,14 +133,14 @@
 <!-- The Modal -->
 <div id="myModal" class="modal">
     <span class="close">X</span>
-    <img class="modal-content" id="img01">
+    <img class="modal-content" id="img01" >
     <div id="caption"></div>
 </div>
 
 
 
-<div style="border:solid 2px #aaaaaa; max-width:300px; margin:10px;float:left; height:inherit">
-    <div class="productAttribute" style="text-align:center;">
+<div style="border:solid 2px #aaaaaa; width:300px; margin:10px;float:left;white-space:normal;">
+    <div class="productAttribute productImage" style="text-align:center;">
         <img id="myImg@(Model.ID)" src="@Model.ImageLocation" class="previewImage" style="max-width:100%;" />
     </div>
     @*<div class="productAttribute">
@@ -130,16 +149,16 @@
     <div class="productAttribute productTitle" style="font:15px;">
         @Html.DisplayFor(modelItem => Model.Title)
     </div>
-    <div class="productAttribute">
+    <div class="productAttribute productRating">
         Aerage Rating - @Html.DisplayFor(modelItem => Model.OverallRating)
     </div>
     <div class="productAttribute">
         $@Html.DisplayFor(modelItem => Model.Price)
     </div>
-    <div class="productAttribute">
+    <div class="productAttribute productDescription">
         Description - @Html.DisplayFor(modelItem => Model.Description)
     </div>
-    <div class="productAttribute">
+    <div class="productAttribute productReviews">
         @foreach (var review in Model.Reviews)
         {
             <div>
@@ -148,9 +167,9 @@
             <div>
                 @Html.DisplayFor(modelItem => review.Rating)
             </div>
-                <div style="overflow:hidden;text-overflow:ellipsis;max-height:300px;">
-                    @Html.DisplayFor(modelItem => review.Description)
-                </div>
+            @*<div style="overflow:hidden;text-overflow:ellipsis;max-height:300px;">
+                @Html.DisplayFor(modelItem => review.Description)
+            </div>*@
         }
     </div>
     <div class="productAttribute">
@@ -173,6 +192,11 @@ img.onclick = function(){
     modal.style.display = "block";
     modalImg.src = this.src;
     captionText.innerHTML = this.alt;
+    if(modalImg.height > 600)
+    {
+        modalImg.style.width = (modalImg.width*600)/modalImg.height;
+        modalImg.height = 600;
+    }
 }
 
 // Get the <span> element that closes the modal

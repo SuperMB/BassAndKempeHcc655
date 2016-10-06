@@ -1,4 +1,5 @@
 ﻿@*Filter Options Page*@ 
+@using HccCoffeeMaker.Models.CoffeeMakerModels;
 
 @{
     ViewData["Title"] = "Filter Page";
@@ -110,22 +111,20 @@ document.addEventListener("drag", function (event) {
 <div id="priceAdded" style="display:none">
     <div class="addedFilter">
         Price <br />
-        <input type="checkbox" name="price" value="price0To50" /> 0 → 50<br />
-        <input type="checkbox" name="price" value="price50To100" /> 50 → 100<br />
-        <input type="checkbox" name="price" value="price100To200" /> 100 → 200<br />
-        <input type="checkbox" name="price" value="price200To500" /> 200 → 500<br />
+        @foreach (AmazonProductModel.PriceOptions price in Enum.GetValues(typeof(AmazonProductModel.PriceOptions)))
+        {
+            <input type="checkbox" name="price" value=@price.ToString() /> @AmazonProductModel.PriceOptionsString(price) <br>
+        }
     </div>
 </div>
 
 <div id="colorAdded" style="display:none">
     <div class="addedFilter">
         Color <br />
-        <input type="checkbox" name="color" value="Green" /> Green <br />
-        <input type="checkbox" name="color" value="Black" /> Black <br />
-        <input type="checkbox" name="color" value="Blue" /> Blue <br />
-        <input type="checkbox" name="color" value="Red" /> Red <br />
-        <input type="checkbox" name="color" value="Grey" /> Grey <br />
-        <input type="checkbox" name="color" value="Yellow" /> Yellow <br />
+        @foreach (AmazonProductModel.ColorOptions color in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
+        {
+            <input type="checkbox" name="price" value=@color.ToString() /> @color.ToString() <br>
+        }
     </div>
 </div>
 
