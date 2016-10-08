@@ -5,7 +5,7 @@
     ViewData["Title"] = "Filter Page";
 }
 
-
+<link rel="stylesheet" type="text/css" href="~/css/Filters.css" />
 
 <style>
     #dropField {
@@ -15,45 +15,6 @@
         padding: 10px;
         border: 1px solid #aaaaaa;
     }
-
-    .filterElement {
-        width: 100px;
-        height: 50px;
-        padding: 10px;
-        margin:10px;
-        color:blue;
-        background-color:aqua;
-        text-align:center;
-        border: 1px solid #000000;
-        border-radius:10px;   
-    }
-
-    .filterElement:hover {
-        background-color:blueviolet;
-        cursor:grab;
-    }
-
-    .priceOption {
-        width: 100px;
-        height: 50px;
-        padding: 10px;
-        margin:10px;
-        color:blue;
-        background-color:aqua;
-        text-align:center;
-        border: 1px solid #000000;
-        border-radius:10px;   
-    }
-
-    .addedFilter {
-        display:inline-block;
-        background-color:lightgrey;
-        border: 2px solid #aaaaaa;
-        border-radius: 10px;
-        min-width:200px;
-        margin:10px;
-    }
-
 
 </style>
 <script>
@@ -95,16 +56,30 @@ document.addEventListener("drag", function (event) {
 <div style="height:50px;">
 </div>
 
-<div 
-
-<div style="height:50px;">
-    <span class="filterElement" id="price" draggable="true" ondragstart="drag(event)">
+<div style="text-align:center;width:100%;">
+    <div class="filterElement" id="price" draggable="true" ondragstart="drag(event)" style="top:50%;">
         Price
-    </span>
+    </div>
 
-    <span class="filterElement" id="color" draggable="true" ondragstart="drag(event)">
+    <div class="filterElement" id="color" draggable="true" ondragstart="drag(event)">
         Color
-    </span>
+    </div>
+
+    <div class="filterElement" id="durability" draggable="true" ondragstart="drag(event)">
+        Durability
+    </div>
+
+    <div class="filterElement" id="servingSize" draggable="true" ondragstart="drag(event)">
+        Serving Size
+    </div>
+
+    <div class="filterElement" id="brewingTime" draggable="true" ondragstart="drag(event)">
+        Brewing Time
+    </div>
+
+    <div class="filterElement" id="brand" draggable="true" ondragstart="drag(event)">
+        Brand
+    </div>
 </div>
 
 
@@ -128,9 +103,49 @@ document.addEventListener("drag", function (event) {
     </div>
 </div>
 
-<div style="height:50px;"></div>
+<div id="durabilityAdded" style="display:none">
+    <div class="addedFilter">
+        Durability <br />
+        @foreach (AmazonProductModel.DurabilityOptions durability in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
+        {
+            <input type="checkbox" name="durability" value=@durability.ToString() /> @durability.ToString() <br>
+        }
+    </div>
+</div>
+
+<div id="servingSizeAdded" style="display:none">
+    <div class="addedFilter">
+        Serving Size <br />
+        @foreach (AmazonProductModel.ServingSizeOptions servingSize in Enum.GetValues(typeof(AmazonProductModel.ServingSizeOptions)))
+        {
+            <input type="checkbox" name="servingSize" value=@servingSize.ToString() /> @servingSize.ToString() <br>
+        }
+    </div>
+</div>
+
+<div id="brewingTimeAdded" style="display:none">
+    <div class="addedFilter">
+        Serving Size <br />
+        @foreach (AmazonProductModel.BrewingTimeOptions brewingTime in Enum.GetValues(typeof(AmazonProductModel.BrewingTimeOptions)))
+        {
+            <input type="checkbox" name="brewingTime" value=@brewingTime.ToString() /> @AmazonProductModel.BrewingTimeOptionsString(brewingTime) <br>
+        }
+    </div>
+</div>
+
+<div id="brandAdded" style="display:none">
+    <div class="addedFilter">
+        Serving Size <br />
+        @foreach (AmazonProductModel.BrandOptions brand in Enum.GetValues(typeof(AmazonProductModel.BrandOptions)))
+        {
+            <input type="checkbox" name="brewingTime" value=@brand.ToString() /> @brand.ToString() <br>
+        }
+    </div>
+</div>
+
+<div style="height:50px;clear:both;"></div>
 <form asp-controller="InitialOptions" asp-action="Index" method="post">
-    Drop the desired Facets into the field below: <br />
+Drop the desired Facets into the field below: <br />
     <div id="dropField" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     
     <br />

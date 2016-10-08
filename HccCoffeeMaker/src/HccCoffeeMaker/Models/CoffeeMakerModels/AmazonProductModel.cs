@@ -67,7 +67,6 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             Price100To200,
             Price200To500
         }
-
         public static string PriceOptionsString(PriceOptions priceOption)
         {
             switch(priceOption)
@@ -83,7 +82,6 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             }
             return "Invalid Price Given";
         }
-
         public static PriceOptions StringToPriceOption(string message)
         {
             foreach (PriceOptions priceOption in Enum.GetValues(typeof(PriceOptions)))
@@ -92,7 +90,6 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
 
             return PriceOptions.Price0To50;
         }
-
         private static IQueryable<AmazonProductModel> QueryPrice(IQueryable<AmazonProductModel> query, PriceOptions priceOption)
         {
             switch(priceOption)
@@ -109,7 +106,6 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
 
             return query;
         } 
-
         public enum ColorOptions
         {
             Green,
@@ -119,11 +115,57 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             Grey,
             Yellow
         }
-
         private static IQueryable<AmazonProductModel> QueryColor(IQueryable<AmazonProductModel> query, ColorOptions colorOption)
         {
             return query;
             //return query.Where(s => s.Color == colorOption.ToString());
+        }
+
+        public enum ServingSizeOptions //TODO
+        {
+            Small,
+            Medium,
+            Large
+        }
+
+        public enum DurabilityOptions //TODO
+        {
+            Fragile,
+            Stout,
+            Strong,
+            Durable,
+            Invincible
+        }
+
+        public enum BrewingTimeOptions //TODO
+        {
+            Time0To2Minutes,
+            Time2To5Minutes,
+            Time5To10Minutes,
+            Time10To30Minutes
+        }
+        public static string BrewingTimeOptionsString(BrewingTimeOptions priceOption)
+        {
+            switch (priceOption)
+            {
+                case BrewingTimeOptions.Time0To2Minutes:
+                    return "0 → 2 Minutes";
+                case BrewingTimeOptions.Time2To5Minutes:
+                    return "2 → 5 Minutes";
+                case BrewingTimeOptions.Time5To10Minutes:
+                    return "5 → 10 Minutes";
+                case BrewingTimeOptions.Time10To30Minutes:
+                    return "10 → 30 Minutes";
+            }
+            return "Invalid Brewing Time Given";
+        }
+
+        public enum BrandOptions
+        {
+            Kuerig,
+            Folders,
+            AReallyExpensiveBrand,
+            TheMostExpensiveBrand
         }
 
 

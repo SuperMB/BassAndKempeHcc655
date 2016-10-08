@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color:var(--lightSeafom);
 }
 
 /* Wrapping element */
@@ -47,4 +48,20 @@ textarea {
   .carousel-caption {
     display: none
   }
+}
+
+:root{
+    --yellow:rgb(244,240,148);
+    --yellowTransparent:rgba(244,240,148,0.7);
+    --navy:rgb(51,55,69);
+    --navyTransparent:rgba(51,55,69,0.7);
+    --lightSeafom:rgb(218,237,225);
+    --lightSeafomTransparent:rgba(218,237,225,0.7);
+    --pink:rgb(233,46,73);
+    --pinkTransparent:rgba(233,46,73,0.7);
+    --brightBlue:rgb(119,196,210);
+    --brightBlueTransparent:rgba(119,196,210,0.7);
+    --smallFont:10px;
+    --mediumFont:20px;
+    --largeFont:40px;
 }
