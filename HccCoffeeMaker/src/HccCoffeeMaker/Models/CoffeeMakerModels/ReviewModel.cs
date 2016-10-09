@@ -16,23 +16,9 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
 
         public ReviewModel(JToken jToken)
         {
-            JProperty position = (JProperty)jToken.First;
-            while (position != null)
-            {
-                switch (position.Name)
-                {
-                    case "rating":
-                        Rating = Convert.ToDouble(position.First.ToString().Remove(1));
-                        break;
-                    case "title":
-                        Title = position.First.ToString();
-                        break;
-                    case "description":
-                        Description = position.First.ToString();
-                        break;
-                }
-                position = (JProperty)(((JToken)position).Next);
-            }
+            Rating = Convert.ToDouble(jToken["rating"].ToString().Remove(1));
+            Title = jToken["title"].ToString();
+            Description = jToken["description"].ToString();            
         }
 
         public int ID { get; set; }

@@ -2,7 +2,6 @@
     var metadata = BSUtils.unwrap(mmd_and_metadata.metadata);
     console.log(metadata)
 
-    metadata.
 }
 var bsService = new BSAutoSwitch(['elkanacmmmdgbnhdjopfdeafchmhecbf']);
 

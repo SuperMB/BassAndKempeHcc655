@@ -3,188 +3,33 @@
 @using HccCoffeeMaker.Models.CoffeeMakerModels;
 
 <link rel="stylesheet" type="text/css" href="~/css/Comparison.css" />
-<script src="~/js/Comparison.js" type="text/javascript"></script>
-
-<div onclick="ChangeMode()" id="ModeSelector" style="height:100px;width:100px;background-color:aqua;">
-    Write Mode
-</div>
-
-<div style="height:20px"></div>
-
-<table style="display:block;" align="center">@*overflow-x:scroll;">*@
-    <tr>
-        <td>
-            <div style="width:100%;margin:0 auto;">
-                <div class="comparisonTable">
-                    <div class="comparisonRow" id="productHeader"
-                         style="display:table-header-group;
-                        font-size:var(--mediumFont);
-                        text-align:center;
-                        background-color:var(--navyTransparent);">
-                        <div class="comparisonCell ">
-                            Image
-                        </div>
-                        <div class="comparisonCell ">
-                            ID
-                        </div>
-                        <div class="comparisonCell comparisonTitle">
-                            Title
-                        </div>
-                        <div class="comparisonCell comparisonPrice">
-                            Price
-                        </div>
-                        <div class="comparisonCell comparisonOverallRating">
-                            OverallRating
-                        </div>
-                        <div class="comparisonCell comparisonDescription">
-                            Description
-                        </div>
-
-
-                        <div class="comparisonCell extraCell">
-                            Extra Cell 1
-                        </div>
-                        <div class="comparisonCell extraCell">
-                            Extra Cell 2
-                        </div>
-                        <div class="comparisonCell extraCell">
-                            Extra Cell 3
-                        </div>
-                        <div class="comparisonCell extraCell">
-                            Extra Cell 4
-                        </div>
-
-                        <div class="comparisonCell " style="border:none;background-color:var(--lightSeafoam);color:var(--navy);font-size:var(--smallFont);">
-                            Annotations
-                        </div>
-                    </div>
-
-                    @foreach (AmazonProductModel product in (ICollection<AmazonProductModel>)ViewData["products"])
-                    {
-                        <div style="height:15px;" id="heightFor@(product.ID)"></div>
-                        <div class="moveRow"
-                             id="moveRow@(product.ID)"
-                             ondragover="DragEnter(event, this.id)"
-                             ondragleave="DragExit(event, this.id)"
-                             ondrop="Drop(event, this.id)">
-
-                            <div class="moveCell" id="moveCellImage@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOut(event, id)"
-                                 onclick="MoveCellClick(event,id)">
-                            </div>
-                            <div class="moveCell" id="moveCellId@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOut(event, id)"
-                                 onclick="MoveCellClick(event,id)">
-                            </div>
-                            <div class="moveCell" id="moveCellTitle@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOut(event, id)"
-                                 onclick="MoveCellClick(event,id)">
-                            </div>
-                            <div class="moveCell" id="moveCelPrice@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOut(event, id)"
-                                 onclick="MoveCellClick(event,id)">
-                            </div>
-                            <div class="moveCell" id="moveCellOverallRating@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOut(event, id)"
-                                 onclick="MoveCellClick(event,id)">
-                            </div>
-                            <div class="moveCell" id="moveCellDescription@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOut(event, id)"
-                                 onclick="MoveCellClick(event,id)">
-                            </div>
-
-                            <div class="moveCell" id="moveCellExtra1_@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOut(event, id)"
-                                 onclick="MoveCellClick(event,id)">
-                            </div>
-                            <div class="moveCell" id="moveCellExtra2_@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOut(event, id)"
-                                 onclick="MoveCellClick(event,id)">
-                            </div>
-                            <div class="moveCell" id="moveCellExtra3_@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOut(event, id)"
-                                 onclick="MoveCellClick(event,id)">
-                            </div>
-                            <div class="moveCell" id="moveCellExtra4_@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOut(event, id)"
-                                 onclick="MoveCellClick(event,id)">
-                            </div>
-
-
-                            <div class="moveCellOverComment" id="moveCellComments@(product.ID)">
-                            </div>
-                        </div>
-
-                        <div class="comparisonRow" draggable="true" id="product@(product.ID)"
-                             ondragstart="Dragging(event)"
-                             ondragend="StopDragging(event)"
-                             onmouseover="ComparisonRowMouseOver(event, this.id)"
-                             onmouseout="ComparisonRowMouseOut(event, this.id)">
-                            <div class="comparisonCell comparisonImageCell">
-                                <img src="@(product.ImageLocation)" class="comparisonImage" draggable="false" />
-                            </div>
-                            <div class="comparisonCell ">
-                                @product.ID
-                            </div>
-                            <div class="comparisonCell comparisonTitle">
-                                @product.Title
-                            </div>
-                            <div class="comparisonCell comparisonPrice">
-                                $@product.Price
-                            </div>
-                            <div class="comparisonCell comparisonOverallRating">
-                                @product.OverallRating
-                            </div>
-                            <div class="comparisonCell comparisonDescription">
-                                @product.Description
-                            </div>
-
-                            <div class="comparisonCell extraCell">
-                                Extra Cell Content 1
-                            </div>
-                            <div class="comparisonCell extraCell">
-                                Extra Cell Content 2
-                            </div>
-                            <div class="comparisonCell extraCell">
-                                Extra Cell Content 3
-                            </div>
-                            <div class="comparisonCell extraCell">
-                                Extra Cell Content 4
-                            </div>
-
-
-
-                            <div class="comparisonComments" id="comparisonComments@(product.ID)"
-                                 onmouseover="MouseOver(event, id)"
-                                 onmouseout="MouseOutRow(event, id)"
-                                 onclick="MoveCellClickRow(event,id)">
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-        </td>
-    </tr>
-</table>
+<script src="~/js/InitialOptions.js" ></script>
 
 @*<table style="display:block;overflow-x:scroll;">
-        <tr>
-            @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
-            {
-                <td>
-                    @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartial.cshtml", item)
-                </td>
-            }
-        </tr>
-    </table>*@
+    <tr>
+        @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
+        {
+            <td>
+                @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmall.cshtml", item)
+            </td>
+        }
+    </tr>
+</table>*@
 
+<div style="width:100px;height:100px;background-color:aqua;" onclick="SwitchPerspective()">
+    Switch To Comparison
+</div>
+
+
+<div id="Selection">
+    <div style="text-align:center">
+        @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
+        {
+            @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmall.cshtml", item)
+        }
+    </div>
+</div>
+
+<div id="Comparison" style="display:none;">
+    @Html.Partial("~/Views/InitialOptions/Comparison.cshtml");
+</div>

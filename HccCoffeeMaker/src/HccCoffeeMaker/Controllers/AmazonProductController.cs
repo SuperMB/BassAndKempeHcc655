@@ -73,9 +73,9 @@ namespace HccCoffeeMaker.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateFromUrl()
         {
-            string url = HttpContext.Request.Form["url"];
-            String response = await new HttpClient().GetStringAsync("http://ecology-service.cse.tamu.edu/BigSemanticsService/metadata.json?callback=metadaCallback&url=" + url);
-            JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+            string metaData = HttpContext.Request.Form["metaData"];
+            //String response = await new HttpClient().GetStringAsync("http://ecology-service.cse.tamu.edu/BigSemanticsService/metadata.json?callback=metadaCallback&url=" + url);
+            JObject jObject = (JObject)JsonConvert.DeserializeObject(metaData);
             AmazonProductModel amazonProduct = new AmazonProductModel(jObject);
             return await Create(amazonProduct);
         }

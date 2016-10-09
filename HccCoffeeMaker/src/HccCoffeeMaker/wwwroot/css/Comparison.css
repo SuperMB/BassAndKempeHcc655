@@ -1,40 +1,53 @@
+
+
 .comparisonTable{
-    display:table;
-    width:100%;
+    /*display:table;*/
     border-collapse:collapse;
-    overflow-y: scroll;
-    height:500px;
+    width:100%;
+    display:inline-block;
+    margin: 0px auto;
+    position:relative;
 }
 
 .moveRow{
     height:25px;
     background-color:none;
-    display:table-row;
+    /*display:table-row;*/
     width:100%;
 }
 
+.hieghtRow{
+}
+
 .moveCell{
-    display:table-cell;
+    /*display:table-cell;*/
     vertical-align:top;
     max-width:200px;
 }
 
 .moveCellOverComment{
-    display:table-cell;
+    /*display:table-cell;*/
     vertical-align:top;
     max-width:200px;
     background-color:var(--lightSeafoam);
 }
 
+.headerRow{
+    margin:10px;
+    /*display:table-row;*/
+    background-color:var(--navyHeavyTransparent);
+    color:white;
+}
+
 .comparisonRow{
     margin:10px;
-    display:table-row;
+    /*display:table-row;*/
     background-color:var(--navyHeavyTransparent);
     color:white;
 }
 
 .comparisonCell{
-    display:table-cell;
+    /*display:table-cell;*/
     vertical-align:top;
     padding:20px;
     word-wrap:break-word;    
@@ -42,6 +55,7 @@
     border-bottom:none;
     border-left:solid 1px var(--lightSeafoam);
     border-right:solid 1px var(--lightSeafoam);
+    text-align:left;
 }
 
 .comparisonImageCell{
@@ -57,17 +71,21 @@
     max-height:200px;
 }
 
+.comparisonId{
+
+}
+
 .comparisonTitle{
     max-width:200px;
 
 }
 
 .comparsionPrice{
-
+    text-align:center;
 }
 
 .comparisonOverallRating{
-
+    text-align:center;
 }
 
 .comparisonDescription{

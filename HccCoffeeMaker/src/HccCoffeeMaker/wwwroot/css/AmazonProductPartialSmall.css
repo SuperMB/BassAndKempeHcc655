@@ -1,0 +1,90 @@
+.product{
+    border:solid 2px #aaaaaa;
+    width:250px;
+    margin:10px;
+    white-space:normal;
+    display:inline-block;
+    border: solid 1px var(--navy);
+    border-radius:10px;
+    z-index:2;
+    vertical-align:top;
+}
+
+.checkMarkContainer{
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    background-color:white;
+    text-align:right;
+}
+
+.checkMark{
+    width:20px;
+    display:inline;
+    visibility:hidden;
+}
+
+.productAttribute {
+    width: 100%;
+    background-color:var(--navyHeavyTransparent);
+}
+
+.previewImage {
+    text-align: center;
+    max-height: 200px;
+}
+
+.productImage {
+    height:220px;
+    background-color:white;
+    border-bottom-color:var(--lightSeafoam);
+}
+
+.productTitle {
+    font: bolder;
+    border-bottom:solid 2px var(--lightSeafoam);
+}
+
+.productRating {
+    height:25px;
+    border-bottom:solid 2px var(--lightSeafoam);
+}
+
+.productPrice {
+    height:25px;
+    border-bottom:solid 2px var(--lightSeafoam);
+}
+
+.productDescription {
+    height:100px;
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+}
+
+
+
+/* Add Animation */
+.modal-content {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 60px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
