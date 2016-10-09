@@ -7,147 +7,225 @@
 
 <link rel="stylesheet" type="text/css" href="~/css/Filters.css" />
 
-<style>
-    #dropField {
-        width: 960px;
-        height:auto;
-        min-height: 70px;
-        padding: 10px;
-        border: 1px solid #aaaaaa;
+
+<script src="~/js/jquery-1.3.2-vsdoc2.js"></script>
+<script>
+
+    function removeSelectorAndShowOriginal(selectorId) {
+        var facetId = selectorId.substring(0, selectorId.length - 5);
+        var facetAdded = document.getElementById(selectorId);
+        var facet = document.getElementById(facetId);
+
+        facetAdded.style.display = "none";
+        //facet.style.visibility = "visible";
     }
 
-</style>
-<script>
-function allowDrop(ev) {
-    ev.preventDefault();
-}
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
+    function clickFacet(id) {
+        var background = document.getElementById("myDiv");
+        background.style.display = "block";
+        var element = document.getElementById(id);
+        var elementFacets = document.getElementById(id.concat("Added"));
+        //element.style.visibility = "hidden";
+        elementFacets.style.display = "inline-block";
+    }
 
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    var copy = document.getElementById(data.concat("Added")).cloneNode(true);
-    copy.opacity = "1";
-    copy.style.display = "inline";
-    //ev.target.appendChild(copy);
-    document.getElementById("dropField").appendChild(copy);
-    document.getElementById("dropField").appendChild(document.createElement("br"));
-}
-document.addEventListener("dragstart", function (event) {
-    //event.dataTransfer.setData("Text", event.target.id);
-    event.target.style.opacity = "0.4";
-});
+    function clickClose(id) {
+        var background = document.getElementById("myDiv");
+        background.style.display = "none";
+        
+        var facetAddedId = id.substring(0, id.length - 5);
+        removeSelectorAndShowOriginal(facetAddedId);
 
-document.addEventListener("dragend", function (event) {
-    event.target.style.opacity = "1";
-});
+        var facetId = facetAddedId.substring(0, facetAddedId.length - 5);
+        var facet = document.getElementById(facetId);
+        facet.style.backgroundColor = "var(--navy)";
+        facet.style.boxShadow = "0 0 0";
+    }
 
-/*
-document.addEventListener("drag", function (event) {
-    event.dataTransfer.setData("Text", event.target.id);
-    event.target.style.opacity = "0.4";
-});
-*/
+    function clickSelect(id) {
+        var background = document.getElementById("myDiv");
+        background.style.display = "none";
+
+        var facetAddedId = id.substring(0, id.length - 6);
+        removeSelectorAndShowOriginal(facetAddedId);
+
+        var facetId = facetAddedId.substring(0, facetAddedId.length - 5);
+        var facet = document.getElementById(facetId);
+        facet.style.backgroundColor = "var(--yellow)";
+        facet.style.boxShadow = "0 0 20px var(--navy)";
+        facet.style.color = "var(--navy)";
+
+        var facetAddedCopy = document.getElementById(facetAddedId).cloneNode(true);
+        var formField = document.getElementById("formField");
+        formField.appendChild(facetAddedCopy);
+        facetAddedCopy.style.display = "block";
+        facetAddedCopy.style.position = "relative";
+        facetAddedCopy.style.zIndex = "2";
+        facetAddedCopy.style.float = "left";
+
+    }
+
 </script>
 
-<div style="height:50px;">
+
+
+
+<div style="height:50px;"></div>
+
+<div id="myDiv" class="modal"></div>
+
+
+
+
+<div style="height:150px;"></div>
+<div style="font-size:var(--largeFont)">Select facets to filter on </div>
+<div style="height:50px;"></div>
+
+@{ var title = "";}
+@{ var spaceUnderFacetSelectorTitle = "50px";}
+<div style="text-align:center;width:100%;">
+    @{title = "price";}
+    <div id="@(title)Added" class="addedFilter">
+        Price <br />
+        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
+        @foreach (AmazonProductModel.PriceOptions price in Enum.GetValues(typeof(AmazonProductModel.PriceOptions)))
+        {
+            <input type="checkbox" name="@(title)" value=@price.ToString() /> @AmazonProductModel.PriceOptionsString(price)<br />
+        }
+        <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
+        <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
+    </div>
+    <div class="filterElement" id="@(title)" onclick="clickFacet(this.id)">
+        <span class="filterText">Price</span>
+    </div>
+    @{title = "color";}
+    <div id="@(title)Added" class="addedFilter">
+        Color <br />
+        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
+        @foreach (AmazonProductModel.ColorOptions color in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
+        {
+            <input type="checkbox" name="@(title)" value=@color.ToString() /> @color.ToString() <br>
+        }
+        <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
+        <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
+    </div>
+    <div class="filterElement" id="@(title)" onclick="clickFacet(this.id)">
+        <span class="filterText">Color</span>
+    </div>
+
+    @{title = "durability";}
+    <div id="@(title)Added" class="addedFilter">
+        Durability <br />
+        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
+        @foreach (AmazonProductModel.DurabilityOptions durability in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
+        {
+            <input type="checkbox" name="@(title)" value=@durability.ToString() /> @durability.ToString() <br>
+        }
+        <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
+        <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
+    </div>
+    <div class="filterElement" id="@(title)" onclick="clickFacet(this.id)">
+        <span class="filterText">Durability</span>
+    </div>
+    @{title = "servingSize";}
+    <div id="@(title)Added" class="addedFilter">
+        Serving Size <br />
+        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
+        @foreach (AmazonProductModel.ServingSizeOptions servingSize in Enum.GetValues(typeof(AmazonProductModel.ServingSizeOptions)))
+        {
+            <input type="checkbox" name="@(title)" value=@servingSize.ToString() /> @servingSize.ToString() <br>
+        }
+        <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
+        <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
+    </div>
+    <div class="filterElement" id="@(title)" onclick="clickFacet(this.id)">
+        <span class="filterText">Serving Size</span>
+    </div>
 </div>
 
 <div style="text-align:center;width:100%;">
-    <div class="filterElement" id="price" draggable="true" ondragstart="drag(event)" style="top:50%;">
-        Price
-    </div>
-
-    <div class="filterElement" id="color" draggable="true" ondragstart="drag(event)">
-        Color
-    </div>
-
-    <div class="filterElement" id="durability" draggable="true" ondragstart="drag(event)">
-        Durability
-    </div>
-
-    <div class="filterElement" id="servingSize" draggable="true" ondragstart="drag(event)">
-        Serving Size
-    </div>
-
-    <div class="filterElement" id="brewingTime" draggable="true" ondragstart="drag(event)">
-        Brewing Time
-    </div>
-
-    <div class="filterElement" id="brand" draggable="true" ondragstart="drag(event)">
-        Brand
-    </div>
-</div>
-
-
-<div id="priceAdded" style="display:none">
-    <div class="addedFilter">
-        Price <br />
-        @foreach (AmazonProductModel.PriceOptions price in Enum.GetValues(typeof(AmazonProductModel.PriceOptions)))
-        {
-            <input type="checkbox" name="price" value=@price.ToString() /> @AmazonProductModel.PriceOptionsString(price) <br>
-        }
-    </div>
-</div>
-
-<div id="colorAdded" style="display:none">
-    <div class="addedFilter">
-        Color <br />
-        @foreach (AmazonProductModel.ColorOptions color in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
-        {
-            <input type="checkbox" name="price" value=@color.ToString() /> @color.ToString() <br>
-        }
-    </div>
-</div>
-
-<div id="durabilityAdded" style="display:none">
-    <div class="addedFilter">
-        Durability <br />
-        @foreach (AmazonProductModel.DurabilityOptions durability in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
-        {
-            <input type="checkbox" name="durability" value=@durability.ToString() /> @durability.ToString() <br>
-        }
-    </div>
-</div>
-
-<div id="servingSizeAdded" style="display:none">
-    <div class="addedFilter">
-        Serving Size <br />
-        @foreach (AmazonProductModel.ServingSizeOptions servingSize in Enum.GetValues(typeof(AmazonProductModel.ServingSizeOptions)))
-        {
-            <input type="checkbox" name="servingSize" value=@servingSize.ToString() /> @servingSize.ToString() <br>
-        }
-    </div>
-</div>
-
-<div id="brewingTimeAdded" style="display:none">
-    <div class="addedFilter">
-        Serving Size <br />
+    @{title = "brewingTime";}
+    <div id="@(title)Added" class="addedFilter">
+        Brewing Time <br />
+        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
         @foreach (AmazonProductModel.BrewingTimeOptions brewingTime in Enum.GetValues(typeof(AmazonProductModel.BrewingTimeOptions)))
         {
-            <input type="checkbox" name="brewingTime" value=@brewingTime.ToString() /> @AmazonProductModel.BrewingTimeOptionsString(brewingTime) <br>
+            <input type="checkbox" name="@(title)" value=@brewingTime.ToString() /> @AmazonProductModel.BrewingTimeOptionsString(brewingTime) <br>
         }
+        <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
+        <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
     </div>
-</div>
-
-<div id="brandAdded" style="display:none">
-    <div class="addedFilter">
-        Serving Size <br />
+    <div class="filterElement" id="@(title)" onclick="clickFacet(this.id)">
+        <span class="filterText">Brewing Time</span>
+    </div>
+    @{title = "brand";}
+    <div id="@(title)Added" class="addedFilter">
+        Brand <br />
+        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
         @foreach (AmazonProductModel.BrandOptions brand in Enum.GetValues(typeof(AmazonProductModel.BrandOptions)))
         {
-            <input type="checkbox" name="brewingTime" value=@brand.ToString() /> @brand.ToString() <br>
+            <input type="checkbox" name="@(title)" value=@brand.ToString() /> @brand.ToString() <br>
         }
+        <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
+        <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
+    </div>
+    <div class="filterElement" id="@(title)" onclick="clickFacet(this.id)">
+        <span class="filterText">Brand</span>
+    </div>
+
+    @{title = "warranty";}
+    <div id="@(title)Added" class="addedFilter">
+        Warranty <br />
+        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
+        @foreach (AmazonProductModel.WarrantyOptions warranty in Enum.GetValues(typeof(AmazonProductModel.WarrantyOptions)))
+        {
+            <input type="checkbox" name="@(title)" value=@warranty.ToString() /> @warranty.ToString() <br>
+        }
+        <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
+        <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
+    </div>
+    <div class="filterElement" id="@(title)" onclick="clickFacet(this.id)">
+        <span class="filterText">Warranty</span>
+    </div>
+
+    @{title = "qualityOfCoffee";}
+    <div id="@(title)Added" class="addedFilter">
+        Quality of Coffee <br />
+        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
+        @foreach (AmazonProductModel.QualityOfCoffeeOptions qualityOfCoffee in Enum.GetValues(typeof(AmazonProductModel.QualityOfCoffeeOptions)))
+        {
+            <input type="checkbox" name="@(title)" value=@qualityOfCoffee.ToString() /> @qualityOfCoffee.ToString() <br>
+        }
+        <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
+        <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
+    </div>
+    <div class="filterElement" id="@(title)" onclick="clickFacet(this.id)">
+        <span class="filterText">Quality of Coffee</span>
     </div>
 </div>
 
+@*<div style="height:200px;"></div>*@
+
+<br />
+<font style="color:var(--lightSeafoam)">.</font>
+<br />
+<hr />
+
+
+
 <div style="height:50px;clear:both;"></div>
-<form asp-controller="InitialOptions" asp-action="Index" method="post">
-Drop the desired Facets into the field below: <br />
-    <div id="dropField" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    
+<form asp-controller="InitialOptions" asp-action="Index" method="post" style="text-align:center;">
+    Drop the desired Facets into the field below: <br />
+    <div id="formField" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
     <br />
-    <input type="submit" value="Proceed With Selected Facets" />
+    <div style="clear:both;"></div>
+    <input type="submit" style="clear:both;float:none;" value="Proceed With Selected Facets" />
 </form>
+
+    
+
+    
+
+    

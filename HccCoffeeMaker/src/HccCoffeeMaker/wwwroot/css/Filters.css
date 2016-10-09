@@ -2,16 +2,15 @@
 .filterElement {
     width: 200px;
     height: 100px;
-    padding: 10px;
     margin:10px;
-    color:white;
+    color:var(--lightSeafoam);
     background-color:var(--navy);
     text-align:center;
-    border: 1px solid #000000;
+    /*border: 1px solid #000000;*/
     border-radius:10px;
     display:inline-block;
-    line-height:80px;
     font-size:var(--mediumFont);
+    vertical-align:top;
 }
 
 .filterElement:hover {
@@ -24,12 +23,47 @@
     box-shadow:0 0 20px var(--navy);
 }
 
+.filterText {
+    position:relative;
+    top:32px;
+}
+
+
 .addedFilter {
-    display:inline-block;
-    float:left;
-    background-color:lightgrey;
-    border: 2px solid #aaaaaa;
-    border-radius: 10px;
-    min-width:200px;
+    width: 400px;
+    height:400px;
     margin:10px;
+    color:white;
+    background-color:var(--navy);
+    text-align:center;
+    border: 1px solid #000000;
+    border-radius:10px;
+    font-size:var(--mediumFont);
+    z-index: 3;
+    position:fixed;
+    display:none;
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+.addedFacetClose{
+    position:absolute;
+    bottom:25px;
+    right:25px;
+}
+
+.addedFacetClose:hover{
+    cursor:pointer;
+}
+
+.addedFacetSelect{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+}
+
+.addedFacetSelect:hover{
+    cursor:pointer;
 }

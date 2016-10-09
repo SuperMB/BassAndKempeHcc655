@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color:var(--lightSeafom);
+    background-color:var(--lightSeafoam);
 }
 
 /* Wrapping element */
@@ -55,13 +55,45 @@ textarea {
     --yellowTransparent:rgba(244,240,148,0.7);
     --navy:rgb(51,55,69);
     --navyTransparent:rgba(51,55,69,0.7);
-    --lightSeafom:rgb(218,237,225);
-    --lightSeafomTransparent:rgba(218,237,225,0.7);
+    --navyHeavyTransparent:rgba(51,55,69,0.3);
+    --lightSeafoam:rgb(218,237,225);
+    --lightSeafoamTransparent:rgba(218,237,225,0.7);
     --pink:rgb(233,46,73);
-    --pinkTransparent:rgba(233,46,73,0.7);
+    --pinkTransparent:rgba(233,46,73,0.4);
     --brightBlue:rgb(119,196,210);
     --brightBlueTransparent:rgba(119,196,210,0.7);
     --smallFont:10px;
-    --mediumFont:20px;
+    --mediumFont:25px;
     --largeFont:40px;
+    --extraLargeFont:60px;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: var(--navyTransparent); /* Black w/ opacity */
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(.9)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(.9)}
+    to {transform:scale(1)}
+}
+
+hr {
+  border-color: var(--navy);
 }

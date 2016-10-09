@@ -15,7 +15,9 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -42,12 +44,7 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <br />
-            <font color="white">.</font>
-            <br />
-            <hr />
+        <footer style="clear:both;">
             <p>&copy; 2016 - HccCoffeeMaker</p>
         </footer>
     </div>

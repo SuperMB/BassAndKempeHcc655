@@ -15,6 +15,7 @@
     padding:0px;
     max-width:300px;
     display:inline-block;
+    vertical-align:top;
 }
 
 .optionImage{

@@ -144,7 +144,7 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             Time5To10Minutes,
             Time10To30Minutes
         }
-        public static string BrewingTimeOptionsString(BrewingTimeOptions priceOption)
+        public static string BrewingTimeOptionsString(BrewingTimeOptions priceOption) //TODO
         {
             switch (priceOption)
             {
@@ -160,12 +160,28 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             return "Invalid Brewing Time Given";
         }
 
-        public enum BrandOptions
+        public enum BrandOptions //TODO
         {
             Kuerig,
             Folders,
             AReallyExpensiveBrand,
             TheMostExpensiveBrand
+        }
+
+        public enum WarrantyOptions //TODO
+        {
+            CoversNothing,
+            CoversSomethings,
+            CoversEverything
+        }
+
+        public enum QualityOfCoffeeOptions
+        {
+            ReallyBad,
+            Okay,
+            PrettyGood,
+            ReallyReallyGood,
+            Amazing,
         }
 
 

@@ -2,19 +2,300 @@
 
 @using HccCoffeeMaker.Models.CoffeeMakerModels;
 
-@{
-}
+<link rel="stylesheet" type="text/css" href="~/css/Comparison.css" />
 
+<div onclick="ChangeMode()" id="ModeSelector" style="height:100px;width:100px;background-color:aqua;">
+    Write Mode
+</div>
 
-@*<div style="overflow-x:scroll;width:960px;height:600px;white-space:nowrap;">*@
-<table style="display:block;overflow-x:scroll;">
+<div style="height:100px"></div>
+
+<div style="width:100%;margin:0 auto;">
+    <div class="comparisonTable">
+        <div class="comparisonRow" id="productHeader" 
+             style="display:table-header-group;
+                    font-size:var(--mediumFont);
+                    text-align:center;
+                    background-color:var(--navyTransparent);"
+             >
+            <div class="comparisonCell ">
+                Image
+            </div>
+            <div class="comparisonCell ">
+                ID
+            </div>
+            <div class="comparisonCell comparisonTitle">
+                Title
+            </div>
+            <div class="comparisonCell comparisonPrice">
+                Price
+            </div>
+            <div class="comparisonCell comparisonOverallRating">
+                OverallRating
+            </div>
+            <div class="comparisonCell comparisonDescription">
+                Description
+            </div>
+            <div class="comparisonCell " style="border:none;background-color:var(--lightSeafoam);color:var(--navy);font-size:var(--smallFont);">
+                Annotations
+            </div>
+        </div>
+
+        @foreach (AmazonProductModel product in (ICollection<AmazonProductModel>)ViewData["products"])
+        {
+            <div style="height:25px;" id="heightFor@(product.ID)"></div>
+            <div class="moveRow" 
+                 id="moveRow@(product.ID)" 
+                 ondragover="DragEnter(event, this.id)" 
+                 ondragleave="DragExit(event, this.id)" 
+                 ondrop="Drop(event, this.id)"
+                 >
+
+                <div class="moveCell" id="moveCellImage@(product.ID)"
+                     onmouseover="MouseOver(event, id)" 
+                     onmouseout="MouseOut(event, id)"
+                     onclick="MoveCellClick(event,id)"
+                     >
+                </div>
+                <div class="moveCell" id="moveCellId@(product.ID)" 
+                     onmouseover="MouseOver(event, id)" 
+                     onmouseout="MouseOut(event, id)"
+                     onclick="MoveCellClick(event,id)"
+                     >
+                </div>
+                <div class="moveCell" id="moveCellTitle@(product.ID)" 
+                     onmouseover="MouseOver(event, id)" 
+                     onmouseout="MouseOut(event, id)"
+                     onclick="MoveCellClick(event,id)"
+                     >
+                </div>
+                <div class="moveCell" id="moveCelPrice@(product.ID)" 
+                     onmouseover="MouseOver(event, id)" 
+                     onmouseout="MouseOut(event, id)"
+                     onclick="MoveCellClick(event,id)"
+                     >
+                </div>
+                <div class="moveCell" id="moveCellOverallRating@(product.ID)" 
+                     onmouseover="MouseOver(event, id)" 
+                     onmouseout="MouseOut(event, id)"
+                     onclick="MoveCellClick(event,id)"
+                     >
+                </div>
+                <div class="moveCell" id="moveCellDescription@(product.ID)"
+                     onmouseover="MouseOver(event, id)"
+                     onmouseout="MouseOut(event, id)"
+                     onclick="MoveCellClick(event,id)">
+                </div>
+                <div class="moveCellOverComment" id="moveCellComments@(product.ID)" 
+                     >
+                </div>
+            </div>
+
+            <div class="comparisonRow" draggable="true" id="product@(product.ID)" ondragstart="Dragging(event)" ondragend="StopDragging(event)">
+                <div class="comparisonCell comparisonImageCell">
+                    <img src="@(product.ImageLocation)" class="comparisonImage" draggable="false"/>
+                </div>
+                <div class="comparisonCell ">
+                    @product.ID
+                </div>
+                <div class="comparisonCell comparisonTitle">
+                    @product.Title
+                </div>
+                <div class="comparisonCell comparisonPrice">
+                    $@product.Price
+                </div>
+                <div class="comparisonCell comparisonOverallRating">
+                    @product.OverallRating
+                </div>
+                <div class="comparisonCell comparisonDescription">
+                    @product.Description
+                </div>
+                <div class="comparisonComments" id="comparisonComments@(product.ID)"
+                     onmouseover="MouseOver(event, id)"
+                     onmouseout="MouseOutRow(event, id)"
+                     onclick="MoveCellClickRow(event,id)"
+                     >
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@*<table style="display:block;overflow-x:scroll;">
     <tr>
         @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
         {
             <td>
-                @Html.Partial("AmazonProductPartial", item)
+                @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartial.cshtml", item)
             </td>
         }
     </tr>
-</table>
-@*</div>*@
+</table>*@
+
+
+
+
+<script>
+    var mode = "MoveMode";
+    var typedIn = {};
+
+    function ChangeMode() {
+
+        var headerCommentCells = document.querySelectorAll(".moveCell");
+        var rowCommentCells = document.querySelectorAll(".comparisonComments");
+        var allCommentCells = Array.prototype.slice.call(headerCommentCells);
+        allCommentCells = allCommentCells.concat(Array.prototype.slice.call(rowCommentCells));
+
+        if (mode == "MoveMode") {
+            mode = "WriteMode";
+            document.getElementById("ModeSelector").innerHTML = "Move Mode";
+
+            for (var i = 0; i < allCommentCells.length; i++) {
+                if (!typedIn[allCommentCells[i].id])
+                {
+                    allCommentCells[i].style.backgroundColor = "white";
+                    allCommentCells[i].style.borderLeft = "solid 15px var(--lightSeafoam)";
+                    allCommentCells[i].style.borderRight = "solid 15px var(--lightSeafoam)";
+                }
+            }
+        }
+        else {
+            mode = "MoveMode";
+            document.getElementById("ModeSelector").innerHTML = "Write Mode";
+
+            for (var i = 0; i < allCommentCells.length; i++) {
+                if (!typedIn[allCommentCells[i].id]) {
+                    allCommentCells[i].style.backgroundColor = "var(--lightSeafoam)";
+                    allCommentCells[i].style.borderLeft = "none";
+                    allCommentCells[i].style.borderRight = "none";
+                }
+            }
+        }
+    }
+
+    function MouseOver(ev, id) {
+        if (mode == "WriteMode") {
+            var cell = document.getElementById(id);
+            cell.style.border = "dotted 2px black";
+        }
+    }
+
+    function MouseOut(ev, id) {
+        if (mode == "WriteMode") {
+            var cell = document.getElementById(id);
+            cell.style.borderTop = "transparent";
+            cell.style.borderBottom = "transparent";
+            cell.style.borderLeft = "solid 15px var(--lightSeafoam)";
+            cell.style.borderRight = "solid 15px var(--lightSeafoam)";
+        }
+    }
+
+    function MouseOutRow(ev, id) {
+        if (mode == "WriteMode") {
+            var cell = document.getElementById(id);
+            if (!typedIn[id]) {
+                cell.style.borderTop = "transparent";
+                cell.style.borderBottom = "transparent";
+                cell.style.borderLeft = "solid 15px var(--lightSeafoam)";
+                cell.style.borderRight = "solid 15px var(--lightSeafoam)";
+            }
+            else {
+                cell.style.borderTop = "transparent";
+                cell.style.borderBottom = "transparent";
+                cell.style.borderRight = "none";
+                cell.style.borderLeft = "none";
+            }
+        }
+    }
+
+    function MoveCellClick(ev, id) {
+        if (mode == "WriteMode") {
+            var cell = document.getElementById(id);
+            cell.style.borderTop = "transparent";
+            cell.style.borderBottom = "transparent";
+            cell.style.borderLeft = "solid 15px var(--lightSeafoam)";
+            cell.style.borderRight = "solid 15px var(--lightSeafoam)";
+            cell.style.backgroundColor = "var(--brightBlueTransparent)";
+            cell.contentEditable = "true";
+            var width = cell.offsetWidth;
+            //alert(width.toString());
+            cell.style.maxWidth = width;
+            //alert("Here1");
+            typedIn[id] = "set";
+            //alert("Here2");
+            //alert(typedIn[id]);
+        }
+    }
+
+    function MoveCellClickRow(ev, id) {
+        if (mode == "WriteMode") {
+            var cell = document.getElementById(id);
+            var productNumber = id.match(/\d+$/);
+            var row = document.getElementById("product".concat(productNumber));
+            cell.style.backgroundColor = "var(--yellowTransparent)";
+            row.style.backgroundColor = "var(--yellowTransparent)";
+            row.style.color = "var(--navy)";
+            cell.contentEditable = "true";
+            var width = cell.offsetWidth;
+            cell.style.maxWidth = width;
+            typedIn[id] = "set";
+        }
+    }
+
+    function Dragging(ev) {
+        if (mode == "MoveMode") {
+            ev.dataTransfer.setData("text", ev.target.id);
+            var allRows = document.querySelectorAll(".moveRow");
+            for (var i = 0; i < allRows.length; i++) {
+                allRows[i].style.backgroundColor = "var(--pinkTransparent)";
+            }
+        }
+    }
+
+    function StopDragging(ev) {
+        if (mode == "MoveMode") {
+            ev.dataTransfer.setData("text", ev.target.id);
+            var allRows = document.querySelectorAll(".moveRow");
+            for (var i = 0; i < allRows.length; i++) {
+                allRows[i].style.backgroundColor = "transparent";
+            }
+        }
+    }
+
+    function DragEnter(ev, id) {
+        if (mode == "MoveMode") {
+            ev.preventDefault();
+            var row = document.getElementById(id);
+            row.style.backgroundColor = "var(--pink)";
+        }
+    }
+
+    function DragExit(ev, id) {
+        if (mode == "MoveMode") {
+            ev.preventDefault();
+            var row = document.getElementById(id);
+            row.style.backgroundColor = "var(--pinkTransparent)";
+        }
+    }
+
+    function Drop(ev, id) {
+        if (mode == "MoveMode") {
+            ev.preventDefault();
+            var draggedId = ev.dataTransfer.getData("text");
+            //alert('#'.concat(draggedId));
+
+            var row = document.getElementById(id);
+            row.style.backgroundColor = "transparent";
+            //alert('#'.concat(id));
+
+            var elementToAppendAfterId = $('#'.concat(id)).prev().prev().attr('id');
+
+            //alert(elementToAppendAfterId);
+            $('#'.concat(draggedId)).insertAfter('#'.concat(elementToAppendAfterId));
+            var draggedNumber = draggedId.match(/\d+$/);
+            //alert('#'.concat('moveRow').concat(draggedNumber));
+            $('#'.concat('moveRow').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
+            $('#'.concat('heightFor').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
+        }
+    }
+</script>
