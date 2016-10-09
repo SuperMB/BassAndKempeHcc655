@@ -63,6 +63,7 @@
 /// <reference path="js/bsjsCore/test/testParsedURL.js" />
 /// <reference path="js/bsjsCore/test/testRepoMan.js" />
 /// <reference path="js/bsjsCore/xmldom.js" />
+/// <reference path="js/comparison.js" />
 /// <reference path="js/jquery-1.3.2-vsdoc2.js" />
 /// <reference path="js/jquery-ui.min.js" />
 /// <reference path="js/libraries/bluebird-3.4.1.min.js" />
