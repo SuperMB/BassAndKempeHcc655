@@ -7,6 +7,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAg1Sjwi+GE0SRvSGjMxdJQgAAAAACAAAAAAAQZgAAAAEAACAAAADADv7qM54HXiwCRFnOUTjp4Xgwa6Ea3aP6T6UVz+X/rgAAAAAOgAAAAAIAACAAAADULkFLpvEHECSXNis1dVusA2FT/TmvCRHciqaOkHHDWIAAAAA75YgO2MeS0ffmBEbSEgUiltrD+QMUXMe8Txv6SjbgLKftR5dOj4rWDF0rbX5OTrmdnb8myK569kLsQ9ewTf8BmJ6FvvkDmciHvh+hBHhjOqIz9uCCvqY7CAJB3syo/RxMdoJ3/IfpfLxOM+5LDKopPAHH1Qzyh2uHt0zg2r8MeEAAAADh96K9v82peHykbBCi3M8VOvg71EWsN3EPcZfZ7XCvwf6yejeujUyGVKHind9F2EGjD76uHZ5LtsnlEbunWI41</EncryptedPassword>
-    <_NewBackgroundProfile>True</_NewBackgroundProfile>
+    <_NewBackgroundProfile>False</_NewBackgroundProfile>
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:coffeecurationserver.database.windows.net,1433;Initial Catalog=CoffeeCurationDB;User ID=littlebass09@coffeecurationserver;Password=FuckB!tches</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
 </Project>

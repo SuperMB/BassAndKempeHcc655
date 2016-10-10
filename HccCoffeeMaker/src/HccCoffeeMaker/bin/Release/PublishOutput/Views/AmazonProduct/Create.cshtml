@@ -1,0 +1,68 @@
+@model HccCoffeeMaker.Models.CoffeeMakerModels.AmazonProductModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="~/js/bsjsCore/Readyable.js"></script>
+<script type="text/javascript" src="~/js/bsjsCore/BSAutoSwitch.js"></script>
+<script type="text/javascript" src="~/js/bsjsCore/BSService.js"></script>
+<script type="text/javascript" src="~/js/bsjsCore/BSExtension.js"></script>
+<!-- BSUtils, Downloader, ParsedURL, and simplBase are helper classes. Include them, but don't really worry about them-->
+<script type="text/javascript" src="~/js/bsjsCore/BSUtils.js"></script>
+<script type="text/javascript" src="~/js/bsjsCore/ParsedURL.js"></script>
+<script type="text/javascript" src="~/js/bsjsCore/Downloader.js"></script>
+<script type="text/javascript" src="~/js/bsjsCore/simpl/simplBase.js"></script>
+<!-- RepoMan loads a Meta-metadata repository. Avoid doing anything with it directly; it's messy-->
+<script type="text/javascript" src="~/js/bsjsCore/RepoMan.js"></script>
+<script type="text/javascript" src="~/js/semantics.js"></script>
+<script type="text/javascript" src="~/js/Create.js"></script>
+
+
+
+
+
+
+
+<h2>Create</h2>
+
+<button id="loadJson" onclick="GetJson()">Load Json</button>
+
+
+
+<form asp-action="CreateFromUrl">
+    <div class="form-horizontal">
+        <h4>AmazonProductModel</h4>
+        <hr />
+        <div class="form-group">
+            <label class="col-md-2 control-label">Amazon URL</label>
+            <div class="col-md-10">
+                <input type="text" name="url" id="url" /><br />
+                <input type="text" name="metaData" id="metaData" style="display:none;" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

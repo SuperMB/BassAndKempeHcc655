@@ -1,0 +1,73 @@
+﻿@model HccCoffeeMaker.Models.CoffeeMakerModels.AmazonProductModel
+
+<link rel="stylesheet" type="text/css" href="~/css/AmazonProductPartialSmall.css" />
+<script src="~/js/AmazonProductPartialSmall.js"></script>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <span class="close">X</span>
+    <img class="modal-content" id="img01" >
+    <div id="caption"></div>
+</div>
+
+
+
+<div class="product" id="productPartial@(Model.ID)"
+     >
+    <div class="checkMarkContainer">
+        <img class="checkMark" id="checkMark@(Model.ID)" src="~/images/Check.png" />
+    </div>
+    <div class="productAttribute productImage" style="text-align:center;">
+        <img id="myImg@(Model.ID)" src="@Model.ImageLocation" class="previewImage" style="max-width:100%;" 
+             onmouseover="MouseOverImage(event, this.id)"
+             onmouseout="MouseOutImage(event, this.id)"
+        />
+    </div>
+    <div id="productPartialBody@(Model.ID)" 
+         onmouseover="MouseOverProduct(event, this.id)"
+         onmouseout="MouseOutProduct(event, this.id)"
+         onclick="MouseClickProduct(event,this.id)"
+         >
+        <div class="productAttribute productTitle" style="font:15px;">
+            @Html.DisplayFor(modelItem => Model.Title)
+        </div>
+        <div class="productAttribute productRating">
+            Aerage Rating - @Html.DisplayFor(modelItem => Model.OverallRating)
+        </div>
+        <div class="productAttribute productPrice">
+            $@Html.DisplayFor(modelItem => Model.Price)
+        </div>
+        <div class="productAttribute productDescription">
+            Description - @Html.DisplayFor(modelItem => Model.Description)
+        </div>
+    </div>
+</div>
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg' + @Model.ID.ToString());
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+    if(modalImg.height > 600)
+    {
+        modalImg.style.width = (modalImg.width*600)/modalImg.height;
+        modalImg.height = 600;
+    }
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+</script>

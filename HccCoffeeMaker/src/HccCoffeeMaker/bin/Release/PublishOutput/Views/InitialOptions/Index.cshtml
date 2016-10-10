@@ -1,0 +1,60 @@
+﻿@*Index for Initial Options*@
+
+@using HccCoffeeMaker.Models.CoffeeMakerModels;
+
+<link rel="stylesheet" type="text/css" href="~/css/Comparison.css" />
+<link rel="stylesheet" type="text/css" href="~/css/InitialOptions.css" />
+<script src="~/js/InitialOptions.js" ></script>
+
+@*<table style="display:block;overflow-x:scroll;">
+    <tr>
+        @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
+        {
+            <td>
+                @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmall.cshtml", item)
+            </td>
+        }
+    </tr>
+</table>*@
+
+@*<div style="width:100px;height:100px;background-color:aqua;" onclick="SwitchPerspective()">
+    Switch To Comparison
+</div>*@
+
+<div id="leftArrow" 
+     onclick="MoveToSelection(event, id)"
+     onmouseover="MouseOverCursor(event, this.id)"
+     onmouseout="MouseOutDefault(event, this.id)"
+     style="display:none;"
+     >
+    <font style="font-size:250px;"> < </font>
+</div>
+
+<div id="rightArrow" 
+     onclick="MoveToComparison(event, id)"
+     onmouseover="MouseOverCursor(event, this.id)"
+     onmouseout="MouseOutDefault(event, this.id)"
+     >
+    <font style="font-size:250px;"> > </font>
+</div>
+
+<div id="Selection">
+
+    <div style="height:10px;"></div>
+    <div style="font-size:var(--largeFont)">Select the products you wish to compare </div>
+    <div style="height:50px;"></div>
+
+    
+    <div style="text-align:center">
+        @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
+        {
+            @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmall.cshtml", item)
+        }
+    </div>
+
+
+</div>
+
+<div id="Comparison" style="display:none;">
+    @Html.Partial("~/Views/InitialOptions/Comparison.cshtml");
+</div>

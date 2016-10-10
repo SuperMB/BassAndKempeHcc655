@@ -1,0 +1,187 @@
+﻿@using HccCoffeeMaker.Models.CoffeeMakerModels;
+
+
+<script src="~/js/Comparison.js" type="text/javascript"></script>
+
+
+<div style="height:10px;"></div>
+
+<div class="explainText" id="MoveText">Drag rows to re-arrange</div>
+
+<div onclick="ChangeToAnnotationMode()" 
+     onmouseover="MouseOverCursor(event, this.id)"
+     onmouseout="MouseOutDefault(event, this.id)"
+     id="ChangeToAnnotationModeSelector" 
+     class="switchText"
+     >
+    <div style="font-size:var(--largeFont)">Click to switch to Annotation Mode</div>
+</div>
+
+<div onclick="ChangeToMoveMode()" 
+     onmouseover="MouseOverCursor(event, this.id)"
+     onmouseout="MouseOutDefault(event, this.id)"
+     id="ChangeToMoveModeSelector" 
+     class="switchText" 
+     style="display:none;"
+     >
+    <div style="font-size:var(--largeFont)">Click to switch to Move Mode</div>
+</div>
+
+<div class="explainText" id="AnnotationText" style="display:none;">Click cells to annotate</div>
+
+<div style="height:50px;clear:both;"></div>
+
+
+<div style="height:20px"></div>
+@*//MBSTART*@
+
+<div style="text-align:center;width:100%;position:absolute;display:block;left:0px;">
+    <table class="comparisonTable" align="center">
+        @*<thead >*@
+        <tr class="headerRow" id="productHeader"
+            style="/*display:table-header-group;*/
+            font-size:var(--mediumFont);
+            text-align:center;
+            background-color:var(--navyTransparent);">
+            <th class="comparisonCell ">
+                Image
+            </th>
+            <th class="comparisonCell comparisonId">
+                ID
+            </th>
+            <th class="comparisonCell comparisonTitle">
+                Title
+            </th>
+            <th class="comparisonCell comparisonPrice">
+                Price
+            </th>
+            <th class="comparisonCell comparisonOverallRating">
+                OverallRating
+            </th>
+            <th class="comparisonCell comparisonDescription">
+                Description
+            </th>
+
+
+            <th class="comparisonCell extraCell">
+                Extra Cell 1
+            </th>
+            <th class="comparisonCell extraCell">
+                Extra Cell 2
+            </th>
+            <th class="comparisonCell extraCell">
+                Extra Cell 3
+            </th>
+            <th class="comparisonCell extraCell">
+                Extra Cell 4
+            </th>
+
+            <th class="comparisonCell " style="border:none;background-color:var(--lightSeafoam);color:var(--navy);font-size:var(--smallFont);">
+                Annotations
+            </th>
+        </tr>
+        @*</thead>
+            <tbody >*@
+        @foreach (AmazonProductModel product in (ICollection<AmazonProductModel>)ViewData["products"])
+        {
+            <tr style="height:15px;" class="heightRow" id="heightFor@(product.ID)"></tr>
+            <tr class="moveRow"
+                id="moveRow@(product.ID)"
+                ondragover="DragEnter(event, this.id)"
+                ondragleave="DragExit(event, this.id)"
+                ondrop="Drop(event, this.id)">
+
+                <td class="moveCell" id="moveCellImage@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCellId@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCellTitle@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCelPrice@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCellOverallRating@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCellDescription@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+
+                <td class="moveCell" id="moveCellExtra1_@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCellExtra2_@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCellExtra3_@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCellExtra4_@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+
+
+                <td class="moveCellOverComment" id="moveCellComments@(product.ID)"></td>
+            </tr>
+
+            <tr class="comparisonRow" draggable="true" id="product@(product.ID)"
+                ondragstart="Dragging(event, this.id)"
+                ondragend="StopDragging(event, this.id)"
+                onmouseover="ComparisonRowMouseOver(event, this.id)"
+                onmouseout="ComparisonRowMouseOut(event, this.id)">
+                <td class="comparisonCell comparisonImageCell">
+                    <img src="@(product.ImageLocation)" class="comparisonImage" draggable="false" />
+                </td>
+                <td class="comparisonCell comparisonId">
+                    @product.ID
+                </td>
+                <td class="comparisonCell comparisonTitle">
+                    @product.Title
+                </td>
+                <td class="comparisonCell comparisonPrice">
+                    $@product.Price
+                </td>
+                <td class="comparisonCell comparisonOverallRating">
+                    @product.OverallRating
+                </td>
+                <td class="comparisonCell comparisonDescription">
+                    @product.Description
+                </td>
+
+                <td class="comparisonCell extraCell">
+                    Extra Cell Content 1
+                </td>
+                <td class="comparisonCell extraCell">
+                    Extra Cell Content 2
+                </td>
+                <td class="comparisonCell extraCell">
+                    Extra Cell Content 3
+                </td>
+                <td class="comparisonCell extraCell">
+                    Extra Cell Content 4
+                </td>
+
+
+
+                <td class="comparisonComments" id="comparisonComments@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOutRow(event, id)"
+                    onclick="MoveCellClickRow(event,id)"></td>
+            </tr>
+        }
+        @*</tbody>*@
+    </table>
+</div>
