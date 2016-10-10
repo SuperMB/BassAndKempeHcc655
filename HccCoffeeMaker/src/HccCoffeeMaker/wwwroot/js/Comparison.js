@@ -1,16 +1,21 @@
 var mode = "MoveMode";
 var typedIn = {};
 
-function ChangeMode() {
-
-    var headerCommentCells = document.querySelectorAll(".moveCell");
-    var rowCommentCells = document.querySelectorAll(".comparisonComments");
-    var allCommentCells = Array.prototype.slice.call(headerCommentCells);
-    allCommentCells = allCommentCells.concat(Array.prototype.slice.call(rowCommentCells));
-
+function ChangeToAnnotationMode()
+{    
     if (mode == "MoveMode") {
+        var headerCommentCells = document.querySelectorAll(".moveCell");
+        var rowCommentCells = document.querySelectorAll(".comparisonComments");
+        var allCommentCells = Array.prototype.slice.call(headerCommentCells);
+        allCommentCells = allCommentCells.concat(Array.prototype.slice.call(rowCommentCells));
+
         mode = "WriteMode";
-        document.getElementById("ModeSelector").innerHTML = "Move Mode";
+
+        document.getElementById("MoveText").style.display = "none";
+        document.getElementById("ChangeToAnnotationModeSelector").style.display = "none";
+        document.getElementById("ChangeToMoveModeSelector").style.display = "";
+        document.getElementById("AnnotationText").style.display = "";
+
 
         for (var i = 0; i < allCommentCells.length; i++) {
             if (!typedIn[allCommentCells[i].id]) {
@@ -20,9 +25,21 @@ function ChangeMode() {
             }
         }
     }
-    else {
+}
+
+function ChangeToMoveMode() {
+    if (mode == "WriteMode") {
+        var headerCommentCells = document.querySelectorAll(".moveCell");
+        var rowCommentCells = document.querySelectorAll(".comparisonComments");
+        var allCommentCells = Array.prototype.slice.call(headerCommentCells);
+        allCommentCells = allCommentCells.concat(Array.prototype.slice.call(rowCommentCells));
+
         mode = "MoveMode";
-        document.getElementById("ModeSelector").innerHTML = "Write Mode";
+
+        document.getElementById("MoveText").style.display = "";
+        document.getElementById("ChangeToAnnotationModeSelector").style.display = "";
+        document.getElementById("ChangeToMoveModeSelector").style.display = "none";
+        document.getElementById("AnnotationText").style.display = "none";
 
         for (var i = 0; i < allCommentCells.length; i++) {
             if (!typedIn[allCommentCells[i].id]) {
@@ -38,6 +55,7 @@ function ChangeMode() {
         }
     }
 }
+
 
 function MouseOver(ev, id) {
     if (mode == "WriteMode") {
@@ -135,9 +153,10 @@ function MoveCellClickRow(ev, id) {
     }
 }
 
-function Dragging(ev) {
+function Dragging(ev, id) {
     if (mode == "MoveMode") {
         ev.dataTransfer.setData("text", ev.target.id);
+        document.getElementById(id).style.cursor = "move";
         var allRows = document.querySelectorAll(".moveRow");
         for (var i = 0; i < allRows.length; i++) {
             allRows[i].style.backgroundColor = "var(--pinkTransparent)";
@@ -145,8 +164,9 @@ function Dragging(ev) {
     }
 }
 
-function StopDragging(ev) {
+function StopDragging(ev, id) {
     if (mode == "MoveMode") {
+        document.getElementById(id).style.cursor = "default";
         ev.dataTransfer.setData("text", ev.target.id);
         var allRows = document.querySelectorAll(".moveRow");
         for (var i = 0; i < allRows.length; i++) {
@@ -160,6 +180,7 @@ function DragEnter(ev, id) {
         ev.preventDefault();
         var row = document.getElementById(id);
         row.style.backgroundColor = "var(--pink)";
+        document.getElementById(id).style.cursor = "move";
     }
 }
 
@@ -168,12 +189,13 @@ function DragExit(ev, id) {
         ev.preventDefault();
         var row = document.getElementById(id);
         row.style.backgroundColor = "var(--pinkTransparent)";
+        document.getElementById(id).style.cursor = "default";
     }
 }
 
 function ComparisonRowMouseOver(ev, id) {
     if (mode == "MoveMode") {
-        document.getElementById(id).style.cursor = "pointer";
+        document.getElementById(id).style.cursor = "move";
     }
 }
 

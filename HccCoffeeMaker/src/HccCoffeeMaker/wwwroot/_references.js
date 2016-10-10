@@ -66,6 +66,7 @@
 /// <reference path="js/bsjsCore/xmldom.js" />
 /// <reference path="js/comparison.js" />
 /// <reference path="js/create.js" />
+/// <reference path="js/filter.js" />
 /// <reference path="js/initaloptions.js" />
 /// <reference path="js/jquery-1.3.2-vsdoc2.js" />
 /// <reference path="js/jquery-ui.min.js" />

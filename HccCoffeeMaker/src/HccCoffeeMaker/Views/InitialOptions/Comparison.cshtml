@@ -3,9 +3,34 @@
 
 <script src="~/js/Comparison.js" type="text/javascript"></script>
 
-<div onclick="ChangeMode()" id="ModeSelector" style="height:100px;width:100px;background-color:aqua;">
-    Write Mode
+
+<div style="height:10px;"></div>
+
+<div class="explainText" id="MoveText">Drag rows to re-arrange</div>
+
+<div onclick="ChangeToAnnotationMode()" 
+     onmouseover="MouseOverCursor(event, this.id)"
+     onmouseout="MouseOutDefault(event, this.id)"
+     id="ChangeToAnnotationModeSelector" 
+     class="switchText"
+     >
+    <div style="font-size:var(--largeFont)">Click to switch to Annotation Mode</div>
 </div>
+
+<div onclick="ChangeToMoveMode()" 
+     onmouseover="MouseOverCursor(event, this.id)"
+     onmouseout="MouseOutDefault(event, this.id)"
+     id="ChangeToMoveModeSelector" 
+     class="switchText" 
+     style="display:none;"
+     >
+    <div style="font-size:var(--largeFont)">Click to switch to Move Mode</div>
+</div>
+
+<div class="explainText" id="AnnotationText" style="display:none;">Click cells to annotate</div>
+
+<div style="height:50px;clear:both;"></div>
+
 
 <div style="height:20px"></div>
 @*//MBSTART*@
@@ -113,8 +138,8 @@
             </tr>
 
             <tr class="comparisonRow" draggable="true" id="product@(product.ID)"
-                ondragstart="Dragging(event)"
-                ondragend="StopDragging(event)"
+                ondragstart="Dragging(event, this.id)"
+                ondragend="StopDragging(event, this.id)"
                 onmouseover="ComparisonRowMouseOver(event, this.id)"
                 onmouseout="ComparisonRowMouseOut(event, this.id)">
                 <td class="comparisonCell comparisonImageCell">

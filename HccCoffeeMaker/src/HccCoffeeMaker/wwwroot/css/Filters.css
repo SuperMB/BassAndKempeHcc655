@@ -19,8 +19,8 @@
 }
 
 .filterElement:active {
-    background-color:var(--yellow);
-    box-shadow:0 0 20px var(--navy);
+    /*background-color:var(--yellow);
+    box-shadow:0 0 20px var(--navy);*/
 }
 
 .filterText {

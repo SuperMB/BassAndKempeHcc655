@@ -1,9 +1,30 @@
 
+.explainText{
+    font-size:var(--largeFont);
+    float:left;
+    margin:5px;
+    padding:5px;
+}
+
+.switchText{
+    float:left;
+    background-color:var(--navy);
+    color:var(--lightSeafoam);
+    border-radius:10px;
+    margin:5px;
+    padding:5px;
+    border:solid 2px var(--navy);
+}
+
+.switchText:hover{
+    background-color:var(--navyTransparent);
+}
+
 
 .comparisonTable{
     /*display:table;*/
     border-collapse:collapse;
-    width:100%;
+    width:80%;
     display:inline-block;
     margin: 0px auto;
     position:relative;

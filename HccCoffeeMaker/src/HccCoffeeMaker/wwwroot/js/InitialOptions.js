@@ -1,9 +1,40 @@
 var perspective = "Selection";
 var selected = {};
 
-function SwitchPerspective() {
-    if(perspective == "Selection")
-    {
+//function SwitchPerspective() {
+//    if(perspective == "Selection")
+//    {
+//        perspective = "Comparison";
+
+
+//        var heightRows = Array.prototype.slice.call(document.querySelectorAll(".heightRow"));
+//        var moveRows = Array.prototype.slice.call(document.querySelectorAll(".moveRow"));
+//        var comparisonRows = Array.prototype.slice.call(document.querySelectorAll(".comparisonRow"));
+//        var rows = heightRows.concat(moveRows).concat(comparisonRows);
+//        for (var i = 0; i < rows.length; i++)
+//        {
+//            var idNumber = rows[i].id.match(/\d+$/);
+//            if (selected[idNumber] == undefined)
+//                rows[i].style.display = "none";
+//            else
+//                rows[i].style.display = "";
+//        }
+
+
+//        document.getElementById("Selection").style.display = "none";
+//        document.getElementById("Comparison").style.display = "block";
+//    }
+//    else
+//    {
+//        perspective = "Selection";
+//        document.getElementById("Comparison").style.display = "none";
+//        document.getElementById("Selection").style.display = "block";
+//    }
+
+//}
+
+function MoveToComparison(ev, id) {
+    if (perspective == "Selection") {
         perspective = "Comparison";
 
 
@@ -11,8 +42,7 @@ function SwitchPerspective() {
         var moveRows = Array.prototype.slice.call(document.querySelectorAll(".moveRow"));
         var comparisonRows = Array.prototype.slice.call(document.querySelectorAll(".comparisonRow"));
         var rows = heightRows.concat(moveRows).concat(comparisonRows);
-        for (var i = 0; i < rows.length; i++)
-        {
+        for (var i = 0; i < rows.length; i++) {
             var idNumber = rows[i].id.match(/\d+$/);
             if (selected[idNumber] == undefined)
                 rows[i].style.display = "none";
@@ -23,16 +53,22 @@ function SwitchPerspective() {
 
         document.getElementById("Selection").style.display = "none";
         document.getElementById("Comparison").style.display = "block";
+
+        document.getElementById("rightArrow").style.display = "none";
+        document.getElementById("leftArrow").style.display = "";
     }
-    else
-    {
+}
+
+function MoveToSelection(ev, id) {
+    if (perspective == "Comparison") {
         perspective = "Selection";
         document.getElementById("Comparison").style.display = "none";
         document.getElementById("Selection").style.display = "block";
+
+        document.getElementById("rightArrow").style.display = "";
+        document.getElementById("leftArrow").style.display = "none";
     }
-
 }
-
 
 
 

@@ -98,3 +98,27 @@ textarea {
 hr {
   border-color: var(--navy);
 }
+
+#leftArrow {
+    display:block;
+    position:fixed;
+    left:10px;
+    top:40%;
+    z-index:5;
+}
+
+#leftArrow:hover{
+    text-shadow: 0 0 20px var(--yellow);
+}
+
+#rightArrow {
+    display:block;
+    position:fixed;
+    right:10px;
+    top:40%;
+    z-index:5;
+}
+
+#rightArrow:hover{
+    text-shadow: 0 0 20px var(--yellow);
+}
