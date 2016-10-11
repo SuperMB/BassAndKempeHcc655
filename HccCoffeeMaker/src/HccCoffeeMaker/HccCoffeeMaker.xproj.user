@@ -12,5 +12,6 @@
     <WebStackScaffolding_DbContextTypeFullName>HccCoffeeMaker.Data.MyDatabaseContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
     <NameOfLastUsedPublishProfile>HccCoffeeMaker</NameOfLastUsedPublishProfile>
+    <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
   </PropertyGroup>
 </Project>

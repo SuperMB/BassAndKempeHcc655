@@ -23,7 +23,9 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             string brewingTime,
             string brand,
             string warranty,
-            string qualityOfCoffee
+            string qualityOfCoffee,
+            bool userAdded = false,
+            string typeOfMachine = "Automatic"
             )
         {
             Reviews = new List<ReviewModel>();
@@ -44,6 +46,8 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             Brand = brand;
             Warranty = warranty;
             QualityOfCoffee = qualityOfCoffee;
+            UserAdded = userAdded;
+            TypeOfMachine = typeOfMachine;
 
         }
 
@@ -172,6 +176,18 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
         }
 
 
+        public static async Task<ICollection<AmazonProductModel>> GetUserAddedCurations(MyDatabaseContext context)
+        {
+            var amazonProductModels = from a in context.AmazonProductModels
+                                      select a;
+            amazonProductModels = amazonProductModels.Where(s => s.UserAdded == true);
+
+            amazonProductModels = amazonProductModels
+                .Include(s => s.Reviews);
+
+            var list = await amazonProductModels.ToListAsync();
+            return list;
+        }
         public static async Task<ICollection<AmazonProductModel>> Query(
             MyDatabaseContext context,
             ICollection<PriceOptions> priceOptions = null, 
@@ -202,31 +218,23 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
                                       select a;
 
             amazonProductModels = amazonProductModels.Where(s =>
-                (priceOptions.Contains(PriceOptions.Price0To50) && s.Price >= 0 && s.Price <= 50)
-                || (priceOptions.Contains(PriceOptions.Price50To100) && s.Price >= 50 && s.Price <= 100)
-                || (priceOptions.Contains(PriceOptions.Price100To200) && s.Price >= 100 && s.Price <= 200)
-                || (priceOptions.Contains(PriceOptions.Price200To500) && s.Price >= 200 && s.Price <= 500)
+                (
+                    (priceOptions.Contains(PriceOptions.Price0To50) && s.Price >= 0 && s.Price <= 50)
+                    || (priceOptions.Contains(PriceOptions.Price50To100) && s.Price >= 50 && s.Price <= 100)
+                    || (priceOptions.Contains(PriceOptions.Price100To200) && s.Price >= 100 && s.Price <= 200)
+                    || (priceOptions.Contains(PriceOptions.Price200To500) && s.Price >= 200 && s.Price <= 500)
+                )
+                && (s.UserAdded == false)
                 );
-           
-
-            //foreach (var priceOption in priceOptions)
-            //    amazonProductModels = QueryPrice(amazonProductModels, priceOption);
-
-            foreach (var colorOption in colorOptions)
-                amazonProductModels = QueryColor(amazonProductModels, colorOption);
-            
+                       
             amazonProductModels = amazonProductModels
                 .Include(s => s.Reviews);
 
             var list = await amazonProductModels.ToListAsync();
-
-
-
+            
             //context.AmazonProductModels.FromSql("ALTER TABLE AmazonProductModels ADD PoopColumn INT;");
             //context.SaveChanges();
-
-
-
+            
             return list;
         }
         
@@ -246,6 +254,9 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
         public string Brand { get; set; }
         public string Warranty { get; set; }
         public string QualityOfCoffee { get; set; }
+        public bool UserAdded { get; set; }
+        public string TypeOfMachine { get; set; }
+
 
 
     }

@@ -31,13 +31,22 @@
 
 <div id="Selection">
 
-    <div style="height:10px;"></div>
-    <div style="font-size:var(--largeFont)">Select the products you wish to compare </div>
+    <div style="height:60px;"></div>
+    <div style="font-size:var(--largeFont);text-align:center">Select the products you wish to compare </div>
     <div style="height:50px;"></div>
 
-    
+    <div style="font-size:var(--largeFont);">Your curated machines </div>
+
     <div style="text-align:center">
-        @foreach(var item in (ICollection<AmazonProductModel>)ViewData["products"])
+        @foreach (var item in (ICollection<AmazonProductModel>)ViewData["userCurations"])
+        {
+            @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmall.cshtml", item)
+        }
+    </div>
+    <hr />
+    <div style="font-size:var(--largeFont);">Others you might like </div>
+    <div style="text-align:center">
+        @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
         {
             @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmall.cshtml", item)
         }

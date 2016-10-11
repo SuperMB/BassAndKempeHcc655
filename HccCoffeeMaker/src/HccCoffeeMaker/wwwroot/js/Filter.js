@@ -30,7 +30,7 @@ function clickClose(id) {
     var facet = document.getElementById(facetId);
     facet.style.backgroundColor = "var(--navy)";
     facet.style.boxShadow = "0 0 0";
-    facet.style.color = "white";
+    facet.style.color = "var(--lightSeafoam)";
 
     var facetAdded = document.getElementById(facetAddedId);
     facetAdded.style.display = "none";

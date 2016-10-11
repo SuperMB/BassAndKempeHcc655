@@ -122,3 +122,24 @@ hr {
 #rightArrow:hover{
     text-shadow: 0 0 20px var(--yellow);
 }
+
+.blueButton{
+    height: 100px;
+    margin:10px;
+    color:var(--lightSeafoam);
+    background-color:var(--navy);
+    text-align:center;
+    /*border: 1px solid #000000;*/
+    border-radius:10px;
+    display:inline-block;
+    font-size:var(--mediumFont);
+    vertical-align:top;
+    color:var(--lightSeafoam);
+}
+
+.blueButton:hover{
+    background-color:var(--navyTransparent);
+    cursor:pointer;
+}
+a { color: inherit; } 
+a:hover { color: inherit; text-decoration:inherit; } 

@@ -42,6 +42,7 @@ namespace HccCoffeeMaker.Controllers
                 }
             }
 
+            ViewData["userCurations"] = await AmazonProductModel.GetUserAddedCurations(_context);
             ViewData["products"] = await AmazonProductModel.Query(
                 context: _context,
                 priceOptions: priceOptions

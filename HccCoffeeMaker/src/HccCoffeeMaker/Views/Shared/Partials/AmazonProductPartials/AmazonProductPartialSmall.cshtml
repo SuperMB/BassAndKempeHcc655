@@ -38,11 +38,34 @@
             Description - @Html.DisplayFor(modelItem => Model.Description)
         </div>
         <div class="checkMarkContainer">
-            <img class="checkMark" id="xMark@(Model.ID)" src="~/images/X.png" />
+            @*<img class="checkMark" id="xMark@(Model.ID)" src="~/images/X.png" />
             <img class="checkMark" id="checkMark@(Model.ID)"  src="~/images/Check.png"
                  style="display:inline;
                     font:bolder;
-                    font-size:45px;"/>
+                    font-size:45px;"/>*@
+            <div style="height:45px;
+                    width:45px;
+                    background-color:none;
+                    border:solid 3px var(--navyTransparent);
+                    border-radius:5px;
+                    display:inline-block;
+                    margin:1px;
+                    line-height:40px;"
+                    onmouseover="MouseOverCheckBox(event, this.id)" 
+                    onmouseout="MouseOutCheckBox(event, this.id)" 
+                 id="checkDiv@(Model.ID)"
+                   >
+                <span id="check@(Model.ID)" 
+                      style="font-size:35px;
+                            color:var(--yellow);
+                            display:none;
+                            position:relative;
+                            top:1px;
+                            margin:0;">
+                    ✓
+                </span>
+
+            </div>
         </div>
     </div>
 </div>

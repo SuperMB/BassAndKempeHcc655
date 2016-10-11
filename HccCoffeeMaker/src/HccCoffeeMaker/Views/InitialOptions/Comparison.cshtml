@@ -36,7 +36,7 @@
 @*//MBSTART*@
 
 <div style="text-align:center;width:100%;position:absolute;display:block;left:0px;">
-    <table class="comparisonTable" align="center">
+    <table class="comparisonTable" align="center" style="max-width:1200px;position:absolute;left:0;">
         @*<thead >*@
         <tr class="headerRow" id="productHeader"
             style="/*display:table-header-group;*/
@@ -45,16 +45,19 @@
             background-color:var(--navyTransparent);">
 
         <th class="comparisonCell " style="text-align:center;">
-            Image
-        </th>
-        <th class="comparisonCell comparisonId" style="text-align:center;">
-            ID
+            Product Image
         </th>
         <th class="comparisonCell comparisonTitle" style="text-align:center;">
             Title
         </th>
+        <th class="comparisonCell " style="text-align:center;">
+            Brand
+        </th>
         <th class="comparisonCell comparisonPrice" style="text-align:center;">
             Price
+        </th>
+        <th class="comparisonCell " style="text-align:center;">
+            Type
         </th>
         <th class="comparisonCell comparisonOverallRating" style="text-align:center;">
             OverallRating
@@ -64,17 +67,20 @@
         </th>
 
 
-        <th class="comparisonCell extraCell" style="text-align:center;">
-            Extra Cell 1
+        <th class="comparisonCell" style="text-align:center;">
+            Color
         </th>
-        <th class="comparisonCell extraCell" style="text-align:center;">
-            Extra Cell 2
+        <th class="comparisonCell" style="text-align:center;">
+            Durability
         </th>
-        <th class="comparisonCell extraCell" style="text-align:center;">
-            Extra Cell 3
+        <th class="comparisonCell" style="text-align:center;">
+            Serving Size
         </th>
-        <th class="comparisonCell extraCell" style="text-align:center;">
-            Extra Cell 4
+        <th class="comparisonCell" style="text-align:center;">
+            Brewing Time
+        </th>
+        <th class="comparisonCell" style="text-align:center;">
+            Warranty
         </th>
 
         <th class="comparisonCell " style="border:none;background-color:var(--lightSeafoam);color:var(--navy);font-size:var(--smallFont);">
@@ -83,7 +89,7 @@
         </tr>
         @*</thead>
             <tbody >*@
-        @foreach (AmazonProductModel product in (ICollection<AmazonProductModel>)ViewData["products"])
+        @foreach (AmazonProductModel product in (((List<AmazonProductModel>)ViewData["products"]).Concat<AmazonProductModel>(((List<AmazonProductModel>)ViewData["userCurations"]))))
         {
             <tr style="height:15px;" class="heightRow" id="heightFor@(product.ID)"></tr>
             <tr class="moveRow"
@@ -96,15 +102,19 @@
                     onmouseover="MouseOver(event, id)"
                     onmouseout="MouseOut(event, id)"
                     onclick="MoveCellClick(event,id)"></td>
-                <td class="moveCell" id="moveCellId@(product.ID)"
-                    onmouseover="MouseOver(event, id)"
-                    onmouseout="MouseOut(event, id)"
-                    onclick="MoveCellClick(event,id)"></td>
                 <td class="moveCell" id="moveCellTitle@(product.ID)"
                     onmouseover="MouseOver(event, id)"
                     onmouseout="MouseOut(event, id)"
                     onclick="MoveCellClick(event,id)"></td>
-                <td class="moveCell" id="moveCelPrice@(product.ID)"
+                <td class="moveCell" id="moveCellBrand@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCellPrice@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCellType@(product.ID)"
                     onmouseover="MouseOver(event, id)"
                     onmouseout="MouseOut(event, id)"
                     onclick="MoveCellClick(event,id)"></td>
@@ -116,20 +126,23 @@
                     onmouseover="MouseOver(event, id)"
                     onmouseout="MouseOut(event, id)"
                     onclick="MoveCellClick(event,id)"></td>
-
-                <td class="moveCell" id="moveCellExtra1_@(product.ID)"
+                <td class="moveCell" id="moveCellColor@(product.ID)"
                     onmouseover="MouseOver(event, id)"
                     onmouseout="MouseOut(event, id)"
                     onclick="MoveCellClick(event,id)"></td>
-                <td class="moveCell" id="moveCellExtra2_@(product.ID)"
+                <td class="moveCell" id="moveCellDurability@(product.ID)"
                     onmouseover="MouseOver(event, id)"
                     onmouseout="MouseOut(event, id)"
                     onclick="MoveCellClick(event,id)"></td>
-                <td class="moveCell" id="moveCellExtra3_@(product.ID)"
+                <td class="moveCell" id="moveCellServingSize@(product.ID)"
                     onmouseover="MouseOver(event, id)"
                     onmouseout="MouseOut(event, id)"
                     onclick="MoveCellClick(event,id)"></td>
-                <td class="moveCell" id="moveCellExtra4_@(product.ID)"
+                <td class="moveCell" id="moveCellBrewingTime@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellClick(event,id)"></td>
+                <td class="moveCell" id="moveCellWarranty@(product.ID)"
                     onmouseover="MouseOver(event, id)"
                     onmouseout="MouseOut(event, id)"
                     onclick="MoveCellClick(event,id)"></td>
@@ -146,33 +159,38 @@
                 <td class="comparisonCell comparisonImageCell">
                     <img src="@(product.ImageLocation)" class="comparisonImage" draggable="false" />
                 </td>
-                <td class="comparisonCell comparisonId">
-                    @product.ID
-                </td>
                 <td class="comparisonCell comparisonTitle">
                     @product.Title
+                </td>
+                <td class="comparisonCell ">
+                    @product.Brand
                 </td>
                 <td class="comparisonCell comparisonPrice">
                     $@product.Price
                 </td>
-                <td class="comparisonCell comparisonOverallRating">
+                <td class="comparisonCell comparisonPrice">
+                    $@product.TypeOfMachine
+                </td>
+                <td class="comparisonCell comparisonOverallRating" style="vertical-align:middle;">
                     @product.OverallRating
                 </td>
                 <td class="comparisonCell comparisonDescription">
                     @product.Description
                 </td>
-
-                <td class="comparisonCell extraCell">
-                    Extra Cell Content 1
+                <td class="comparisonCell ">
+                    @product.Color
                 </td>
-                <td class="comparisonCell extraCell">
-                    Extra Cell Content 2
+                <td class="comparisonCell ">
+                    @product.Durability
                 </td>
-                <td class="comparisonCell extraCell">
-                    Extra Cell Content 3
+                <td class="comparisonCell ">
+                    @product.ServingSize
                 </td>
-                <td class="comparisonCell extraCell">
-                    Extra Cell Content 4
+                <td class="comparisonCell ">
+                    @product.BrewingTime
+                </td>
+                <td class="comparisonCell ">
+                    @product.Warranty
                 </td>
 
 

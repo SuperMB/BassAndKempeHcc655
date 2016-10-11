@@ -9,6 +9,18 @@ function MouseOutImage(ev, id) {
     document.getElementById(id).style.cursor = "default";
 }
 
+function MouseOverCheckBox(ev, id) {
+    var check = document.getElementById(id);
+    check.style.boxShadow = "0 0 5px var(--navy)";
+
+}
+
+function MouseOutCheckBox(ev, id) {
+    var check = document.getElementById(id);
+    check.style.boxShadow = "";
+
+}
+
 function MouseOverProduct(ev, id) {
     ev.preventDefault();
     var idNumber = id.match(/\d+$/);
@@ -37,15 +49,17 @@ function MouseClickProduct(ev, id) {
     if (selected[idNumber] != "selected")
     {
         selected[idNumber] = "selected";
-        document.getElementById("xMark".concat(idNumber)).style.display = "inline";
-        document.getElementById("checkMark".concat(idNumber)).style.display = "none";
+        //document.getElementById("xMark".concat(idNumber)).style.display = "inline";
+        //document.getElementById("checkMark".concat(idNumber)).style.display = "none";
+        document.getElementById("check".concat(idNumber)).style.display = "";
         product.style.boxShadow = "0 0 20px var(--yellow)";
     }
     else 
     {
         delete selected[idNumber];
-        document.getElementById("xMark".concat(idNumber)).style.display = "none";
-        document.getElementById("checkMark".concat(idNumber)).style.display = "inline";
+        //document.getElementById("xMark".concat(idNumber)).style.display = "none";
+        //document.getElementById("checkMark".concat(idNumber)).style.display = "inline";
+        document.getElementById("check".concat(idNumber)).style.display = "none";
         product.style.boxShadow = "0 0 20px var(--navy)";
     }
 }
