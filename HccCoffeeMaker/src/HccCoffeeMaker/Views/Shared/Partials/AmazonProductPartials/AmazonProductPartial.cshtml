@@ -115,6 +115,33 @@
     <div class="productAttribute productDescription">
         Description - @Html.DisplayFor(modelItem => Model.Description)
     </div>
+
+    
+    <div class="productAttribute">
+        Color - @Html.DisplayFor(modelItem => Model.Color)
+    </div>
+    <div class="productAttribute">
+        Durability - @Html.DisplayFor(modelItem => Model.Durability)
+    </div>
+    <div class="productAttribute ">
+        Serving Size - @Html.DisplayFor(modelItem => Model.ServingSize)
+    </div>
+    <div class="productAttribute ">
+        Brewing Time - @Html.DisplayFor(modelItem => Model.BrewingTime)
+    </div>
+    <div class="productAttribute ">
+        Brand - @Html.DisplayFor(modelItem => Model.Brand)
+    </div>
+    <div class="productAttribute ">
+        Warranty - @Html.DisplayFor(modelItem => Model.Warranty)
+    </div>
+    <div class="productAttribute ">
+        Quality Of Coffee - @Html.DisplayFor(modelItem => Model.QualityOfCoffee)
+    </div>
+
+
+        
+
     <div class="productAttribute productReviews">
         @foreach (var review in Model.Reviews)
         {

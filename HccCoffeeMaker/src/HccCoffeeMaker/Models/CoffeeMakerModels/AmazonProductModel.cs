@@ -14,7 +14,17 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
         {
 
         }
-        public AmazonProductModel(JObject jsonObject)
+
+        public AmazonProductModel(
+            JObject jsonObject,
+            string color,
+            string durability,
+            string servingSize,
+            string brewingTime,
+            string brand,
+            string warranty,
+            string qualityOfCoffee
+            )
         {
             Reviews = new List<ReviewModel>();
             Title = jsonObject["title"].ToString();
@@ -26,6 +36,14 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
 
             foreach(var review in jsonObject["reviews"])
                 Reviews.Add(new ReviewModel(review));
+
+            Color = color;
+            Durability = durability;
+            ServingSize = servingSize;
+            BrewingTime = brewingTime;
+            Brand = brand;
+            Warranty = warranty;
+            QualityOfCoffee = qualityOfCoffee;
 
         }
 
@@ -214,5 +232,14 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
         public double Price { get; set; }
         public double OverallRating { get; set; }
         public string ImageLocation { get; set; }
+        public string Color { get; set; }
+        public string Durability { get; set; }
+        public string ServingSize { get; set; }
+        public string BrewingTime { get; set; }
+        public string Brand { get; set; }
+        public string Warranty { get; set; }
+        public string QualityOfCoffee { get; set; }
+
+
     }
 }

@@ -76,7 +76,16 @@ namespace HccCoffeeMaker.Controllers
             string metaData = HttpContext.Request.Form["metaData"];
             //String response = await new HttpClient().GetStringAsync("http://ecology-service.cse.tamu.edu/BigSemanticsService/metadata.json?callback=metadaCallback&url=" + url);
             JObject jObject = (JObject)JsonConvert.DeserializeObject(metaData);
-            AmazonProductModel amazonProduct = new AmazonProductModel(jObject);
+            AmazonProductModel amazonProduct = new AmazonProductModel(
+                jObject,
+                HttpContext.Request.Form["ColorOptions"],
+                HttpContext.Request.Form["DurabilityOptions"],
+                HttpContext.Request.Form["ServingSizeOptions"],
+                HttpContext.Request.Form["BrewingTimeOptions"],
+                HttpContext.Request.Form["BrandOptions"],
+                HttpContext.Request.Form["WarrantyOptions"],
+                HttpContext.Request.Form["QualityOfCoffeeOptions"]
+                );
             return await Create(amazonProduct);
         }
 

@@ -1,4 +1,5 @@
 @model HccCoffeeMaker.Models.CoffeeMakerModels.AmazonProductModel
+@using HccCoffeeMaker.Models.CoffeeMakerModels
 
 @{
     ViewData["Title"] = "Create";
@@ -49,6 +50,69 @@
             <div class="col-md-10">
                 <input type="text" name="url" id="url" /><br />
                 <input type="text" name="metaData" id="metaData" style="display:none;" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Color</label>
+            <div class="col-md-10">
+                @foreach (AmazonProductModel.ColorOptions color in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
+                {
+                    <input type="radio" name="ColorOptions" value="@color.ToString()"> @color.ToString() <br />
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Durability</label>
+            <div class="col-md-10">
+                @foreach (AmazonProductModel.DurabilityOptions durability in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
+                {
+                    <input type="radio" name="DurabilityOptions" value="@durability.ToString()"> @durability.ToString() <br />
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Serving Size</label>
+            <div class="col-md-10">
+                @foreach (AmazonProductModel.ServingSizeOptions servingSize in Enum.GetValues(typeof(AmazonProductModel.ServingSizeOptions)))
+                {
+                    <input type="radio" name="ServingSizeOptions" value="@servingSize.ToString()"> @servingSize.ToString() <br />
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Brewing Time</label>
+            <div class="col-md-10">
+                @foreach (AmazonProductModel.BrewingTimeOptions brewingTime in Enum.GetValues(typeof(AmazonProductModel.BrewingTimeOptions)))
+                {
+                    <input type="radio" name="BrewingTimeOptions" value="@brewingTime.ToString()"> @brewingTime.ToString() <br />
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Brand</label>
+            <div class="col-md-10">
+                @foreach (AmazonProductModel.BrandOptions brandOptions in Enum.GetValues(typeof(AmazonProductModel.BrandOptions)))
+                {
+                    <input type="radio" name="BrandOptions" value="@brandOptions.ToString()"> @brandOptions.ToString() <br />
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Warranty</label>
+            <div class="col-md-10">
+                @foreach (AmazonProductModel.WarrantyOptions warranty in Enum.GetValues(typeof(AmazonProductModel.WarrantyOptions)))
+                {
+                    <input type="radio" name="WarrantyOptions" value="@warranty.ToString()"> @warranty.ToString() <br />
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Quality of Coffee</label>
+            <div class="col-md-10">
+                @foreach (AmazonProductModel.QualityOfCoffeeOptions qualityOfCoffee in Enum.GetValues(typeof(AmazonProductModel.QualityOfCoffeeOptions)))
+                {
+                    <input type="radio" name="QualityOfCoffeeOptions" value="@qualityOfCoffee.ToString()"> @qualityOfCoffee.ToString() <br />
+                }
             </div>
         </div>
         <div class="form-group">
