@@ -14,9 +14,6 @@
 
 <div class="product" id="productPartial@(Model.ID)"
      >
-    <div class="checkMarkContainer">
-        <img class="checkMark" id="checkMark@(Model.ID)" src="~/images/Check.png" />
-    </div>
     <div class="productAttribute productImage" style="text-align:center;">
         <img id="myImg@(Model.ID)" src="@Model.ImageLocation" class="previewImage" style="max-width:100%;" 
              onmouseover="MouseOverImage(event, this.id)"
@@ -39,6 +36,13 @@
         </div>
         <div class="productAttribute productDescription">
             Description - @Html.DisplayFor(modelItem => Model.Description)
+        </div>
+        <div class="checkMarkContainer">
+            <img class="checkMark" id="xMark@(Model.ID)" src="~/images/X.png" />
+            <img class="checkMark" id="checkMark@(Model.ID)"  src="~/images/Check.png"
+                 style="display:inline;
+                    font:bolder;
+                    font-size:45px;"/>
         </div>
     </div>
 </div>

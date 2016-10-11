@@ -96,6 +96,7 @@ namespace HccCoffeeMaker
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            //DbInitializer.Initialize(myDatabaseContext);
             DbInitializer.Initialize(myDatabaseContext);
         }
     }

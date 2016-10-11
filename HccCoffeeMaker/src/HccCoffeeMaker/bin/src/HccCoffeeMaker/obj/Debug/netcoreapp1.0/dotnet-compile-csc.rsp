@@ -1,15 +1,14 @@
-﻿-d:RELEASE
+﻿-d:DEBUG
 -d:TRACE
 -d:NETCOREAPP1_0
 -nowarn:CS1701
 -nowarn:CS1702
 -nowarn:CS1705
--optimize
 -debug:full
 -nostdlib
 -nologo
-"F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\obj\Release\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\bin\Release\netcoreapp1.0\HccCoffeeMaker.dll"
+"F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\bin\src\HccCoffeeMaker\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\bin\src\HccCoffeeMaker\bin\Debug\netcoreapp1.0\HccCoffeeMaker.dll"
 -r:"C:\Users\Michael\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\dotnet5.4\Microsoft.ApplicationInsights.dll"
 -r:"C:\Users\Michael\.nuget\packages\Microsoft.ApplicationInsights.AspNetCore\1.0.0\lib\netstandard1.6\Microsoft.ApplicationInsights.AspNetCore.dll"
 -r:"C:\Users\Michael\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.1\lib\netstandard1.3\Microsoft.AspNetCore.Antiforgery.dll"
@@ -226,7 +225,7 @@
 -r:"C:\Users\Michael\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\Michael\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\Michael\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
--resource:"F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\obj\Release\netcoreapp1.0\HccCoffeeMakerdotnet-compile.deps.json",HccCoffeeMaker.deps.json
+-resource:"F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\bin\src\HccCoffeeMaker\obj\Debug\netcoreapp1.0\HccCoffeeMakerdotnet-compile.deps.json",HccCoffeeMaker.deps.json
 "F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\Program.cs"
 "F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\Startup.cs"
 "F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\Controllers\AccountController.cs"

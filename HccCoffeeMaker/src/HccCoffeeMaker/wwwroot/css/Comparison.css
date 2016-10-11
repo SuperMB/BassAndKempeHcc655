@@ -28,6 +28,7 @@
     display:inline-block;
     margin: 0px auto;
     position:relative;
+    table-layout:fixed;
 }
 
 .moveRow{

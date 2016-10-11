@@ -1,38 +1,6 @@
 var perspective = "Selection";
 var selected = {};
 
-//function SwitchPerspective() {
-//    if(perspective == "Selection")
-//    {
-//        perspective = "Comparison";
-
-
-//        var heightRows = Array.prototype.slice.call(document.querySelectorAll(".heightRow"));
-//        var moveRows = Array.prototype.slice.call(document.querySelectorAll(".moveRow"));
-//        var comparisonRows = Array.prototype.slice.call(document.querySelectorAll(".comparisonRow"));
-//        var rows = heightRows.concat(moveRows).concat(comparisonRows);
-//        for (var i = 0; i < rows.length; i++)
-//        {
-//            var idNumber = rows[i].id.match(/\d+$/);
-//            if (selected[idNumber] == undefined)
-//                rows[i].style.display = "none";
-//            else
-//                rows[i].style.display = "";
-//        }
-
-
-//        document.getElementById("Selection").style.display = "none";
-//        document.getElementById("Comparison").style.display = "block";
-//    }
-//    else
-//    {
-//        perspective = "Selection";
-//        document.getElementById("Comparison").style.display = "none";
-//        document.getElementById("Selection").style.display = "block";
-//    }
-
-//}
-
 function MoveToComparison(ev, id) {
     if (perspective == "Selection") {
         perspective = "Comparison";
@@ -59,6 +27,16 @@ function MoveToComparison(ev, id) {
     }
 }
 
+function Judgement(ev, id) {
+    if (perspective == "Selection")
+        return true;
+    else {
+        ev.preventDefault();
+        MoveToSelection(ev, id);
+        return false;
+    }
+}
+
 function MoveToSelection(ev, id) {
     if (perspective == "Comparison") {
         perspective = "Selection";
@@ -66,7 +44,8 @@ function MoveToSelection(ev, id) {
         document.getElementById("Selection").style.display = "block";
 
         document.getElementById("rightArrow").style.display = "";
-        document.getElementById("leftArrow").style.display = "none";
+        var leftArrow = document.getElementById("leftArrow");
+        leftArrow.style.display = "";
     }
 }
 

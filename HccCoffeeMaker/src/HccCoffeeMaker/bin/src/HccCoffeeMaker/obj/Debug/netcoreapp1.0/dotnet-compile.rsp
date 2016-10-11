@@ -1,5 +1,5 @@
---temp-output:F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\obj\Debug\netcoreapp1.0\
---out:F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\bin\Debug\netcoreapp1.0\HccCoffeeMaker.dll
+--temp-output:F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\bin\src\HccCoffeeMaker\obj\Debug\netcoreapp1.0\
+--out:F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\bin\src\HccCoffeeMaker\bin\Debug\netcoreapp1.0\HccCoffeeMaker.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -229,7 +229,7 @@
 --reference:C:\Users\Michael\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\Michael\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\Michael\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\obj\Debug\netcoreapp1.0\HccCoffeeMakerdotnet-compile.deps.json",HccCoffeeMaker.deps.json
+--resource:"F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\bin\src\HccCoffeeMaker\obj\Debug\netcoreapp1.0\HccCoffeeMakerdotnet-compile.deps.json",HccCoffeeMaker.deps.json
 F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\Program.cs
 F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\Startup.cs
 F:\Code\GitHub\Hcc655\BassAndKempeHcc655\HccCoffeeMaker\src\HccCoffeeMaker\Controllers\AccountController.cs

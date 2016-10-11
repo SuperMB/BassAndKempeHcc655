@@ -14,5 +14,9 @@ function lolFoo(err, mmd_and_metadata) {
     var json = JSON.stringify(metadata);
     document.getElementById("metaData").value = json;
     document.getElementById("metaData").style.display = "inline";
+
+    var image = document.getElementById("productImage");
+    image.src = metadata["main_images"][0]["location"];
+    image.style.visibility = "visible";
 }
 var bsService = new BSAutoSwitch(['elkanacmmmdgbnhdjopfdeafchmhecbf']);

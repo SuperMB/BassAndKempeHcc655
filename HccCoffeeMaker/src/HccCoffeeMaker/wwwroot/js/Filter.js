@@ -1,3 +1,5 @@
+var count = 0;
+
 function removeSelectorAndShowOriginal(selectorId) {
     var facetId = selectorId.substring(0, selectorId.length - 5);
     var facetAdded = document.getElementById(selectorId);
@@ -28,6 +30,17 @@ function clickClose(id) {
     var facet = document.getElementById(facetId);
     facet.style.backgroundColor = "var(--navy)";
     facet.style.boxShadow = "0 0 0";
+    facet.style.color = "white";
+
+    var facetAdded = document.getElementById(facetAddedId);
+    facetAdded.style.display = "none";
+    facetAdded.style.position = "fixed";
+    facet.appendChild(facetAdded);
+
+    count--;
+    if (count == 0)
+        document.getElementById("rightArrow").style.display = "none";
+
 }
 
 function clickSelect(id) {
@@ -43,14 +56,17 @@ function clickSelect(id) {
     facet.style.boxShadow = "0 0 20px var(--navy)";
     facet.style.color = "var(--navy)";
 
-    var facetAddedCopy = document.getElementById(facetAddedId).cloneNode(true);
+    var facetAdded = document.getElementById(facetAddedId);
     var formField = document.getElementById("formField");
-    formField.appendChild(facetAddedCopy);
-    facetAddedCopy.style.display = "block";
-    facetAddedCopy.style.position = "relative";
-    facetAddedCopy.style.zIndex = "2";
-    facetAddedCopy.style.float = "left";
+    formField.appendChild(facetAdded);
+    facetAdded.style.display = "block";
+    facetAdded.style.position = "relative";
+    facetAdded.style.zIndex = "2";
+    facetAdded.style.float = "left";
 
+    count++;
+
+    document.getElementById("rightArrow").style.display = "block";
 }
 
 function MoveToSelectionFromFilters(ev, id) {

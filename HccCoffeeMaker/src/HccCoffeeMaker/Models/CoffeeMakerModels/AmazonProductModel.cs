@@ -220,6 +220,13 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
 
             var list = await amazonProductModels.ToListAsync();
 
+
+
+            //context.AmazonProductModels.FromSql("ALTER TABLE AmazonProductModels ADD PoopColumn INT;");
+            //context.SaveChanges();
+
+
+
             return list;
         }
         

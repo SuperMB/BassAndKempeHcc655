@@ -1,0 +1,18 @@
+.facetToAdd{
+    display:inline-block;
+    height:200px;
+    width:200px;
+    text-align:left;
+    border:solid 2px var(--navy);
+    border-radius:10px;
+    background-color:var(--navyHeavyTransparent);
+    vertical-align:top;
+    margin:10px;
+    padding:10px;
+    color:white;
+
+}
+
+.controlLabel{
+
+}

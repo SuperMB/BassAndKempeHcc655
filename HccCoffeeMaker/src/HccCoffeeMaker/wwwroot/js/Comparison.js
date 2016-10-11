@@ -154,59 +154,59 @@ function MoveCellClickRow(ev, id) {
 }
 
 function Dragging(ev, id) {
-    if (mode == "MoveMode") {
+    //if (mode == "MoveMode") {
         ev.dataTransfer.setData("text", ev.target.id);
         document.getElementById(id).style.cursor = "move";
         var allRows = document.querySelectorAll(".moveRow");
         for (var i = 0; i < allRows.length; i++) {
             allRows[i].style.backgroundColor = "var(--pinkTransparent)";
         }
-    }
+    //}
 }
 
 function StopDragging(ev, id) {
-    if (mode == "MoveMode") {
+    //if (mode == "MoveMode") {
         document.getElementById(id).style.cursor = "default";
         ev.dataTransfer.setData("text", ev.target.id);
         var allRows = document.querySelectorAll(".moveRow");
         for (var i = 0; i < allRows.length; i++) {
             allRows[i].style.backgroundColor = "transparent";
         }
-    }
+    //}
 }
 
 function DragEnter(ev, id) {
-    if (mode == "MoveMode") {
+    //if (mode == "MoveMode") {
         ev.preventDefault();
         var row = document.getElementById(id);
         row.style.backgroundColor = "var(--pink)";
         document.getElementById(id).style.cursor = "move";
-    }
+    //}
 }
 
 function DragExit(ev, id) {
-    if (mode == "MoveMode") {
+    //if (mode == "MoveMode") {
         ev.preventDefault();
         var row = document.getElementById(id);
         row.style.backgroundColor = "var(--pinkTransparent)";
         document.getElementById(id).style.cursor = "default";
-    }
+    //}
 }
 
 function ComparisonRowMouseOver(ev, id) {
-    if (mode == "MoveMode") {
+    //if (mode == "MoveMode") {
         document.getElementById(id).style.cursor = "move";
-    }
+    //}
 }
 
 function ComparisonRowMouseOut(ev, id) {
-    if (mode == "MoveMode") {
+    //if (mode == "MoveMode") {
         document.getElementById(id).style.cursor = "default";
-    }
+    //}
 }
 
 function Drop(ev, id) {
-    if (mode == "MoveMode") {
+    //if (mode == "MoveMode") {
         ev.preventDefault();
         var draggedId = ev.dataTransfer.getData("text");
         //alert('#'.concat(draggedId));
@@ -223,5 +223,5 @@ function Drop(ev, id) {
         //alert('#'.concat('moveRow').concat(draggedNumber));
         $('#'.concat('moveRow').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
         $('#'.concat('heightFor').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
-    }
+    //}
 }

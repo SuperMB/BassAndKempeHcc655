@@ -21,18 +21,12 @@ namespace HccCoffeeMaker.Data
         public DbSet<AmazonProductModel> AmazonProductModels { get; set; }
 
         /*
-        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ReviewModel>(
-                entity =>
-                {
-                    entity.HasOne(a => a.AmazonProductModel)
-                        .WithMany(b => b.ReviewModels)
-                        .HasForeignKey(d => d.AmazonProductModelID);
-                });
+            modelBuilder.Entity<AmazonProductModel>().ToTable()
         }
         */
+        
         
     }
 }

@@ -6,29 +6,20 @@
 <link rel="stylesheet" type="text/css" href="~/css/InitialOptions.css" />
 <script src="~/js/InitialOptions.js" ></script>
 
-@*<table style="display:block;overflow-x:scroll;">
-    <tr>
-        @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
-        {
-            <td>
-                @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmall.cshtml", item)
-            </td>
-        }
-    </tr>
-</table>*@
+<script>
+    @*@{ 
+        var a = new AmazonProductModel()
+    }*@
+</script>
 
-@*<div style="width:100px;height:100px;background-color:aqua;" onclick="SwitchPerspective()">
-    Switch To Comparison
-</div>*@
-
-<div id="leftArrow" 
-     onclick="MoveToSelection(event, id)"
-     onmouseover="MouseOverCursor(event, this.id)"
-     onmouseout="MouseOutDefault(event, this.id)"
-     style="display:none;"
-     >
-    <font style="font-size:250px;"> < </font>
-</div>
+<a href="javascript:history.back()">
+    <div id="leftArrow"
+         onclick="Judgement(event, id)"
+         onmouseover="MouseOverCursor(event, this.id)"
+         onmouseout="MouseOutDefault(event, this.id)" >
+        <font style="font-size:250px;"> < </font>
+    </div>
+</a>
 
 <div id="rightArrow" 
      onclick="MoveToComparison(event, id)"
@@ -46,7 +37,7 @@
 
     
     <div style="text-align:center">
-        @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
+        @foreach(var item in (ICollection<AmazonProductModel>)ViewData["products"])
         {
             @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmall.cshtml", item)
         }
@@ -58,3 +49,4 @@
 <div id="Comparison" style="display:none;">
     @Html.Partial("~/Views/InitialOptions/Comparison.cshtml");
 </div>
+

@@ -31,7 +31,15 @@
 
 
 
+<div style="width:100%;height:400px;text-align:center;">
+    <img id="productImage" style="height:100%;
+            display:inline;
+            border:solid 2px var(--lightSeafoam);
+            border-radius:10px;
+            visibility:hidden;
+            "/>
 
+</div>
 
 
 
@@ -39,86 +47,95 @@
 
 <button id="loadJson" onclick="GetJson()">Load Json</button>
 
-
+<link type="text/css" rel="stylesheet" href="~/css/Create.css" />
 
 <form asp-action="CreateFromUrl">
-    <div class="form-horizontal">
+
+
+    <div class="" style="text-align:center;">
         <h4>AmazonProductModel</h4>
         <hr />
-        <div class="form-group">
-            <label class="col-md-2 control-label">Amazon URL</label>
-            <div class="col-md-10">
-                <input type="text" name="url" id="url" /><br />
+        
+        <div class="facetToAdd">
+            <label class="controlLabel">Amazon URL</label>
+            <div class="">
+                <input type="text" name="url" id="url" ondrop="GetJson()" /><br />
                 <input type="text" name="metaData" id="metaData" style="display:none;" />
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">Color</label>
-            <div class="col-md-10">
+        
+        <div class="facetToAdd">
+            <label class="controlLabel">Color</label>
+            <div class="">
                 @foreach (AmazonProductModel.ColorOptions color in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
                 {
                     <input type="radio" name="ColorOptions" value="@color.ToString()"> @color.ToString() <br />
                 }
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">Durability</label>
-            <div class="col-md-10">
+        
+        <div class="facetToAdd">
+            <label class="controlLabel">Durability</label>
+            <div class="">
                 @foreach (AmazonProductModel.DurabilityOptions durability in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
                 {
                     <input type="radio" name="DurabilityOptions" value="@durability.ToString()"> @durability.ToString() <br />
                 }
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">Serving Size</label>
-            <div class="col-md-10">
+        
+        <div class="facetToAdd">
+            <label class="controlLabel">Serving Size</label>
+            <div class="">
                 @foreach (AmazonProductModel.ServingSizeOptions servingSize in Enum.GetValues(typeof(AmazonProductModel.ServingSizeOptions)))
                 {
                     <input type="radio" name="ServingSizeOptions" value="@servingSize.ToString()"> @servingSize.ToString() <br />
                 }
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">Brewing Time</label>
-            <div class="col-md-10">
+        
+        <div class="facetToAdd">
+            <label class="controlLabel">Brewing Time</label>
+            <div class="">
                 @foreach (AmazonProductModel.BrewingTimeOptions brewingTime in Enum.GetValues(typeof(AmazonProductModel.BrewingTimeOptions)))
                 {
                     <input type="radio" name="BrewingTimeOptions" value="@brewingTime.ToString()"> @brewingTime.ToString() <br />
                 }
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">Brand</label>
-            <div class="col-md-10">
+        
+        <div class="facetToAdd">
+            <label class="controlLabel">Brand</label>
+            <div class="">
                 @foreach (AmazonProductModel.BrandOptions brandOptions in Enum.GetValues(typeof(AmazonProductModel.BrandOptions)))
                 {
                     <input type="radio" name="BrandOptions" value="@brandOptions.ToString()"> @brandOptions.ToString() <br />
                 }
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">Warranty</label>
-            <div class="col-md-10">
+        
+        <div class="facetToAdd">
+            <label class="controlLabel">Warranty</label>
+            <div class="">
                 @foreach (AmazonProductModel.WarrantyOptions warranty in Enum.GetValues(typeof(AmazonProductModel.WarrantyOptions)))
                 {
                     <input type="radio" name="WarrantyOptions" value="@warranty.ToString()"> @warranty.ToString() <br />
                 }
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">Quality of Coffee</label>
-            <div class="col-md-10">
+        
+        <div class="facetToAdd">
+            <label class="controlLabel">Quality of Coffee</label>
+            <div class="">
                 @foreach (AmazonProductModel.QualityOfCoffeeOptions qualityOfCoffee in Enum.GetValues(typeof(AmazonProductModel.QualityOfCoffeeOptions)))
                 {
                     <input type="radio" name="QualityOfCoffeeOptions" value="@qualityOfCoffee.ToString()"> @qualityOfCoffee.ToString() <br />
                 }
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+        
+        <div style="clear:both;"class="">
                 <input type="submit" value="Create" class="btn btn-default" />
-            </div>
         </div>
     </div>
 </form>
