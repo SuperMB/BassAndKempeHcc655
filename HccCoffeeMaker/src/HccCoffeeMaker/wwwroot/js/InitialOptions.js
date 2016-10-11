@@ -24,6 +24,36 @@ function MoveToComparison(ev, id) {
 
         document.getElementById("rightArrow").style.display = "none";
         document.getElementById("leftArrow").style.display = "";
+
+        var countValues = {};
+        for(var i = 0; i < comparisonRows.length; i++)
+        {
+            if(comparisonRows[i].style.display != "none")
+            {
+                if(countValues[comparisonRows[i].children[8].toString()] == undefined)
+                {
+                    countValues[comparisonRows[i].children[8].toString()] = 1;
+                }
+                else
+                {
+                    countValues[comparisonRows[i].children[8].toString()]++;
+                }
+            }
+        }
+
+        var count = 0;
+        for (var i = 0; i < countValues.length; i++)
+        {
+        }
+        
+        for(var i = 0; i < comparisonRows.length; i++)
+        {
+            if(comparisonRows[i].style.display != "none")
+            {
+                comparisonRows[i].children[8].style.borderBottom= "solid 2px blue";
+            }
+        }
+
     }
 }
 

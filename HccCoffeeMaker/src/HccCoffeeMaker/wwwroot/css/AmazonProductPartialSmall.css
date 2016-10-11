@@ -4,7 +4,7 @@
     margin:10px;
     white-space:normal;
     display:inline-block;
-    border: solid 1px var(--navy);
+    border: solid 1px var(--lightSeafoam);
     border-radius:10px;
     z-index:2;
     vertical-align:top;
@@ -26,6 +26,8 @@
 .productAttribute {
     width: 100%;
     background-color:var(--navyHeavyTransparent);
+    text-align:center;
+    display:table;
 }
 
 .previewImage {
@@ -41,7 +43,6 @@
     border-bottom-color:var(--lightSeafoam);
     border-top-left-radius:10px;
     border-top-right-radius:10px;
-}
 }
 
 .productTitle {
@@ -86,9 +87,9 @@
     transition: 0.3s;
 }
 
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
+
+.attributeText{
+    text-align:center;
+    vertical-align:middle;
+    display:table-cell;
 }

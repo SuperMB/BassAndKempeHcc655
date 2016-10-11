@@ -51,7 +51,8 @@ function MouseClickProduct(ev, id) {
         selected[idNumber] = "selected";
         //document.getElementById("xMark".concat(idNumber)).style.display = "inline";
         //document.getElementById("checkMark".concat(idNumber)).style.display = "none";
-        document.getElementById("check".concat(idNumber)).style.display = "";
+        //document.getElementById("check".concat(idNumber)).style.display = "";
+        document.getElementById("check".concat(idNumber)).innerHTML = "&#10003;";
         product.style.boxShadow = "0 0 20px var(--yellow)";
     }
     else 
@@ -59,7 +60,8 @@ function MouseClickProduct(ev, id) {
         delete selected[idNumber];
         //document.getElementById("xMark".concat(idNumber)).style.display = "none";
         //document.getElementById("checkMark".concat(idNumber)).style.display = "inline";
-        document.getElementById("check".concat(idNumber)).style.display = "none";
+        //document.getElementById("check".concat(idNumber)).style.display = "none";
+        document.getElementById("check".concat(idNumber)).innerHTML = "&nbsp";
         product.style.boxShadow = "0 0 20px var(--navy)";
     }
 }

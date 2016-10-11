@@ -64,6 +64,7 @@ textarea {
     --brightBlueTransparent:rgba(119,196,210,0.7);
     --greenTransparent:rgba(0,128,0,.3);
     --smallFont:10px;
+    --smallMediumFont:18px;
     --mediumFont:25px;
     --largeFont:40px;
     --extraLargeFont:60px;

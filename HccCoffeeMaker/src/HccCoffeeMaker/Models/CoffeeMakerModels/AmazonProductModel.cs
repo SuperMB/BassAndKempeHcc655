@@ -29,15 +29,28 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             )
         {
             Reviews = new List<ReviewModel>();
-            Title = jsonObject["title"].ToString();
-            Description = jsonObject["description"].ToString();
-            Url = jsonObject["location"].ToString();
-            Price = Convert.ToDouble(jsonObject["price"].ToString().Remove(0,1));
-            OverallRating = Convert.ToDouble(jsonObject["overall_rating"].ToString().Remove(3));
-            ImageLocation = jsonObject["main_images"][0]["location"].ToString();
 
-            foreach(var review in jsonObject["reviews"])
-                Reviews.Add(new ReviewModel(review));
+            if (jsonObject["title"] != null)
+                Title = jsonObject["title"].ToString();
+
+            if (jsonObject["description"] != null)
+                Description = jsonObject["description"].ToString();
+
+            if (jsonObject["location"] != null)
+                Url = jsonObject["location"].ToString();
+
+            if (jsonObject["price"] != null)
+                Price = Convert.ToDouble(jsonObject["price"].ToString().Remove(0,1));
+
+            if (jsonObject["overall_rating"] != null)
+                OverallRating = Convert.ToDouble(jsonObject["overall_rating"].ToString().Remove(3));
+
+            if (jsonObject["main_images"] != null)
+                ImageLocation = jsonObject["main_images"][0]["location"].ToString();
+
+            if(jsonObject["reviews"] != null)
+                foreach(var review in jsonObject["reviews"])
+                    Reviews.Add(new ReviewModel(review));
 
             Color = color;
             Durability = durability;

@@ -35,34 +35,34 @@
 <div style="height:20px"></div>
 @*//MBSTART*@
 
-<div style="text-align:center;width:100%;position:absolute;display:block;left:0px;">
-    <table class="comparisonTable" align="center" style="max-width:1200px;position:absolute;left:0;">
+<div style="text-align:center;width:100%;display:block;position:absolute;left:0;">
+    <table class="comparisonTable" align="center">
         @*<thead >*@
         <tr class="headerRow" id="productHeader"
             style="/*display:table-header-group;*/
-            font-size:var(--mediumFont);
+            font-size:var(--smallMediumFont);
             text-align:center;
             background-color:var(--navyTransparent);">
 
         <th class="comparisonCell " style="text-align:center;">
             Product Image
         </th>
-        <th class="comparisonCell comparisonTitle" style="text-align:center;">
+        <th class="comparisonCell " style="text-align:center;">
             Title
         </th>
         <th class="comparisonCell " style="text-align:center;">
             Brand
         </th>
-        <th class="comparisonCell comparisonPrice" style="text-align:center;">
+        <th class="comparisonCell " style="text-align:center;">
             Price
         </th>
         <th class="comparisonCell " style="text-align:center;">
             Type
         </th>
-        <th class="comparisonCell comparisonOverallRating" style="text-align:center;">
-            OverallRating
+        <th class="comparisonCell " style="text-align:center;">
+            Overall Rating
         </th>
-        <th class="comparisonCell comparisonDescription" style="text-align:center;">
+        <th class="comparisonCell " style="text-align:center;">
             Description
         </th>
 
@@ -163,15 +163,22 @@
                     @product.Title
                 </td>
                 <td class="comparisonCell ">
-                    @product.Brand
+                    @if (@product.Brand.Length > 8)
+                    {
+                        @product.Brand.Remove(8)
+                    }
+                    else
+                    {
+                        @product.Brand
+                    }
                 </td>
                 <td class="comparisonCell comparisonPrice">
                     $@product.Price
                 </td>
                 <td class="comparisonCell comparisonPrice">
-                    $@product.TypeOfMachine
+                    @product.TypeOfMachine
                 </td>
-                <td class="comparisonCell comparisonOverallRating" style="vertical-align:middle;">
+                <td class="comparisonCell comparisonOverallRating">
                     @product.OverallRating
                 </td>
                 <td class="comparisonCell comparisonDescription">
@@ -187,10 +194,25 @@
                     @product.ServingSize
                 </td>
                 <td class="comparisonCell ">
-                    @product.BrewingTime
+                    @if (@product.BrewingTime.Length > 8)
+                    {
+                        @product.BrewingTime.Remove(8)
+                    }
+                    else
+                    {
+                        @product.BrewingTime
+                    }
                 </td>
                 <td class="comparisonCell ">
-                    @product.Warranty
+                    @if (@product.Warranty.Length > 8)
+                    {
+                        @product.Warranty.Remove(8)
+                    }
+                    else
+                    {
+                        @product.Warranty
+                    }
+
                 </td>
 
 
