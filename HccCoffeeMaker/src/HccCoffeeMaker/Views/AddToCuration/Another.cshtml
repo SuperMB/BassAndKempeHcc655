@@ -5,12 +5,6 @@
 @using HccCoffeeMaker.Models.CoffeeMakerModels;
 
 
-<div style="text-align:center">
-    @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
-    {
-        @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmallNoBox.cshtml", item)
-    }
-</div>
 
 <div style="text-align:center">
     <div style="height:60px;"></div>
@@ -27,4 +21,11 @@
             <span style="position:relative;top:32px">No</span>
         </div>
     </a>
+</div>
+
+<div style="text-align:center">
+    @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
+    {
+        @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmallNoBox.cshtml", item)
+    }
 </div>

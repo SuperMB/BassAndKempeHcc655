@@ -1,9 +1,29 @@
+.leftContainer {
+    text-align:center;
+    height:400px;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+
 .category{
     width:250px;
     background-color:var(--navy);
     border-radius:10px;
     text-align:center;
     padding:20px;
+    margin:10px;
+    display:inline-block;
+}
+
+.categoryHidden{
+    width:250px;
+    background-color:var(--navy);
+    border-radius:10px;
+    text-align:center;
+    padding:20px;
+    margin:10px;
+    display:none;
+    vertical-align:top;
 }
 
 .categoryLabel{
@@ -28,8 +48,9 @@ input[type="text"], textarea {
 }
 
 .dropArea{
-    height:500px;
-    width:400px;
+    height:725px;
+    width:100%;
     border:solid 3px var(--navy);
     border-radius:10px;
+    text-align:center;
 }

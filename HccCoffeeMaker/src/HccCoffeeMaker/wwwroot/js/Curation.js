@@ -10,28 +10,29 @@ function StopDragging(ev, id) {
 
 function DragEnter(ev, id) {
     ev.preventDefault();
-    document.getElementById(id).style.cursor = "move";
+    //document.getElementById(id).style.cursor = "move";
 }
 
 function DragExit(ev, id) {
     ev.preventDefault();
-    document.getElementById(id).style.cursor = "default";
+    //document.getElementById(id).style.cursor = "default";
 }
 
 function Drop(ev, id) {
-        ev.preventDefault();
-        var draggedElement = document.getElementById(ev.dataTransfer.getData("text"));
-        var parent = draggedElement.parentNode.parentNode;
-        parent.style.display = "none";
+    ev.preventDefault();
+    var draggedElement = document.getElementById(ev.dataTransfer.getData("text"));
+    var parent = draggedElement.parentNode.parentNode;
+    parent.style.display = "none";
 
-        var form = document.getElementById("dropAreaID");
-        form.appendChild(draggedElement.cloneNode(true));
+    var form = document.getElementById("dropAreaID");
+    var parentHidden = document.getElementById(parent.id.concat("Hidden"));
+    parentHidden.appendChild(draggedElement.cloneNode(true));
+    var parentHiddenCopy = parentHidden.cloneNode(true);
+    form.appendChild(parentHiddenCopy);
+    parentHiddenCopy.style.display = "inline-block";
+}
 
-        //var elementToAppendAfterId = $('#'.concat(id)).prev().prev().attr('id');
-
-        //var draggedNumber = draggedId.match(/\d+$/);
-        //$('#'.concat('reviewRow').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
-        //$('#'.concat(draggedId)).insertAfter('#'.concat(elementToAppendAfterId));
-        //$('#'.concat('moveRow').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
-        //$('#'.concat('heightFor').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
+function SubmitForm()
+{
+    document.getElementById("createForm").submit();
 }
