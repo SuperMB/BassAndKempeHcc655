@@ -30,6 +30,7 @@ function Drop(ev, id) {
     var parentHiddenCopy = parentHidden.cloneNode(true);
     form.appendChild(parentHiddenCopy);
     parentHiddenCopy.style.display = "inline-block";
+
 }
 
 function SubmitForm()

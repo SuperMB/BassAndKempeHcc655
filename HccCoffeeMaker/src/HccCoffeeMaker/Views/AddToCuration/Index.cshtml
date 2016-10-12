@@ -190,10 +190,11 @@
             </div>
         </div>
 
+        &nbsp
 
-        <div class="categoryHidden" id="hiddenElementForWidth" style="display:block;visibility:hidden;">
+        @*<div class="categoryHidden" id="hiddenElementForWidth" style="display:block;visibility:hidden;">
             <label class="categoryLabel">hiddenElementForWidth</label><br />
-        </div>
+        </div>*@
 
     </div>
 <div style="font-size:var(--smallMediumFont);text-align:center;">
@@ -255,14 +256,11 @@
             </div>
         
 
-            <div style="width:100%;text-align:right;">
+            <div style="width:100%;text-align:right;display:none;" id="submitButton">
                 <div class="blueButton" style="width:200px;height:50px;text-align:center;" onclick="SubmitForm(event, this.id)">
                     <span style="position:relative;top:8px">Create</span>
                 </div>
             </div>
-        </div>
-        <div style="clear:both;" class="">
-            <input type="submit" value="Create" class="btn btn-default" />
         </div>
 
     </form>

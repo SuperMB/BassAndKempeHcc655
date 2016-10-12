@@ -49,6 +49,6 @@ function lolFoo(err, mmd_and_metadata) {
     document.getElementById("noImage").style.display = "none";
     document.getElementById("productImageContainer").style.display = "block";
 
-
+    document.getElementById("submitButton").style.display = "inline-block";
 }
 var bsService = new BSAutoSwitch(['elkanacmmmdgbnhdjopfdeafchmhecbf']);
