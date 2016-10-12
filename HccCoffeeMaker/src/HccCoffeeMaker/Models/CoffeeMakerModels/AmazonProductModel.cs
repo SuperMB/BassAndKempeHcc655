@@ -43,7 +43,10 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
                 Price = Convert.ToDouble(jsonObject["price"].ToString().Remove(0,1));
 
             if (jsonObject["overall_rating"] != null)
-                OverallRating = Convert.ToDouble(jsonObject["overall_rating"].ToString().Remove(3));
+                if(jsonObject["overall_rating"].ToString().Length > 3)
+                    OverallRating = Convert.ToDouble(jsonObject["overall_rating"].ToString().Remove(3));
+                else
+                    OverallRating = Convert.ToDouble(jsonObject["overall_rating"].ToString());
 
             if (jsonObject["main_images"] != null)
                 ImageLocation = jsonObject["main_images"][0]["location"].ToString();

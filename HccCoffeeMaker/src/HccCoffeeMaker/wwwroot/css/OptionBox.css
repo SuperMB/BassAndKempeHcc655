@@ -16,6 +16,7 @@
     max-width:300px;
     display:inline-block;
     vertical-align:top;
+    font-size:var(--mediumFont);
 }
 
 .optionImage{
@@ -39,4 +40,5 @@
     display:none;
     background:white;
     width:100%;
+    font-size:var(--smallMediumFont);
 }

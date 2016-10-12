@@ -36,6 +36,11 @@ function clickClose(id) {
     facetAdded.style.display = "none";
     facetAdded.style.position = "fixed";
     facet.appendChild(facetAdded);
+    //var facetAddedHead = document.getElementById(facetAddedId.concat("Head"));
+
+    facet.parentNode.insertBefore(facetAdded, facet);
+
+    document.getElementById(facetAddedId.concat("Select")).style.display = "";
 
     count--;
     if (count == 0)
@@ -65,6 +70,8 @@ function clickSelect(id) {
     facetAdded.style.float = "left";
 
     count++;
+
+    document.getElementById(facetAddedId.concat("Select")).style.display = "none";
 
     document.getElementById("rightArrow").style.display = "block";
 }

@@ -22,13 +22,14 @@
 
 
 <div style="height:10px;"></div>
-<div style="font-size:var(--largeFont)">Select facets to filter on </div>
+<div style="font-size:var(--extraLargeFont)">Select facets to filter on </div>
 <div style="height:50px;"></div>
 
 @{ var title = "";}
 @{ var spaceUnderFacetSelectorTitle = "50px";}
 <div style="text-align:center;width:100%;">
     @{title = "price";}
+    <div id="@(title)AddedHead"></div>
     <div id="@(title)Added" class="addedFilter">
         Price <br />
         <div style="height:@(spaceUnderFacetSelectorTitle);"></div>

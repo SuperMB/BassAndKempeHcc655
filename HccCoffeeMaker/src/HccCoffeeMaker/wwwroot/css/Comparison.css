@@ -46,6 +46,11 @@
     vertical-align:top;
     max-width:200px;
 }
+.moveCellReview{
+    /*display:table-cell;*/
+    vertical-align:top;
+    max-width:200px;
+}
 
 .moveCellOverComment{
     /*display:table-cell;*/
@@ -65,7 +70,7 @@
     margin:10px;
     /*display:table-row;*/
     background-color:var(--navyHeavyTransparent);
-    color:white;
+    /*color:white;*/
 }
 
 .comparisonCell{
@@ -79,6 +84,7 @@
     border-right:solid 1px var(--lightSeafoam);
     text-align:left;
     vertical-align:middle;
+    font-size:var(--smallMediumFont);
 }
 
 .comparisonImageCell{
@@ -100,11 +106,13 @@
 
 .comparisonTitle{
     max-width:200px;
+    font-size:var(--smallMediumFont);
 
 }
 
-.comparsionPrice{
+.comparisonPrice{
     text-align:center;
+    font-size:var(--mediumFont);
 }
 
 .comparisonOverallRating{
@@ -126,4 +134,12 @@
     width:20px;
     background-color:var(--lightSeafoam);
     /*border:solid 2px black;*/
+}
+
+.reviewRow {
+    background-color:var(--navyHeavyTransparent);
+    text-align:left;
+    font-size:var(--smallMediumFont);
+    color:white;
+    padding:10px;
 }

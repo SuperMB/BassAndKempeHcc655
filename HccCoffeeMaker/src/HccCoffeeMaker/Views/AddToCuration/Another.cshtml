@@ -8,7 +8,7 @@
 <div style="text-align:center">
     @foreach (var item in (ICollection<AmazonProductModel>)ViewData["products"])
     {
-        @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmall.cshtml", item)
+        @Html.Partial("~/Views/Shared/Partials/AmazonProductPartials/AmazonProductPartialSmallNoBox.cshtml", item)
     }
 </div>
 

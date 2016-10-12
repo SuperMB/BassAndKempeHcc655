@@ -30,8 +30,8 @@
 
 
 .addedFilter {
-    width: 400px;
-    height:400px;
+    width: 350px;
+    height:350px;
     margin:10px;
     color:white;
     background-color:var(--navy);
@@ -51,7 +51,7 @@
 .addedFacetClose{
     position:absolute;
     bottom:25px;
-    right:25px;
+    left:25px;
 }
 
 .addedFacetClose:hover{
@@ -61,7 +61,7 @@
 .addedFacetSelect{
     position:absolute;
     bottom:25px;
-    left:25px;
+    right:25px;
 }
 
 .addedFacetSelect:hover{

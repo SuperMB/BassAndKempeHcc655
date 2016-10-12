@@ -1,22 +1,22 @@
 var mode = "MoveMode";
 var typedIn = {};
 
-function ChangeToAnnotationMode()
-{    
+function ChangeToAnnotationMode(ev, id)
+{
+    var pen = document.getElementById(id);
     if (mode == "MoveMode") {
+
+        pen.style.backgroundColor = "var(--pink)";
+
         var headerCommentCells = document.querySelectorAll(".moveCell");
         var rowCommentCells = document.querySelectorAll(".comparisonComments");
+        var reviewCommentCells = document.querySelectorAll(".moveCellReview");
         var allCommentCells = Array.prototype.slice.call(headerCommentCells);
         allCommentCells = allCommentCells.concat(Array.prototype.slice.call(rowCommentCells));
+        allCommentCells = allCommentCells.concat(Array.prototype.slice.call(reviewCommentCells));
 
         mode = "WriteMode";
-
-        document.getElementById("MoveText").style.display = "none";
-        document.getElementById("ChangeToAnnotationModeSelector").style.display = "none";
-        document.getElementById("ChangeToMoveModeSelector").style.display = "";
-        document.getElementById("AnnotationText").style.display = "";
-
-
+        
         for (var i = 0; i < allCommentCells.length; i++) {
             if (!typedIn[allCommentCells[i].id]) {
                 allCommentCells[i].style.backgroundColor = "white";
@@ -24,23 +24,24 @@ function ChangeToAnnotationMode()
                 allCommentCells[i].style.borderRight = "solid 15px var(--lightSeafoam)";
             }
         }
-    }
-}
 
-function ChangeToMoveMode() {
-    if (mode == "WriteMode") {
+        document.getElementById("StartStop").innerText = "Stop";
+        document.getElementById("TrashCan").style.opacity = "0.2";
+        document.getElementById("TrashText").style.opacity = "0.2";
+        document.getElementById("DragText").style.opacity = "0.2";
+    }
+    else {
+
+        pen.style.backgroundColor = "var(--navy)";
+
         var headerCommentCells = document.querySelectorAll(".moveCell");
         var rowCommentCells = document.querySelectorAll(".comparisonComments");
+        var reviewCommentCells = document.querySelectorAll(".moveCellReview");
         var allCommentCells = Array.prototype.slice.call(headerCommentCells);
         allCommentCells = allCommentCells.concat(Array.prototype.slice.call(rowCommentCells));
 
         mode = "MoveMode";
-
-        document.getElementById("MoveText").style.display = "";
-        document.getElementById("ChangeToAnnotationModeSelector").style.display = "";
-        document.getElementById("ChangeToMoveModeSelector").style.display = "none";
-        document.getElementById("AnnotationText").style.display = "none";
-
+        
         for (var i = 0; i < allCommentCells.length; i++) {
             if (!typedIn[allCommentCells[i].id]) {
                 allCommentCells[i].style.backgroundColor = "transparent";
@@ -53,9 +54,20 @@ function ChangeToMoveMode() {
                 rowCommentCells[i].style.backgroundColor = "var(--lightSeafoam)";
             }
         }
+        for (var i = 0; i < reviewCommentCells.length; i++) {
+            if (!typedIn[reviewCommentCells[i].id]) {
+                reviewCommentCells[i].style.backgroundColor = "var(--lightSeafoam)";
+                reviewCommentCells[i].style.borderLeft = "none";
+                reviewCommentCells[i].style.borderRight = "none";
+            }
+        }
+
+        document.getElementById("StartStop").innerText = "Start";
+        document.getElementById("TrashCan").style.opacity = "1";
+        document.getElementById("TrashText").style.opacity = "1";
+        document.getElementById("DragText").style.opacity = "1";
     }
 }
-
 
 function MouseOver(ev, id) {
     if (mode == "WriteMode") {
@@ -153,6 +165,23 @@ function MoveCellClickRow(ev, id) {
     }
 }
 
+function MoveCellReviewClick(ev, id) {
+    if (mode == "WriteMode") {
+        var cell = document.getElementById(id);
+        cell.style.borderTop = "solid 15px var(--lightSeafoam)";
+        cell.style.borderBottom = "solid 15px var(--lightSeafoam)";
+        cell.style.borderLeft = "transparent";
+        cell.style.borderRight = "transparent";
+        cell.style.backgroundColor = "var(--brightBlueTransparent)";
+        cell.contentEditable = "true";
+        var width = cell.offsetWidth;
+        cell.style.maxWidth = width;
+        typedIn[id] = "set";
+
+
+    }
+}
+
 function Dragging(ev, id) {
     if (mode == "MoveMode") {
         ev.dataTransfer.setData("text", ev.target.id);
@@ -218,10 +247,75 @@ function Drop(ev, id) {
         var elementToAppendAfterId = $('#'.concat(id)).prev().prev().attr('id');
 
         //alert(elementToAppendAfterId);
-        $('#'.concat(draggedId)).insertAfter('#'.concat(elementToAppendAfterId));
         var draggedNumber = draggedId.match(/\d+$/);
+        $('#'.concat('reviewRow').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
+        $('#'.concat(draggedId)).insertAfter('#'.concat(elementToAppendAfterId));
         //alert('#'.concat('moveRow').concat(draggedNumber));
         $('#'.concat('moveRow').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
         $('#'.concat('heightFor').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
     }
+}
+
+function TrashDragEnter(ev, id) {
+    if (mode == "MoveMode") {
+        ev.preventDefault();
+        //document.getElementById(id).style.cursor = "move";
+    }
+}
+
+function TrashDragExit(ev, id) {
+    if (mode == "MoveMode") {
+        ev.preventDefault();
+        //document.getElementById(id).style.cursor = "default";
+    }
+}
+
+function TrashDrop(ev, id) {
+    if (mode == "MoveMode") {
+        ev.preventDefault();
+        var draggedId = ev.dataTransfer.getData("text");
+        var productNumber = draggedId.match(/\d+$/);
+
+        var heightRow = document.getElementById("heightFor".concat(productNumber));
+        var moveRow = document.getElementById("moveRow".concat(productNumber));
+        var comparisonRow = document.getElementById("product".concat(productNumber));
+        var reviewRow = document.getElementById("reviewRow".concat(productNumber));
+
+        heightRow.style.display = "none";
+        moveRow.style.display = "none";
+        comparisonRow.style.display = "none";
+        reviewRow.style.display = "none";
+
+        delete selected[productNumber];
+    }
+}
+
+function ShowReviews(ev, id) {
+    var productNumber = id.match(/\d+$/);
+
+    document.getElementById("reviews".concat(productNumber)).style.display = "block";
+    var arrow = document.getElementById("expandReview".concat(productNumber));
+    document.getElementById("reviewsClick".concat(productNumber)).setAttribute('onclick', 'HideReviews(event, this.id)');
+    arrow.innerText = "(X)";
+
+}
+
+function HideReviews(ev, id) {
+    var productNumber = id.match(/\d+$/);
+
+    document.getElementById("reviews".concat(productNumber)).style.display = "none";
+    var arrow = document.getElementById("expandReview".concat(productNumber));
+    document.getElementById("reviewsClick".concat(productNumber)).setAttribute('onclick', 'ShowReviews(event, this.id)');
+    arrow.innerText = "(+)";
+
+}
+
+function MouseOverReview(ev, id) {
+    ev.preventDefault();
+    document.getElementById(id).style.cursor = "pointer";
+}
+
+function MouseOutReview(ev, id) {
+    ev.preventDefault();
+    document.getElementById(id).style.cursor = "default";
 }

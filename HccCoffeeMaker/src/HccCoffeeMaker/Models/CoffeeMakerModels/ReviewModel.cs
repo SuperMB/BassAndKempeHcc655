@@ -16,9 +16,34 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
 
         public ReviewModel(JToken jToken)
         {
-            Rating = Convert.ToDouble(jToken["rating"].ToString().Remove(1));
-            Title = jToken["title"].ToString();
-            Description = jToken["description"].ToString();            
+            if(jToken["rating"] != null)
+                if(jToken["rating"].ToString().Length > 1)
+                {
+                    try
+                    {
+                        Rating = Convert.ToDouble(jToken["rating"].ToString().Remove(1));
+                    }
+                    catch(Exception e)
+                    {
+                        try
+                        {
+                            Rating = Convert.ToDouble(jToken["rating"].Last().First().ToString());
+                        }
+                        catch(Exception e2)
+                        {
+
+                        }
+                    }
+                }
+                    
+                else
+                    Rating = Convert.ToDouble(jToken["rating"].ToString());
+
+            if (jToken["title"] != null)
+                Title = jToken["title"].ToString();
+
+            if (jToken["description"] != null)
+                Description = jToken["description"].ToString();            
         }
 
         public int ID { get; set; }

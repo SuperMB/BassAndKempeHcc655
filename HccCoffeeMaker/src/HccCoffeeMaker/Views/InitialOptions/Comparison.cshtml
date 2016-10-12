@@ -6,30 +6,56 @@
 
 <div style="height:10px;"></div>
 
-<div class="explainText" id="MoveText">Drag rows to re-arrange</div>
 
-<div onclick="ChangeToAnnotationMode()" 
-     onmouseover="MouseOverCursor(event, this.id)"
-     onmouseout="MouseOutDefault(event, this.id)"
-     id="ChangeToAnnotationModeSelector" 
-     class="switchText"
-     >
-    <div style="font-size:var(--largeFont)">Click to switch to Annotation Mode</div>
+<div style="position:absolute;
+            left:275px;
+            top:275px;
+            font-size:var(--extraLargeFont)">
+    <span id="DragText">Drag Rows to Rearrange</span>
 </div>
 
-<div onclick="ChangeToMoveMode()" 
-     onmouseover="MouseOverCursor(event, this.id)"
-     onmouseout="MouseOutDefault(event, this.id)"
-     id="ChangeToMoveModeSelector" 
-     class="switchText" 
-     style="display:none;"
-     >
-    <div style="font-size:var(--largeFont)">Click to switch to Move Mode</div>
+<div style="width:200px;
+            height:220px;
+            position:absolute;
+            right:600px;">
+    <div style="background-color:var(--navy);
+            width:200px;
+            height:200px;
+            /*border:solid 5px var(--navy);*/
+            border-radius:10px;"
+         onclick="ChangeToAnnotationMode(event, this.id)"
+         id="Pen">
+
+        <img style="width:200px;height:200px;" src="~/images/Pen.png" />
+    </div>
+    <div style="text-align:center;font-size:var(--mediumFont);">
+        Click Pen to <b><span id="StartStop">Start</span></b> Annotating
+    </div>
 </div>
 
-<div class="explainText" id="AnnotationText" style="display:none;">Click cells to annotate</div>
+<div style="width:200px;
+            height:220px;
+            position:absolute;
+            right:350px;">
+    <div style="background-color:var(--pink);
+            width:200px;
+            height:200px;
+            /*border:solid 5px var(--navy);*/
+            border-radius:10px;"
+         id="TrashCan"
+         ondragover="TrashDragEnter(event, this.id)" 
+         ondragleave="TrashDragExit(event, this.id)" 
+         ondrop="TrashDrop(event, this.id)">
 
-<div style="height:50px;clear:both;"></div>
+        <img style="width:200px;height:200px;" src="~/images/TrashCan.png" />
+    </div>
+    <div style="text-align:center;font-size:var(--mediumFont);">
+        <span id="TrashText">Drag Row to Trash to <b>Remove</b> </span>
+    </div>
+</div>
+
+
+<div style="height:280px;clear:both;"></div>
 
 
 <div style="height:20px"></div>
@@ -40,7 +66,7 @@
         @*<thead >*@
         <tr class="headerRow" id="productHeader"
             style="/*display:table-header-group;*/
-            font-size:var(--smallMediumFont);
+            font-size:var(--mediumFont);
             text-align:center;
             background-color:var(--navyTransparent);">
 
@@ -83,8 +109,8 @@
             Warranty
         </th>
 
-        <th class="comparisonCell " style="border:none;background-color:var(--lightSeafoam);color:var(--navy);font-size:var(--smallFont);">
-            Annotations
+        <th class="comparisonCell " style="border:none;background-color:var(--lightSeafoam);color:var(--navy);vertical-align:bottom;padding-bottom:0;padding-left:2px;text-align:center;">
+            Row Annotations
         </th>
         </tr>
         @*</thead>
@@ -173,9 +199,9 @@
                     }
                 </td>
                 <td class="comparisonCell comparisonPrice">
-                    $@product.Price
+                    $@string.Format("{0:0.00}", product.Price)
                 </td>
-                <td class="comparisonCell comparisonPrice">
+                <td class="comparisonCell ">
                     @product.TypeOfMachine
                 </td>
                 <td class="comparisonCell comparisonOverallRating">
@@ -184,16 +210,16 @@
                 <td class="comparisonCell comparisonDescription">
                     @product.Description
                 </td>
-                <td class="comparisonCell ">
+                <td class="comparisonCell " style="text-align:center;">
                     @product.Color
                 </td>
-                <td class="comparisonCell ">
+                <td class="comparisonCell " style="text-align:center;">
                     @product.Durability
                 </td>
-                <td class="comparisonCell ">
+                <td class="comparisonCell " style="text-align:center;">
                     @product.ServingSize
                 </td>
-                <td class="comparisonCell ">
+                <td class="comparisonCell " style="text-align:center;">
                     @if (@product.BrewingTime.Length > 8)
                     {
                         @product.BrewingTime.Remove(8)
@@ -203,7 +229,7 @@
                         @product.BrewingTime
                     }
                 </td>
-                <td class="comparisonCell ">
+                <td class="comparisonCell " style="text-align:center;">
                     @if (@product.Warranty.Length > 8)
                     {
                         @product.Warranty.Remove(8)
@@ -221,6 +247,40 @@
                     onmouseover="MouseOver(event, id)"
                     onmouseout="MouseOutRow(event, id)"
                     onclick="MoveCellClickRow(event,id)"></td>
+            </tr>
+
+            <tr id="reviewRow@(product.ID)" class="reviewRow" 
+                >
+                <td colspan="5">
+                    <div onclick="ShowReviews(event, this.id)"  
+                         onmouseover="MouseOverReview(event, this.id)"  
+                         onmouseout="MouseOutReview(event, this.id)"  
+                         id="reviewsClick@(product.ID)">
+                        <span id="expandReview@(product.ID)" style="font-size:var(--mediumFont)" > (+) </span> <span style="font-size:var(--mediumFont)">Reviews</span> <br />
+                    </div>
+                    <div id="reviews@(product.ID)" style="padding:20px;display:none;">
+                        @if (product.Reviews.Count > 0)
+                        {
+                            foreach (ReviewModel review in product.Reviews)
+                            {
+                                <hr style="width:50%;" />
+                                <div style="margin-bottom:3px;">@review.Title</div>
+                                <div style="margin-bottom:3px;">@review.Rating star(s)</div>
+                                <div style="margin-bottom:3px;">@review.Description </div>
+                            }
+                        }
+                    </div>
+                </td>
+
+
+                <td class="moveCellReview" id="moveCellReview@(product.ID)"
+                    onmouseover="MouseOver(event, id)"
+                    onmouseout="MouseOut(event, id)"
+                    onclick="MoveCellReviewClick(event, id)"
+                    style="background-color:var(--lightSeafoam)"
+                    colspan="2"
+                    ></td>
+
             </tr>
         }
         @*</tbody>*@
