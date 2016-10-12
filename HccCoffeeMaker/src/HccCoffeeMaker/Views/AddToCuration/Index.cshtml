@@ -38,12 +38,16 @@
 <h2>Create</h2>
 <button id="loadJson" onclick="GetJson()">Load Json</button>
 <link type="text/css" rel="stylesheet" href="~/css/Create.css" />
-<form asp-action="CreateFromUrl">
+<link type="text/css" rel="stylesheet" href="~/css/Curation.css" />
+<script type="text/javascript" src="~/js/Curation.js"></script>
+
+
+
+<div class="col-xs-6">
 
     <div class="" style="text-align:center;">
-        <h4>AmazonProductModel</h4>
+        @*<h4>AmazonProductModel</h4>
         <hr />
-
         <div class="facetToAdd">
             <label class="controlLabel">Amazon URL</label>
             <div class="">
@@ -51,7 +55,6 @@
                 <input type="text" name="metaData" id="metaData" style="display:none;" />
             </div>
         </div>
-
         <div class="facetToAdd">
             <label class="controlLabel">Color</label>
             <div class="">
@@ -61,7 +64,6 @@
                 }
             </div>
         </div>
-
         <div class="facetToAdd">
             <label class="controlLabel">Durability</label>
             <div class="">
@@ -71,7 +73,6 @@
                 }
             </div>
         </div>
-
         <div class="facetToAdd">
             <label class="controlLabel">Serving Size</label>
             <div class="">
@@ -81,7 +82,6 @@
                 }
             </div>
         </div>
-
         <div class="facetToAdd">
             <label class="controlLabel">Brewing Time</label>
             <div class="">
@@ -91,7 +91,6 @@
                 }
             </div>
         </div>
-
         <div class="facetToAdd">
             <label class="controlLabel">Brand</label>
             <div class="">
@@ -101,7 +100,6 @@
                 }
             </div>
         </div>
-
         <div class="facetToAdd">
             <label class="controlLabel">Warranty</label>
             <div class="">
@@ -111,7 +109,6 @@
                 }
             </div>
         </div>
-
         <div class="facetToAdd">
             <label class="controlLabel">Quality of Coffee</label>
             <div class="">
@@ -121,15 +118,59 @@
                 }
             </div>
         </div>
+        <div style="clear:both;" class="">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>*@
 
+
+    <div class="category">
+        <label class="categoryLabel">Color</label><br />
+            @foreach (AmazonProductModel.ColorOptions color in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
+            {
+                <div class="item">
+                    <input type="text"
+                           name="ColorOptions"
+                           readonly
+                           draggable="true"
+                           value="@color.ToString()"
+                           ondragstart="Dragging(event, this.id)"
+                           ondragend="StopDragging(event, this.id)"
+                           id="@color.ToString()"
+                           > <br />
+                </div>
+            }
+    </div>
+        ...
+
+    </div>
+</div>
+<div class="col-xs-6">
+
+    <form asp-action="CreateFromUrl">
+        <div class="dropArea"
+             ondragover="DragEnter(event, this.id)"
+             ondragleave="DragExit(event, this.id)"
+             ondrop="Drop(event, this.id)"
+             id="dropAreaID"
+             >
+
+        </div>
         <div style="clear:both;" class="">
             <input type="submit" value="Create" class="btn btn-default" />
         </div>
-    </div>
-</form>
-<div>
-    <a asp-action="Index">Back to List</a>
+    </form>
 </div>
+
+
+
+
+
+
+
+
+
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

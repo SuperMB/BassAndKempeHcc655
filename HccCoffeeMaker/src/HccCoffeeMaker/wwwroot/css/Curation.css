@@ -1,0 +1,35 @@
+.category{
+    width:250px;
+    background-color:var(--navy);
+    border-radius:10px;
+    text-align:center;
+    padding:20px;
+}
+
+.categoryLabel{
+    font-size:var(--largeFont);
+    color:white;
+}
+
+.item{
+    text-align:left;
+    border:none;
+    display:inline-block;
+    margin:3px;
+
+}
+
+input[type="text"], textarea {
+  text-align:center;
+  background-color : white; 
+  border:0;
+  border-radius:5px;
+  height:40px;
+}
+
+.dropArea{
+    height:500px;
+    width:400px;
+    border:solid 3px var(--navy);
+    border-radius:10px;
+}
