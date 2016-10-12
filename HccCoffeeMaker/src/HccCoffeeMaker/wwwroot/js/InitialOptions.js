@@ -63,14 +63,16 @@ function MoveToComparison(ev, id) {
             for (var i = 0; i < comparisonRows.length; i++) {
                 if (comparisonRows[i].style.display != "none") {
                     var thisCount = countValues[comparisonRows[i].children[j].innerText];
-                    if (thisCount <= 0.2*max)
-                        comparisonRows[i].children[j].style.borderBottom = "solid 10px var(--pink)";
-                    else if (thisCount <= 0.34 * max)
-                        comparisonRows[i].children[j].style.borderBottom = "solid 10px var(--yellow)";
-                    else if (thisCount <= 0.51 * max)
-                        comparisonRows[i].children[j].style.borderBottom = "solid 10px var(--brightBlue)";
-                    else
-                       comparisonRows[i].children[j].style.borderBottom = "solid 10px var(--navyTransparent)";
+                    if (comparisonRows[i].children[j].innerText != "") {
+                        if (thisCount <= 0.2 * max)
+                            comparisonRows[i].children[j].style.borderBottom = "solid 10px var(--pink)";
+                        else if (thisCount <= 0.34 * max)
+                            comparisonRows[i].children[j].style.borderBottom = "solid 10px var(--yellow)";
+                        else if (thisCount <= 0.51 * max)
+                            comparisonRows[i].children[j].style.borderBottom = "solid 10px var(--brightBlue)";
+                        else
+                            comparisonRows[i].children[j].style.borderBottom = "solid 10px var(--navyTransparent)";
+                    }
                 }
             }
         }

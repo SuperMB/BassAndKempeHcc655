@@ -35,7 +35,7 @@
         <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
         @foreach (AmazonProductModel.PriceOptions price in Enum.GetValues(typeof(AmazonProductModel.PriceOptions)))
         {
-            <input type="checkbox" name="@(title)" value=@price.ToString() /> @AmazonProductModel.PriceOptionsString(price)<br />
+            <input type="checkbox" name="@(title)" value=@price.ToString() /> @AmazonProductModel.OptionsString(price)<br />
         }
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
@@ -49,7 +49,7 @@
         <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
         @foreach (AmazonProductModel.ColorOptions color in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
         {
-            <input type="checkbox" name="@(title)" value=@color.ToString() /> @color.ToString() <br>
+            <input type="checkbox" name="@(title)" value=@color.ToString() /> @AmazonProductModel.OptionsString(color) <br>
         }
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
@@ -64,7 +64,7 @@
         <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
         @foreach (AmazonProductModel.DurabilityOptions durability in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
         {
-            <input type="checkbox" name="@(title)" value=@durability.ToString() /> @durability.ToString() <br>
+            <input type="checkbox" name="@(title)" value=@durability.ToString() /> @AmazonProductModel.OptionsString(durability) <br>
         }
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
@@ -78,7 +78,7 @@
         <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
         @foreach (AmazonProductModel.ServingSizeOptions servingSize in Enum.GetValues(typeof(AmazonProductModel.ServingSizeOptions)))
         {
-            <input type="checkbox" name="@(title)" value=@servingSize.ToString() /> @servingSize.ToString() <br>
+            <input type="checkbox" name="@(title)" value=@servingSize.ToString() /> @AmazonProductModel.OptionsString(servingSize) <br>
         }
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
@@ -95,7 +95,7 @@
         <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
         @foreach (AmazonProductModel.BrewingTimeOptions brewingTime in Enum.GetValues(typeof(AmazonProductModel.BrewingTimeOptions)))
         {
-            <input type="checkbox" name="@(title)" value=@brewingTime.ToString() /> @AmazonProductModel.BrewingTimeOptionsString(brewingTime) <br>
+            <input type="checkbox" name="@(title)" value=@brewingTime.ToString() /> @AmazonProductModel.OptionsString(brewingTime) <br>
         }
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
@@ -109,7 +109,7 @@
         <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
         @foreach (AmazonProductModel.BrandOptions brand in Enum.GetValues(typeof(AmazonProductModel.BrandOptions)))
         {
-            <input type="checkbox" name="@(title)" value=@brand.ToString() /> @brand.ToString() <br>
+            <input type="checkbox" name="@(title)" value=@brand.ToString() /> @AmazonProductModel.OptionsString(brand) <br>
         }
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
@@ -124,7 +124,7 @@
         <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
         @foreach (AmazonProductModel.WarrantyOptions warranty in Enum.GetValues(typeof(AmazonProductModel.WarrantyOptions)))
         {
-            <input type="checkbox" name="@(title)" value=@warranty.ToString() /> @warranty.ToString() <br>
+            <input type="checkbox" name="@(title)" value=@warranty.ToString() /> @AmazonProductModel.OptionsString(warranty) <br>
         }
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
@@ -139,7 +139,7 @@
         <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
         @foreach (AmazonProductModel.QualityOfCoffeeOptions qualityOfCoffee in Enum.GetValues(typeof(AmazonProductModel.QualityOfCoffeeOptions)))
         {
-            <input type="checkbox" name="@(title)" value=@qualityOfCoffee.ToString() /> @qualityOfCoffee.ToString() <br>
+            <input type="checkbox" name="@(title)" value=@qualityOfCoffee.ToString() /> @AmazonProductModel.OptionsString(qualityOfCoffee) <br>
         }
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>

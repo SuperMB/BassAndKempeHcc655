@@ -189,14 +189,7 @@
                     @product.Title
                 </td>
                 <td class="comparisonCell ">
-                    @if (@product.Brand.Length > 8)
-                    {
-                        @product.Brand.Remove(8)
-                    }
-                    else
-                    {
                         @product.Brand
-                    }
                 </td>
                 <td class="comparisonCell comparisonPrice">
                     $@string.Format("{0:0.00}", product.Price)
@@ -220,24 +213,10 @@
                     @product.ServingSize
                 </td>
                 <td class="comparisonCell " style="text-align:center;">
-                    @if (@product.BrewingTime.Length > 8)
-                    {
-                        @product.BrewingTime.Remove(8)
-                    }
-                    else
-                    {
                         @product.BrewingTime
-                    }
                 </td>
                 <td class="comparisonCell " style="text-align:center;">
-                    @if (@product.Warranty.Length > 8)
-                    {
-                        @product.Warranty.Remove(8)
-                    }
-                    else
-                    {
                         @product.Warranty
-                    }
 
                 </td>
 

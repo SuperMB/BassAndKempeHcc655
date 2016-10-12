@@ -46,7 +46,7 @@
                             name="ColorOptions"
                             readonly
                             draggable="true"
-                            value="@color.ToString()"
+                            value="@AmazonProductModel.OptionsString(color)"
                             ondragstart="Dragging(event, this.id)"
                             ondragend="StopDragging(event, this.id)"
                             id="@color.ToString()"> <br />
@@ -66,7 +66,7 @@
                             name="ServingSizeOptions"
                             readonly
                             draggable="true"
-                            value="@servingSize.ToString()"
+                            value="@AmazonProductModel.OptionsString(servingSize)"
                             ondragstart="Dragging(event, this.id)"
                             ondragend="StopDragging(event, this.id)"
                             id="@servingSize.ToString()"> <br />
@@ -87,7 +87,7 @@
                             name="BrewingTimeOptions"
                             readonly
                             draggable="true"
-                            value="@brewingTime.ToString()"
+                            value="@AmazonProductModel.OptionsString(brewingTime)"
                             ondragstart="Dragging(event, this.id)"
                             ondragend="StopDragging(event, this.id)"
                             id="@brewingTime.ToString()"> <br />
@@ -108,7 +108,7 @@
                             name="BrandOptions"
                             readonly
                             draggable="true"
-                            value="@brand.ToString()"
+                            value="@AmazonProductModel.OptionsString(brand)"
                             ondragstart="Dragging(event, this.id)"
                             ondragend="StopDragging(event, this.id)"
                             id="@brand.ToString()"> <br />
@@ -120,19 +120,40 @@
             <label class="categoryLabel">Brand</label><br />
         </div>
 
+        <div class="category" id="durabilityCategory">
+            <label class="categoryLabel">Durability</label><br />
+            @foreach (AmazonProductModel.DurabilityOptions durability in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
+            {
+                <div class="item">
+                    <input type="text"
+                           name="WarrantyOptions"
+                           readonly
+                           draggable="true"
+                           value="@AmazonProductModel.OptionsString(durability)"
+                           ondragstart="Dragging(event, this.id)"
+                           ondragend="StopDragging(event, this.id)"
+                           id="@durability.ToString()"> <br />
+                </div>
+
+            }
+        </div>
+        <div class="categoryHidden" id="warrantyCategoryHidden">
+            <label class="categoryLabel">Warranty</label><br />
+        </div>
+
         <div class="category" id="warrantyCategory">
             <label class="categoryLabel">Warranty</label><br />
             @foreach (AmazonProductModel.WarrantyOptions warranty in Enum.GetValues(typeof(AmazonProductModel.WarrantyOptions)))
             {
                 <div class="item">
                     <input type="text"
-                            name="WarrantyOptions"
-                            readonly
-                            draggable="true"
-                            value="@warranty.ToString()"
-                            ondragstart="Dragging(event, this.id)"
-                            ondragend="StopDragging(event, this.id)"
-                            id="@warranty.ToString()"> <br />
+                           name="WarrantyOptions"
+                           readonly
+                           draggable="true"
+                           value="@AmazonProductModel.OptionsString(warranty)"
+                           ondragstart="Dragging(event, this.id)"
+                           ondragend="StopDragging(event, this.id)"
+                           id="@warranty.ToString()"> <br />
                 </div>
 
             }
@@ -150,7 +171,7 @@
                             name="QualityOfCoffeeOptions"
                             readonly
                             draggable="true"
-                            value="@qualityOfCoffee.ToString()"
+                            value="@AmazonProductModel.OptionsString(qualityOfCoffee)"
                             ondragstart="Dragging(event, this.id)"
                             ondragend="StopDragging(event, this.id)"
                             id="@qualityOfCoffee.ToString()"> <br />
