@@ -24,8 +24,8 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             string brand,
             string warranty,
             string qualityOfCoffee,
-            bool userAdded = false,
-            string typeOfMachine = "Automatic"
+            string typeOfMachine,
+            bool userAdded = false
             )
         {
             Reviews = new List<ReviewModel>();
@@ -299,6 +299,25 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             }
             return "Invalid Option";
         }
+        public enum TypeOfMachineOptions
+        {
+            FrenchPress,
+            Automatic,
+            SmallPods
+        }
+        public static string OptionsString(TypeOfMachineOptions typeOfMachine)
+        {
+            switch (typeOfMachine)
+            {
+                case TypeOfMachineOptions.FrenchPress:
+                    return "French Press";
+                case TypeOfMachineOptions.Automatic:
+                    return "Automatic Drip";
+                case TypeOfMachineOptions.SmallPods:
+                    return "Single Serve Pods";
+            }
+            return "Invalid Option";
+        }
 
 
         public static async Task<ICollection<AmazonProductModel>> GetUserAddedCurations(MyDatabaseContext context)
@@ -321,7 +340,8 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             List<DurabilityOptions> durabilityOptionsInput = null,
             List<BrewingTimeOptions> brewingTimeOptionsInput = null,
             List<BrandOptions> brandOptionsInput = null,
-            List<WarrantyOptions> warrantyOptionsInput = null
+            List<WarrantyOptions> warrantyOptionsInput = null,
+            List<TypeOfMachineOptions> typeOfMachineOptionsInput = null
             )
         {
 
@@ -333,6 +353,7 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             List<BrewingTimeOptions> brewingTimeOptions = brewingTimeOptionsInput;
             List<BrandOptions> brandOptions = brandOptionsInput;
             List<WarrantyOptions> warrantyOptions = warrantyOptionsInput;
+            List<TypeOfMachineOptions> typeOfMachineOptions = typeOfMachineOptionsInput;
 
 
             bool pricesAvailable = true;
@@ -491,6 +512,13 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
                     || (warrantyOptions.Contains(WarrantyOptions.Year2) && s.Warranty == OptionsString(WarrantyOptions.Year2))
                     || (warrantyOptions.Contains(WarrantyOptions.Year3To5) && s.Warranty == OptionsString(WarrantyOptions.Year3To5))
                     || (s.Warranty == null)
+                )
+                &&
+                (
+                    (typeOfMachineOptions.Contains(TypeOfMachineOptions.Automatic) && s.TypeOfMachine == OptionsString(TypeOfMachineOptions.Automatic))
+                    || (typeOfMachineOptions.Contains(TypeOfMachineOptions.SmallPods) && s.TypeOfMachine == OptionsString(TypeOfMachineOptions.SmallPods))
+                    || (typeOfMachineOptions.Contains(TypeOfMachineOptions.FrenchPress) && s.TypeOfMachine == OptionsString(TypeOfMachineOptions.FrenchPress))
+                    || (s.TypeOfMachine == null)
                 )
                 && (s.UserAdded == false)
             ));

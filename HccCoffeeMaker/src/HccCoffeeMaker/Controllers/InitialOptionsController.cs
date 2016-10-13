@@ -84,6 +84,23 @@ namespace HccCoffeeMaker.Controllers
                 }
             }
             
+            string typeOfMachine = HttpContext.Request.Form["typeOfMachine"];
+            List<AmazonProductModel.TypeOfMachineOptions> typeOfMachineOptions = new List<AmazonProductModel.TypeOfMachineOptions>();
+            if (typeOfMachine == "AutomaticDrip")
+                typeOfMachineOptions.Add(AmazonProductModel.TypeOfMachineOptions.Automatic);
+            else if (typeOfMachine == "SingleServePods")
+                typeOfMachineOptions.Add(AmazonProductModel.TypeOfMachineOptions.SmallPods);
+            else if (typeOfMachine == "FrenchPress")
+                typeOfMachineOptions.Add(AmazonProductModel.TypeOfMachineOptions.FrenchPress);
+            else
+            {
+                typeOfMachineOptions.Add(AmazonProductModel.TypeOfMachineOptions.Automatic);
+                typeOfMachineOptions.Add(AmazonProductModel.TypeOfMachineOptions.SmallPods);
+                typeOfMachineOptions.Add(AmazonProductModel.TypeOfMachineOptions.FrenchPress);
+            }
+
+
+
             ViewData["userCurations"] = await AmazonProductModel.GetUserAddedCurations(_context);
             ViewData["products"] = await AmazonProductModel.Query(
                 context: _context,
@@ -93,7 +110,8 @@ namespace HccCoffeeMaker.Controllers
                 durabilityOptionsInput: durabilityOptions,
                 brewingTimeOptionsInput: brewingTimeOptions,
                 brandOptionsInput: brandOptions,
-                warrantyOptionsInput: warrantyOptions
+                warrantyOptionsInput: warrantyOptions,
+                typeOfMachineOptionsInput: typeOfMachineOptions
                 );
 
             return View();

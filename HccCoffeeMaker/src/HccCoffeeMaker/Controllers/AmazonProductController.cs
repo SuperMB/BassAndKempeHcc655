@@ -84,7 +84,8 @@ namespace HccCoffeeMaker.Controllers
                 HttpContext.Request.Form["BrewingTimeOptions"],
                 HttpContext.Request.Form["BrandOptions"],
                 HttpContext.Request.Form["WarrantyOptions"],
-                HttpContext.Request.Form["QualityOfCoffeeOptions"]
+                HttpContext.Request.Form["QualityOfCoffeeOptions"],
+                ""
                 );
             return await Create(amazonProduct);
         }

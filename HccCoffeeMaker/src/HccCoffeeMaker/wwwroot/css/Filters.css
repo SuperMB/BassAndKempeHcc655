@@ -67,3 +67,10 @@
 .addedFacetSelect:hover{
     cursor:pointer;
 }
+
+.listOptions{
+    position:absolute;
+    bottom:25px;
+    text-align:center;
+    width:100%;
+}

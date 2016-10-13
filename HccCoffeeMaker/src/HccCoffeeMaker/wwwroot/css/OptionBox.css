@@ -25,13 +25,13 @@
 }
 
 .imageText{
-    color:white;
+    color:var(--lightSeafoam);
     /*position:absolute;*/
     top:30%;
     left:0;
     width:100%;
     max-width:300px;
-    background:rgba(0,0,0,0.7);
+    background:var(--navy);
     padding:10px;
     display:inline-block;
 }

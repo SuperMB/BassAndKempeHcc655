@@ -48,7 +48,7 @@ input[type="text"], textarea {
 }
 
 .dropArea{
-    height:725px;
+    height:800px;
     width:100%;
     border:solid 3px var(--navy);
     border-radius:10px;

@@ -8,14 +8,24 @@ function StopDragging(ev, id) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
 
+function MouseOver(ev, id) {
+    ev.preventDefault();
+    document.getElementById(id).style.cursor = "move";
+}
+
+function MouseOut(ev, id) {
+    ev.preventDefault();
+    document.getElementById(id).style.cursor = "default";
+}
+
 function DragEnter(ev, id) {
     ev.preventDefault();
-    //document.getElementById(id).style.cursor = "move";
+    document.getElementById(id).style.cursor = "move";
 }
 
 function DragExit(ev, id) {
     ev.preventDefault();
-    //document.getElementById(id).style.cursor = "default";
+    document.getElementById(id).style.cursor = "default";
 }
 
 function Drop(ev, id) {

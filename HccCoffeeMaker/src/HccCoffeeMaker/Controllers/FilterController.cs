@@ -10,7 +10,7 @@ namespace HccCoffeeMaker.Controllers
     {
         public IActionResult Index(string coffeeMakerType)
         {
-            ViewData["coffeeMakerType"] = coffeeMakerType;
+            ViewData["typeOfMachine"] = coffeeMakerType;
             return View();
         }
     }

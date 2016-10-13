@@ -31,30 +31,77 @@
 <link type="text/css" rel="stylesheet" href="~/css/Curation.css" />
 <script type="text/javascript" src="~/js/Curation.js"></script>
 
-
+<div style="height:20px;"></div>
 <div style="clear:both;"></div>
 
 <div class="col-xs-4">
     <div class="leftContainer">
-        
+
         <div class="category" id="colorCategory">
             <label class="categoryLabel">Color</label><br />
             @foreach (AmazonProductModel.ColorOptions color in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
             {
                 <div class="item">
                     <input type="text"
-                            name="ColorOptions"
-                            readonly
-                            draggable="true"
-                            value="@AmazonProductModel.OptionsString(color)"
-                            ondragstart="Dragging(event, this.id)"
-                            ondragend="StopDragging(event, this.id)"
-                            id="@color.ToString()"> <br />
+                           name="ColorOptions"
+                           readonly
+                           draggable="true"
+                           value="@AmazonProductModel.OptionsString(color)"
+                           onmouseover="MouseOver(event, this.id)"
+                           onmouseout="MouseOut(event, this.id)"
+                           ondragstart="Dragging(event, this.id)"
+                           ondragend="StopDragging(event, this.id)"
+                           id="@color.ToString()"> <br />
                 </div>
             }
         </div>
         <div class="categoryHidden" id="colorCategoryHidden">
             <label class="categoryLabel">Color</label><br />
+        </div>
+
+        <div class="category" id="typeOfMachineCategory">
+            <label class="categoryLabel">Type of Machine</label><br />
+            @foreach (AmazonProductModel.TypeOfMachineOptions typeOfMachine in Enum.GetValues(typeof(AmazonProductModel.TypeOfMachineOptions)))
+            {
+                <div class="item">
+                    <input type="text"
+                           name="TypeOfMachineOptions"
+                           readonly
+                           draggable="true"
+                           value="@AmazonProductModel.OptionsString(typeOfMachine)"
+                           onmouseover="MouseOver(event, this.id)"
+                           onmouseout="MouseOut(event, this.id)"
+                           ondragstart="Dragging(event, this.id)"
+                           ondragend="StopDragging(event, this.id)"
+                           id="@typeOfMachine.ToString()"> <br />
+                </div>
+            }
+        </div>
+        <div class="categoryHidden" id="typeOfMachineCategoryHidden">
+            <label class="categoryLabel">Type of Machine</label><br />
+        </div>
+
+        <div class="category" id="brandCategory">
+            <label class="categoryLabel">Brand</label><br />
+            @foreach (AmazonProductModel.BrandOptions brand in Enum.GetValues(typeof(AmazonProductModel.BrandOptions)))
+            {
+                <div class="item">
+                    <input type="text"
+                           name="BrandOptions"
+                           readonly
+                           draggable="true"
+                           value="@AmazonProductModel.OptionsString(brand)"
+                           onmouseover="MouseOver(event, this.id)"
+                           onmouseout="MouseOut(event, this.id)"
+                           ondragstart="Dragging(event, this.id)"
+                           ondragend="StopDragging(event, this.id)"
+                           id="@brand.ToString()"> <br />
+                </div>
+
+            }
+        </div>
+        <div class="categoryHidden" id="brandCategoryHidden">
+            <label class="categoryLabel">Brand</label><br />
         </div>
 
         <div class="category" id="servingSizeCategory">
@@ -67,6 +114,8 @@
                             readonly
                             draggable="true"
                             value="@AmazonProductModel.OptionsString(servingSize)"
+                           onmouseover="MouseOver(event, this.id)"
+                           onmouseout="MouseOut(event, this.id)"
                             ondragstart="Dragging(event, this.id)"
                             ondragend="StopDragging(event, this.id)"
                             id="@servingSize.ToString()"> <br />
@@ -78,6 +127,7 @@
             <label class="categoryLabel">Serving Size</label><br />
         </div>
 
+
         <div class="category" id="brewingTimeCategory">
             <label class="categoryLabel">Brewing Time</label><br />
             @foreach (AmazonProductModel.BrewingTimeOptions brewingTime in Enum.GetValues(typeof(AmazonProductModel.BrewingTimeOptions)))
@@ -88,6 +138,8 @@
                             readonly
                             draggable="true"
                             value="@AmazonProductModel.OptionsString(brewingTime)"
+                           onmouseover="MouseOver(event, this.id)"
+                           onmouseout="MouseOut(event, this.id)"
                             ondragstart="Dragging(event, this.id)"
                             ondragend="StopDragging(event, this.id)"
                             id="@brewingTime.ToString()"> <br />
@@ -99,37 +151,18 @@
             <label class="categoryLabel">Brewing Time</label><br />
         </div>
 
-        <div class="category" id="brandCategory">
-            <label class="categoryLabel">Brand</label><br />
-            @foreach (AmazonProductModel.BrandOptions brand in Enum.GetValues(typeof(AmazonProductModel.BrandOptions)))
-            {
-                <div class="item">
-                    <input type="text"
-                            name="BrandOptions"
-                            readonly
-                            draggable="true"
-                            value="@AmazonProductModel.OptionsString(brand)"
-                            ondragstart="Dragging(event, this.id)"
-                            ondragend="StopDragging(event, this.id)"
-                            id="@brand.ToString()"> <br />
-                </div>
-
-            }
-        </div>
-        <div class="categoryHidden" id="brandCategoryHidden">
-            <label class="categoryLabel">Brand</label><br />
-        </div>
-
         <div class="category" id="durabilityCategory">
             <label class="categoryLabel">Durability</label><br />
             @foreach (AmazonProductModel.DurabilityOptions durability in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
             {
                 <div class="item">
                     <input type="text"
-                           name="WarrantyOptions"
+                           name="DurabilityOptions"
                            readonly
                            draggable="true"
                            value="@AmazonProductModel.OptionsString(durability)"
+                           onmouseover="MouseOver(event, this.id)"
+                           onmouseout="MouseOut(event, this.id)"
                            ondragstart="Dragging(event, this.id)"
                            ondragend="StopDragging(event, this.id)"
                            id="@durability.ToString()"> <br />
@@ -137,8 +170,8 @@
 
             }
         </div>
-        <div class="categoryHidden" id="warrantyCategoryHidden">
-            <label class="categoryLabel">Warranty</label><br />
+        <div class="categoryHidden" id="durabilityCategoryHidden">
+            <label class="categoryLabel">Durability</label><br />
         </div>
 
         <div class="category" id="warrantyCategory">
@@ -151,6 +184,8 @@
                            readonly
                            draggable="true"
                            value="@AmazonProductModel.OptionsString(warranty)"
+                           onmouseover="MouseOver(event, this.id)"
+                           onmouseout="MouseOut(event, this.id)"
                            ondragstart="Dragging(event, this.id)"
                            ondragend="StopDragging(event, this.id)"
                            id="@warranty.ToString()"> <br />
@@ -172,6 +207,8 @@
                             readonly
                             draggable="true"
                             value="@AmazonProductModel.OptionsString(qualityOfCoffee)"
+                           onmouseover="MouseOver(event, this.id)"
+                           onmouseout="MouseOut(event, this.id)"
                             ondragstart="Dragging(event, this.id)"
                             ondragend="StopDragging(event, this.id)"
                             id="@qualityOfCoffee.ToString()"> <br />
@@ -255,6 +292,7 @@
              ondragover="DragEnter(event, this.id)"
              ondragleave="DragExit(event, this.id)"
              ondrop="Drop(event, this.id)"
+             id="aForm"
              >
             <div style="width:49%;text-align:left;display:inline-block;">
 
@@ -272,7 +310,7 @@
             <input style="width:1700px;max-width:100%;display:block;text-align:left;" type="text" name="location" value="" id="url" />
             <input style="display:none;" type="text" name="metadata" id="metaData" />
         
-            <div id="dropAreaID" style="height:535px;">
+            <div id="dropAreaID" style="height:610px;">
 
             </div>
         

@@ -32,11 +32,16 @@
     <div id="@(title)AddedHead"></div>
     <div id="@(title)Added" class="addedFilter">
         Price <br />
-        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
-        @foreach (AmazonProductModel.PriceOptions price in Enum.GetValues(typeof(AmazonProductModel.PriceOptions)))
-        {
-            <input type="checkbox" name="@(title)" value=@price.ToString() /> @AmazonProductModel.OptionsString(price)<br />
-        }
+        <div style="height:50px;"></div>
+        <div style="font-size:var(--smallMediumFont)">
+            The average price for coffee makers is $67.
+        </div>
+        <div class="listOptions">
+            @foreach (AmazonProductModel.PriceOptions price in Enum.GetValues(typeof(AmazonProductModel.PriceOptions)))
+            {
+                <input type="checkbox" name="@(title)" value=@price.ToString() /> @AmazonProductModel.OptionsString(price)<br />
+            }
+        </div>
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
     </div>
@@ -46,11 +51,16 @@
     @{title = "color";}
     <div id="@(title)Added" class="addedFilter">
         Color <br />
-        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
-        @foreach (AmazonProductModel.ColorOptions color in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
-        {
-            <input type="checkbox" name="@(title)" value=@color.ToString() /> @AmazonProductModel.OptionsString(color) <br>
-        }
+        <div style="height:20px;"></div>
+        <div style="font-size:var(--smallMediumFont)">
+            While black and silver coffee makers are common, more vibrant colors are also fun.
+        </div>
+        <div class="listOptions">
+            @foreach (AmazonProductModel.ColorOptions color in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
+            {
+                <input type="checkbox" name="@(title)" value=@color.ToString() /> @AmazonProductModel.OptionsString(color) <br>
+            }
+        </div>
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
     </div>
@@ -61,25 +71,35 @@
     @{title = "durability";}
     <div id="@(title)Added" class="addedFilter">
         Durability <br />
-        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
-        @foreach (AmazonProductModel.DurabilityOptions durability in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
-        {
-            <input type="checkbox" name="@(title)" value=@durability.ToString() /> @AmazonProductModel.OptionsString(durability) <br>
-        }
+        <div style="height:50px;"></div>
+        <div style="font-size:var(--smallMediumFont)">
+            Most people are plenty satisfied with light and normal use coffee makers. 
+        </div>
+        <div class="listOptions">
+            @foreach (AmazonProductModel.DurabilityOptions durability in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
+            {
+                <input type="checkbox" name="@(title)" value=@durability.ToString() /> @AmazonProductModel.OptionsString(durability) <br>
+            }
+        </div>
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
-    </div>
+    </div>    
     <div class="filterElement" id="@(title)" onclick="clickFacet(this.id)">
         <span class="filterText">Durability</span>
     </div>
     @{title = "servingSize";}
     <div id="@(title)Added" class="addedFilter">
         Serving Size <br />
-        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
-        @foreach (AmazonProductModel.ServingSizeOptions servingSize in Enum.GetValues(typeof(AmazonProductModel.ServingSizeOptions)))
-        {
-            <input type="checkbox" name="@(title)" value=@servingSize.ToString() /> @AmazonProductModel.OptionsString(servingSize) <br>
-        }
+        <div style="height:7px;"></div>
+        <div style="font-size:var(--smallMediumFont)">
+            Only for yourself, or family and friends?
+        </div>
+        <div class="listOptions">
+            @foreach (AmazonProductModel.ServingSizeOptions servingSize in Enum.GetValues(typeof(AmazonProductModel.ServingSizeOptions)))
+            {
+                <input type="checkbox" name="@(title)" value=@servingSize.ToString() /> @AmazonProductModel.OptionsString(servingSize) <br>
+            }
+        </div>
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
     </div>
@@ -92,11 +112,16 @@
     @{title = "brewingTime";}
     <div id="@(title)Added" class="addedFilter">
         Brewing Time <br />
-        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
-        @foreach (AmazonProductModel.BrewingTimeOptions brewingTime in Enum.GetValues(typeof(AmazonProductModel.BrewingTimeOptions)))
-        {
-            <input type="checkbox" name="@(title)" value=@brewingTime.ToString() /> @AmazonProductModel.OptionsString(brewingTime) <br>
-        }
+        <div style="height:50px;"></div>
+        <div style="font-size:var(--smallMediumFont)">
+            A shorter brew time is useful for smaller, personal coffee machines. 
+        </div>
+        <div class="listOptions">
+            @foreach (AmazonProductModel.BrewingTimeOptions brewingTime in Enum.GetValues(typeof(AmazonProductModel.BrewingTimeOptions)))
+            {
+                <input type="checkbox" name="@(title)" value=@brewingTime.ToString() /> @AmazonProductModel.OptionsString(brewingTime) <br>
+            }
+        </div>
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
     </div>
@@ -106,11 +131,16 @@
     @{title = "brand";}
     <div id="@(title)Added" class="addedFilter">
         Brand <br />
-        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
-        @foreach (AmazonProductModel.BrandOptions brand in Enum.GetValues(typeof(AmazonProductModel.BrandOptions)))
-        {
-            <input type="checkbox" name="@(title)" value=@brand.ToString() /> @AmazonProductModel.OptionsString(brand) <br>
-        }
+        <div style="height:35px;"></div>
+        <div style="font-size:var(--smallMediumFont)">
+            Kuerig and Nespresso are newer premium brands. 
+        </div>
+        <div class="listOptions">
+            @foreach (AmazonProductModel.BrandOptions brand in Enum.GetValues(typeof(AmazonProductModel.BrandOptions)))
+            {
+                <input type="checkbox" name="@(title)" value=@brand.ToString() /> @AmazonProductModel.OptionsString(brand) <br>
+            }
+        </div>
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
     </div>
@@ -121,11 +151,16 @@
     @{title = "warranty";}
     <div id="@(title)Added" class="addedFilter">
         Warranty <br />
-        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
-        @foreach (AmazonProductModel.WarrantyOptions warranty in Enum.GetValues(typeof(AmazonProductModel.WarrantyOptions)))
-        {
-            <input type="checkbox" name="@(title)" value=@warranty.ToString() /> @AmazonProductModel.OptionsString(warranty) <br>
-        }
+        <div style="height:35px;"></div>
+        <div style="font-size:var(--smallMediumFont)">
+            Although not a premium feature, a quality warranty can come in handy. 
+        </div>
+        <div class="listOptions">
+            @foreach (AmazonProductModel.WarrantyOptions warranty in Enum.GetValues(typeof(AmazonProductModel.WarrantyOptions)))
+            {
+                <input type="checkbox" name="@(title)" value=@warranty.ToString() /> @AmazonProductModel.OptionsString(warranty) <br>
+            }
+        </div>
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
     </div>
@@ -136,11 +171,16 @@
     @{title = "qualityOfCoffee";}
     <div id="@(title)Added" class="addedFilter">
         Quality of Coffee <br />
-        <div style="height:@(spaceUnderFacetSelectorTitle);"></div>
-        @foreach (AmazonProductModel.QualityOfCoffeeOptions qualityOfCoffee in Enum.GetValues(typeof(AmazonProductModel.QualityOfCoffeeOptions)))
-        {
-            <input type="checkbox" name="@(title)" value=@qualityOfCoffee.ToString() /> @AmazonProductModel.OptionsString(qualityOfCoffee) <br>
-        }
+        <div style="height:70px;"></div>
+        <div style="font-size:var(--smallMediumFont)">
+            Experienced coffee enthusiast will enjoy the most premium coffee, while newcomers will enjoy all coffee. 
+        </div>
+        <div class="listOptions">
+            @foreach (AmazonProductModel.QualityOfCoffeeOptions qualityOfCoffee in Enum.GetValues(typeof(AmazonProductModel.QualityOfCoffeeOptions)))
+            {
+                <input type="checkbox" name="@(title)" value=@qualityOfCoffee.ToString() /> @AmazonProductModel.OptionsString(qualityOfCoffee) <br>
+            }
+        </div>
         <span id="@(title)AddedSelect" class="addedFacetSelect" onclick="clickSelect(this.id)">✓</span>
         <span id="@(title)AddedClose" class="addedFacetClose" onclick="clickClose(this.id)">X</span>
     </div>
@@ -160,7 +200,7 @@
 
 <div style="height:50px;clear:both;"></div>
 <form asp-controller="InitialOptions" asp-action="Index" method="post" style="text-align:center;" id="inputForm">
-    <div id="formField" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="formField" ondrop="drop(event)" ondragover="allowDrop(event)" style="text-align:center;width:100%"></div>
 
     <br />
     <div style="clear:both;"></div>
@@ -172,9 +212,19 @@
          style="display:none;">
         <font style="font-size:250px;"> > </font>
     </div>
+
+    <input type="text" name="typeOfMachine" value="@ViewData["typeOfMachine"]" style="display:none" />
 </form>
 
-    
+
+<a href="javascript:history.back()">
+    <div id="leftArrow"
+         onclick="Judgement(event, id)"
+         onmouseover="MouseOverCursor(event, this.id)"
+         onmouseout="MouseOutDefault(event, this.id)">
+        <font style="font-size:250px;"> < </font>
+    </div>
+</a>
 
     
 
