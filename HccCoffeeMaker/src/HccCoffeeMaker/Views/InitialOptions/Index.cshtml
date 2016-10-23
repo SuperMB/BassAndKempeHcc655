@@ -12,14 +12,30 @@
     }*@
 </script>
 
-<a href="javascript:history.back()">
+@*<a href="javascript:history.back()">
     <div id="leftArrow"
          onclick="Judgement(event, id)"
          onmouseover="MouseOverCursor(event, this.id)"
          onmouseout="MouseOutDefault(event, this.id)" >
         <font style="font-size:250px;"> < </font>
     </div>
-</a>
+</a>*@
+
+<form asp-controller="Filter" asp-action="Index" method="post" style="text-align:center;" id="inputForm">
+
+    <div id="leftArrow"
+         onclick="Judgement(event, id)"
+         onmouseover="MouseOverCursor(event, this.id)"
+         onmouseout="MouseOutDefault(event, this.id)"
+         style="">
+        <font style="font-size:250px;"> < </font>
+    </div>
+
+    <input type="text" name="typeOfMachine" value="@ViewData["typeOfMachine"]" style="display:none" />
+    <input type="text" name="facetsAdded" value="@ViewData["facetsAdded"]" style="display:none" />
+    <input type="text" name="facetParameters" value="@ViewData["facetParameters"]" style="display:none" />
+</form>
+
 
 <div id="rightArrow" 
      onclick="MoveToComparison(event, id)"

@@ -341,6 +341,7 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             List<BrewingTimeOptions> brewingTimeOptionsInput = null,
             List<BrandOptions> brandOptionsInput = null,
             List<WarrantyOptions> warrantyOptionsInput = null,
+            List<QualityOfCoffeeOptions> qualityOfCoffeeOptionsInput = null,
             List<TypeOfMachineOptions> typeOfMachineOptionsInput = null
             )
         {
@@ -353,6 +354,7 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
             List<BrewingTimeOptions> brewingTimeOptions = brewingTimeOptionsInput;
             List<BrandOptions> brandOptions = brandOptionsInput;
             List<WarrantyOptions> warrantyOptions = warrantyOptionsInput;
+            List<QualityOfCoffeeOptions> qualityOfCoffeeOptions = qualityOfCoffeeOptionsInput;
             List<TypeOfMachineOptions> typeOfMachineOptions = typeOfMachineOptionsInput;
 
 
@@ -397,6 +399,12 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
                 warrantysAvailable = false;
             else if (warrantyOptions.Count == 0)
                 warrantysAvailable = false;
+
+            bool qualityOfCoffeesAvailable = true;
+            if (qualityOfCoffeeOptions == null)
+                qualityOfCoffeesAvailable = false;
+            else if (qualityOfCoffeeOptions.Count == 0)
+                qualityOfCoffeesAvailable = false;
 
 
             if (!pricesAvailable)
@@ -446,6 +454,13 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
                 warrantyOptions = new List<WarrantyOptions>();
                 foreach (WarrantyOptions warrantyOption in Enum.GetValues(typeof(WarrantyOptions)))
                     warrantyOptions.Add(warrantyOption);
+            }
+
+            if (!qualityOfCoffeesAvailable)
+            {
+                qualityOfCoffeeOptions = new List<QualityOfCoffeeOptions>();
+                foreach (QualityOfCoffeeOptions qualityOfCoffeeOption in Enum.GetValues(typeof(QualityOfCoffeeOptions)))
+                    qualityOfCoffeeOptions.Add(qualityOfCoffeeOption);
             }
 
             var amazonProductModels = from a in context.AmazonProductModels
@@ -512,6 +527,12 @@ namespace HccCoffeeMaker.Models.CoffeeMakerModels
                     || (warrantyOptions.Contains(WarrantyOptions.Year2) && s.Warranty == OptionsString(WarrantyOptions.Year2))
                     || (warrantyOptions.Contains(WarrantyOptions.Year3To5) && s.Warranty == OptionsString(WarrantyOptions.Year3To5))
                     || (s.Warranty == null)
+                )
+                &&
+                (
+                    (qualityOfCoffeeOptions.Contains(QualityOfCoffeeOptions.HighConcern) && s.QualityOfCoffee == OptionsString(QualityOfCoffeeOptions.HighConcern))
+                    || (qualityOfCoffeeOptions.Contains(QualityOfCoffeeOptions.LowConcern) && s.QualityOfCoffee == OptionsString(QualityOfCoffeeOptions.LowConcern))
+                    || (s.QualityOfCoffee == null)
                 )
                 &&
                 (

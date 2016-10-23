@@ -33,7 +33,20 @@ namespace HccCoffeeMaker.Controllers
             List<AmazonProductModel.BrewingTimeOptions> brewingTimeOptions = new List<AmazonProductModel.BrewingTimeOptions>();
             List<AmazonProductModel.BrandOptions> brandOptions = new List<AmazonProductModel.BrandOptions>();
             List<AmazonProductModel.WarrantyOptions> warrantyOptions = new List<AmazonProductModel.WarrantyOptions>();
-                        
+            List<AmazonProductModel.QualityOfCoffeeOptions> qualityOfCoffeeOptions = new List<AmazonProductModel.QualityOfCoffeeOptions>();
+
+            string facetsAdded = "";
+            string facetParameters = "";
+
+            bool priceAdded = false;
+            bool colorAdded = false;
+            bool servingSizeAdded = false;
+            bool durabilityAdded = false;
+            bool brewingTimeAdded = false;
+            bool brandAdded = false;
+            bool warrantyAdded = false;
+            bool qualityOfCoffeeAdded = false;
+
             foreach (var key in HttpContext.Request.Form)
             {
                 foreach(var data in HttpContext.Request.Form[key.Key])
@@ -41,49 +54,131 @@ namespace HccCoffeeMaker.Controllers
                     ViewData[key.Key + "." + data] = key.Key + "." + data;
                     if (key.Key == "price")
                     {
+                        if(!priceAdded)
+                        {
+                            facetsAdded += "price;";
+                            priceAdded = true;
+                        }
+
                         foreach (AmazonProductModel.PriceOptions priceOption in Enum.GetValues(typeof(AmazonProductModel.PriceOptions)))
                             if (priceOption.ToString() == data)
+                            {
                                 priceOptions.Add(priceOption);
+                                facetParameters += "price." + priceOption.ToString() + ";";
+                            }
                     }
                     else if (key.Key == "color")
                     {
+                        if (!colorAdded)
+                        {
+                            facetsAdded += "color;";
+                            colorAdded = true;
+                        }
+
                         foreach (AmazonProductModel.ColorOptions colorOption in Enum.GetValues(typeof(AmazonProductModel.ColorOptions)))
                             if (colorOption.ToString() == data)
+                            {
                                 colorOptions.Add(colorOption);
+                                facetParameters += "color." + colorOption.ToString() + ";";
+                            }
                     }
                     else if (key.Key == "servingSize")
                     {
+                        if (!servingSizeAdded)
+                        {
+                            facetsAdded += "servingSize;";
+                            servingSizeAdded = true;
+                        }
+
                         foreach (AmazonProductModel.ServingSizeOptions servingSizeOption in Enum.GetValues(typeof(AmazonProductModel.ServingSizeOptions)))
                             if (servingSizeOption.ToString() == data)
+                            {
                                 servingSizeOptions.Add(servingSizeOption);
+                                facetParameters += "servingSize." + servingSizeOption.ToString() + ";";
+                            }
                     }
                     else if (key.Key == "durability")
                     {
+                        if (!durabilityAdded)
+                        {
+                            facetsAdded += "durability;";
+                            durabilityAdded = true;
+                        }
+
                         foreach (AmazonProductModel.DurabilityOptions durabilityOption in Enum.GetValues(typeof(AmazonProductModel.DurabilityOptions)))
                             if (durabilityOption.ToString() == data)
+                            {
                                 durabilityOptions.Add(durabilityOption);
+                                facetParameters += "durability." + durabilityOption.ToString() + ";";
+                            }
                     }
                     else if (key.Key == "brewingTime")
                     {
+                        if (!brewingTimeAdded)
+                        {
+                            facetsAdded += "brewingTime;";
+                            brewingTimeAdded = true;
+                        }
+
                         foreach (AmazonProductModel.BrewingTimeOptions brewingTimeOption in Enum.GetValues(typeof(AmazonProductModel.BrewingTimeOptions)))
                             if (brewingTimeOption.ToString() == data)
+                            {
                                 brewingTimeOptions.Add(brewingTimeOption);
+                                facetParameters += "brewingTime." + brewingTimeOption.ToString() + ";";
+                            }
                     }
                     else if (key.Key == "brand")
                     {
+                        if (!brandAdded)
+                        {
+                            facetsAdded += "brand;";
+                            brandAdded = true;
+                        }
+
                         foreach (AmazonProductModel.BrandOptions brandOption in Enum.GetValues(typeof(AmazonProductModel.BrandOptions)))
                             if (brandOption.ToString() == data)
+                            {
                                 brandOptions.Add(brandOption);
+                                facetParameters += "brand." + brandOption.ToString() + ";";
+                            }
                     }
                     else if (key.Key == "warranty")
                     {
+                        if (!warrantyAdded)
+                        {
+                            facetsAdded += "warranty;";
+                            warrantyAdded = true;
+                        }
+
                         foreach (AmazonProductModel.WarrantyOptions warrantyOption in Enum.GetValues(typeof(AmazonProductModel.WarrantyOptions)))
                             if (warrantyOption.ToString() == data)
+                            {
                                 warrantyOptions.Add(warrantyOption);
+                                facetParameters += "warranty." + warrantyOption.ToString() + ";";
+                            }
+                    }
+                    else if (key.Key == "qualityOfCoffee")
+                    {
+                        if (!qualityOfCoffeeAdded)
+                        {
+                            facetsAdded += "qualityOfCoffee;";
+                            warrantyAdded = true;
+                        }
+
+                        foreach (AmazonProductModel.QualityOfCoffeeOptions qualityOfCoffeeOption in Enum.GetValues(typeof(AmazonProductModel.QualityOfCoffeeOptions)))
+                            if (qualityOfCoffeeOption.ToString() == data)
+                            {
+                                qualityOfCoffeeOptions.Add(qualityOfCoffeeOption);
+                                facetParameters += "qualityOfCoffee." + qualityOfCoffeeOption.ToString() + ";";
+                            }
                     }
                 }
             }
-            
+
+            ViewData["facetsAdded"] = facetsAdded;
+            ViewData["facetParameters"] = facetParameters;
+            ViewData["typeOfMachine"] = HttpContext.Request.Form["typeOfMachine"];
+
             string typeOfMachine = HttpContext.Request.Form["typeOfMachine"];
             List<AmazonProductModel.TypeOfMachineOptions> typeOfMachineOptions = new List<AmazonProductModel.TypeOfMachineOptions>();
             if (typeOfMachine == "AutomaticDrip")
@@ -111,6 +206,7 @@ namespace HccCoffeeMaker.Controllers
                 brewingTimeOptionsInput: brewingTimeOptions,
                 brandOptionsInput: brandOptions,
                 warrantyOptionsInput: warrantyOptions,
+                qualityOfCoffeeOptionsInput: qualityOfCoffeeOptions,
                 typeOfMachineOptionsInput: typeOfMachineOptions
                 );
 

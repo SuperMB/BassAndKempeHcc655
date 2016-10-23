@@ -81,8 +81,10 @@ function MoveToComparison(ev, id) {
 }
 
 function Judgement(ev, id) {
-    if (perspective == "Selection")
-        return true;
+    if (perspective == "Selection") {
+        document.getElementById("inputForm").submit();
+        //return true;
+    }
     else {
         ev.preventDefault();
         MoveToSelection(ev, id);
