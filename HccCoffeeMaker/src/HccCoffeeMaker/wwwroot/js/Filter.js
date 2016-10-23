@@ -1,5 +1,23 @@
 var count = 0;
 
+function over(id) {
+    if (document.getElementById(id).style.backgroundColor == "var(--yellow)")
+        document.getElementById(id).style.backgroundColor = "var(--pink)";
+    else
+        document.getElementById(id).style.backgroundColor = "var(--navyTransparent)";
+
+    document.getElementById(id).style.cursor = "pointer";
+}
+
+function out(id) {
+    if (document.getElementById(id).style.backgroundColor == "var(--pink)")
+        document.getElementById(id).style.backgroundColor = "var(--yellow)";
+    else
+        document.getElementById(id).style.backgroundColor = "var(--navy)";
+
+    document.getElementById(id).style.cursor = "default";
+}
+
 function removeSelectorAndShowOriginal(selectorId) {
     var facetId = selectorId.substring(0, selectorId.length - 5);
     var facetAdded = document.getElementById(selectorId);
@@ -11,12 +29,18 @@ function removeSelectorAndShowOriginal(selectorId) {
 
 
 function clickFacet(id) {
-    var background = document.getElementById("myDiv");
-    background.style.display = "block";
     var element = document.getElementById(id);
-    var elementFacets = document.getElementById(id.concat("Added"));
-    //element.style.visibility = "hidden";
-    elementFacets.style.display = "inline-block";
+
+    if (element.style.backgroundColor == "var(--pink)") {
+        clickClose(id.concat("AddedClose"));
+    }
+    else {
+        var background = document.getElementById("myDiv");
+        background.style.display = "block";
+        var elementFacets = document.getElementById(id.concat("Added"));
+        //element.style.visibility = "hidden";
+        elementFacets.style.display = "inline-block";
+    }
 }
 
 function clickClose(id) {
@@ -28,7 +52,7 @@ function clickClose(id) {
 
     var facetId = facetAddedId.substring(0, facetAddedId.length - 5);
     var facet = document.getElementById(facetId);
-    facet.style.backgroundColor = "var(--navy)";
+    facet.style.backgroundColor = "var(--navyTransparent)";
     facet.style.boxShadow = "0 0 0";
     facet.style.color = "var(--lightSeafoam)";
 
@@ -46,6 +70,13 @@ function clickClose(id) {
     count--;
     if (count == 0)
         document.getElementById("rightArrow").style.display = "none";
+
+
+    var checkBoxes = document.getElementById(facetAddedId).getElementsByTagName('input');
+    for (var i = 0; i < checkBoxes.length; i++) {
+        if (checkBoxes[i].type == "checkbox")
+            checkBoxes[i].checked = false;
+    }
 
 }
 
@@ -79,4 +110,8 @@ function clickSelect(id) {
 
 function MoveToSelectionFromFilters(ev, id) {
     document.getElementById("inputForm").submit();
+}
+
+function MoveToTypeSelectFromFilters(ev, id) {
+    document.getElementById("inputForm2").submit();
 }

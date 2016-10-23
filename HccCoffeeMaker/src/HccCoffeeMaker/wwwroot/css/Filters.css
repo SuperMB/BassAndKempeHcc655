@@ -13,10 +13,10 @@
     vertical-align:top;
 }
 
-.filterElement:hover {
+/*.filterElement:hover {
     background-color:var(--navyTransparent);
     cursor:pointer;
-}
+}*/
 
 .filterElement:active {
     /*background-color:var(--yellow);

@@ -1,6 +1,19 @@
 var mode = "MoveMode";
 var typedIn = {};
 
+function Sort(ev, id)
+{
+    var comparisonRows = Array.prototype.slice.call(document.querySelectorAll(".comparisonRow"));
+
+    var max = 0;
+    for (var i = 0; i < comparisonRows.length; i++)
+    {
+
+    }
+
+
+}
+
 function ChangeToAnnotationMode(ev, id)
 {
     var pen = document.getElementById(id);

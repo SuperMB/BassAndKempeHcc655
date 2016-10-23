@@ -9,7 +9,7 @@
 
 <div style="height:100px;"></div>
 <div style="font-size:var(--extraLargeFont);text-align:center;">Which type of Coffee Maker are you interested in?</div>
-<div style="height:50px;"></div>
+<div style="height:75px;"></div>
 
 <div style="text-align:center">
     <div class="optionBox selectable" id="frenchPress">
@@ -47,15 +47,23 @@
             <div class="imageText" id="automaticDripTitle">Automatic Drip</div>
         </a>
     </div>
-    <hr />
-
-    <a href="/Filter/Index/?coffeeMakerType=SelectAll">
-        <div class="blueButton" style="width:200px;">
-            <span style="position:relative;top:32px">Select All</span>
-        </div>
-    </a>
 
 </div>
+
+<div style="clear:both;"></div>
+
+<div style="text-align:center;position:absolute;top:700px;width:1150px;">
+    <div style="display:inline-block;width:800px;">
+        <hr />
+        <a href="/Filter/Index/?coffeeMakerType=SelectAll">
+            <div class="blueButton" style="width:200px;">
+                <span style="position:relative;top:32px">Select All</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+
 <script src="~/js/jquery-1.3.2-vsdoc2.js"></script>
 <script>
     $(document).ready(function () {
