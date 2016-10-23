@@ -8,48 +8,52 @@
 
 
 <div style="position:absolute;
-            left:275px;
-            top:275px;
+            left:255px;
+            top:180px;
             font-size:var(--extraLargeFont)">
     <span id="DragText">Drag Rows to Rearrange</span>
 </div>
 
-<div style="width:200px;
-            height:220px;
+<div style="width:175px;
+            height:145px;
             position:absolute;
-            right:600px;">
+            right:535px;
+            text-align:center;">
     <div style="background-color:var(--navy);
-            width:200px;
-            height:200px;
+            width:125px;
+            height:125px;
             /*border:solid 5px var(--navy);*/
-            border-radius:10px;"
+            border-radius:10px;
+            display:inline-block;"
          onclick="ChangeToAnnotationMode(event, this.id)"
          onmouseover="MouseOverReview(event, this.id)"
          onmouseout="MouseOutReview(event, this.id)"
          id="Pen">
 
-        <img style="width:200px;height:200px;" src="~/images/Pen.png" />
+        <img style="width:125px;height:125px;" src="~/images/Pen.png" />
     </div>
-    <div style="text-align:center;font-size:var(--mediumFont);">
+    <div style="font-size:var(--mediumFont);">
         Click Pen to <b><span id="StartStop">Start</span></b> Annotating
     </div>
 </div>
 
-<div style="width:200px;
-            height:220px;
+<div style="width:175px;
+            height:145px;
             position:absolute;
-            right:350px;">
+            right:350px;
+            text-align:center;">
     <div style="background-color:var(--pink);
-            width:200px;
-            height:200px;
+            width:125px;
+            height:125px;
             /*border:solid 5px var(--navy);*/
-            border-radius:10px;"
+            border-radius:10px;
+            display:inline-block;"
          id="TrashCan"
          ondragover="TrashDragEnter(event, this.id)" 
          ondragleave="TrashDragExit(event, this.id)" 
          ondrop="TrashDrop(event, this.id)">
 
-        <img style="width:200px;height:200px;" src="~/images/TrashCan.png" />
+        <img style="width:125px;height:125px;" src="~/images/TrashCan.png" />
     </div>
     <div style="text-align:center;font-size:var(--mediumFont);">
         <span id="TrashText">Drag Row to Trash to <b>Remove</b> </span>
@@ -57,7 +61,7 @@
 </div>
 
 
-<div style="height:280px;clear:both;"></div>
+<div style="height:180px;clear:both;"></div>
 
 
 <div style="height:20px"></div>

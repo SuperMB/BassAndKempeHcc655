@@ -34,7 +34,8 @@ function clickClose(id) {
 
     var facetAdded = document.getElementById(facetAddedId);
     facetAdded.style.display = "none";
-    facetAdded.style.position = "fixed";
+    facetAdded.style.position = "absolute";
+    facetAdded.style.zIndex = "3";
     facet.appendChild(facetAdded);
     //var facetAddedHead = document.getElementById(facetAddedId.concat("Head"));
 
@@ -64,10 +65,10 @@ function clickSelect(id) {
     var facetAdded = document.getElementById(facetAddedId);
     var formField = document.getElementById("formField");
     formField.appendChild(facetAdded);
-    facetAdded.style.display = "block";
+    facetAdded.style.display = "inline-block";
     facetAdded.style.position = "relative";
     facetAdded.style.zIndex = "2";
-    facetAdded.style.float = "left";
+    //facetAdded.style.float = "left";
 
     count++;
 

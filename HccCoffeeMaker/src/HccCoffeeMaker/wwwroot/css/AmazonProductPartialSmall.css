@@ -32,13 +32,13 @@
 
 .previewImage {
     text-align: center;
-    max-height: 200px;
+    max-height: 160px;
     border-top-left-radius:10px;
     border-top-right-radius:10px;
 }
 
 .productImage {
-    height:220px;
+    height:180px;
     background-color:white;
     border-bottom-color:var(--lightSeafoam);
     border-top-left-radius:10px;
