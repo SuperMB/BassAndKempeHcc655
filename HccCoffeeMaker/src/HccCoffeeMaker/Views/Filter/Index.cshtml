@@ -233,14 +233,25 @@
 </form>
 
 
-@*<a href="/TypeSelection/">
+<a href="/TypeSelection/">
     <div id="leftArrow"
          onclick="Judgement(event, id)"
          onmouseover="MouseOverCursor(event, this.id)"
          onmouseout="MouseOutDefault(event, this.id)">
         <font style="font-size:250px;"> < </font>
     </div>
-</a>*@
+</a>
+<div id="goBackText" style="display:block;
+    position:fixed;
+    left:0px;
+    top:65%;
+    z-index:5;
+    color:var(--navyTransparent);
+    width:150px;
+    font-size:var(--smallMediumFont);
+    text-align:center;">    
+    Filters will not be retained 
+</div>
 
     
 

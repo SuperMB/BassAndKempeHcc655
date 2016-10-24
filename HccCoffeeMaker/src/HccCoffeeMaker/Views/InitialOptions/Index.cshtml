@@ -28,13 +28,40 @@
          onmouseover="MouseOverCursor(event, this.id)"
          onmouseout="MouseOutDefault(event, this.id)"
          style="">
-        <font style="font-size:250px;"> < </font>
+        <font style="font-size:250px;"> 
+            < 
+        </font>
     </div>
 
     <input type="text" name="typeOfMachine" value="@ViewData["typeOfMachine"]" style="display:none" />
     <input type="text" name="facetsAdded" value="@ViewData["facetsAdded"]" style="display:none" />
     <input type="text" name="facetParameters" value="@ViewData["facetParameters"]" style="display:none" />
 </form>
+
+<div id="goBackText" style="display:block;
+    position:fixed;
+    left:0px;
+    top:65%;
+    z-index:5;
+    color:var(--navyTransparent);
+    width:150px;
+    font-size:var(--smallMediumFont);
+    text-align:center;">
+    Filters will be retained <br />Item selection will not
+</div>
+
+<div id="goBackToSelectionText" style="display:block;
+    position:fixed;
+    left:0px;
+    top:65%;
+    z-index:5;
+    color:var(--navyTransparent);
+    width:150px;
+    font-size:var(--smallMediumFont);
+    text-align:center;
+    display:none">
+    Item selection will match items in table
+</div>
 
 
 <div id="rightArrow" 

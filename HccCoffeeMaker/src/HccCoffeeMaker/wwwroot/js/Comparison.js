@@ -1,18 +1,280 @@
 var mode = "MoveMode";
 var typedIn = {};
 
-function Sort(ev, id)
-{
+function GetValue(id, type){
+    if (type == "price")
+        return GetPrice(id);
+    if (type == "rating")
+        return GetRating(id);
+    if (type == "servingSize")
+        return GetServingSize(id);
+    if (type == "color")
+        return GetColor(id);
+    if (type == "durability")
+        return GetDurability(id);
+    if (type == "brewingTime")
+        return GetBrewingTime(id);
+    if (type == "warranty")
+        return GetWarranty(id);
+    if (type == "brand")
+        return GetBrand(id);
+    if (type == "type")
+        return GetType(id);
+}
+
+function GetPrice(id){
+    var stringValue = document.getElementById(id).getElementsByClassName('comparisonPrice')[0].innerText;
+    stringValue = stringValue.substring(1, stringValue.length);
+    var value = parseFloat(stringValue);
+    return value;
+}
+
+function GetRating(id) {
+    var stringValue = document.getElementById(id).getElementsByClassName('comparisonOverallRating')[0].innerText;
+    var value = parseFloat(stringValue);
+    return value;
+}
+
+function GetServingSize(id) {
+    var stringValue = document.getElementById(id).getElementsByClassName('comparisonServingSize')[0].innerText;
+    if (stringValue == "1 Cup")
+        return 0;
+    var value = parseInt(stringValue);
+    return value;
+}
+
+function GetColor(id) {
+    var stringValue = document.getElementById(id).getElementsByClassName('comparisonColor')[0].innerText;
+    if (stringValue == "Black")
+        return 0;
+    else if (stringValue == "Blue")
+        return 1;
+    else if (stringValue == "Green")
+        return 2;
+    else if (stringValue == "Red")
+        return 3;
+    else if (stringValue == "Silver")
+        return 4;
+    else
+        return 5;
+}
+
+function GetDurability(id) {
+    var stringValue = document.getElementById(id).getElementsByClassName('comparisonDurability')[0].innerText;
+    if (stringValue == "Light Use")
+        return 0;
+    else if (stringValue == "Outdoor Use")
+        return 1;
+    else if (stringValue == "Normal Use")
+        return 2;
+    else if (stringValue == "Heavy Commercial Use")
+        return 3;
+    else
+        return 4;
+}
+
+function GetBrewingTime(id) {
+    var stringValue = document.getElementById(id).getElementsByClassName('comparisonBrewingTime')[0].innerText;
+    var value = parseInt(stringValue);
+    return value;
+}
+
+function GetWarranty(id) {
+    var stringValue = document.getElementById(id).getElementsByClassName('comparisonWarranty')[0].innerText;
+    if (stringValue == "None")
+        return 0;
+    else if (stringValue == "Additional Cost")
+        return 10;
+    var value = parseInt(stringValue);
+    return value;
+}
+
+function GetBrand(id) {
+    var stringValue = document.getElementById(id).getElementsByClassName('comparisonBrand')[0].innerText;
+    if (stringValue == "Cuisinart")
+        return 0;
+    else if (stringValue == "Hamilton")
+        return 1;
+    else if (stringValue == "Kuerig")
+        return 2;
+    else if (stringValue == "Nespresso")
+        return 3;
+    else
+        return 4;
+}
+
+function GetType(id) {
+    var stringValue = document.getElementById(id).getElementsByClassName('comparisonType')[0].innerText;
+    if (stringValue == "Automatic Drip")
+        return 0;
+    else if (stringValue == "French Press")
+        return 1;
+    else if (stringValue == "Single Serve Pods")
+        return 2;
+    else
+        return 3;
+}
+
+function PriceSortAscend(ev, id) {
+    if(document.getElementById(id).style.color == "white")
+        Sort(ev, id, "ascend", "price");
+}
+
+function PriceSortDescend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "descend", "price");
+}
+
+function RatingSortAscend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "ascend", "rating");
+}
+
+function RatingSortDescend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "descend", "rating");
+}
+
+function ServingSizeSortAscend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "ascend", "servingSize");
+}
+
+function ServingSizeSortDescend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "descend", "servingSize");
+}
+
+function ColorSortAscend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "ascend", "color");
+}
+
+function ColorSortDescend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "descend", "color");
+}
+
+function DurabilitySortAscend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "ascend", "durability");
+}
+
+function DurabilitySortDescend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "descend", "durability");
+}
+
+function BrewingTimeSortAscend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "ascend", "brewingTime");
+}
+
+function BrewingTimeSortDescend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "descend", "brewingTime");
+}
+
+function WarrantySortAscend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "ascend", "warranty");
+}
+
+function WarrantySortDescend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "descend", "warranty");
+}
+
+function BrandSortAscend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "ascend", "brand");
+}
+
+function BrandSortDescend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "descend", "brand");
+}
+
+function TypeSortAscend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "ascend", "type");
+}
+
+function TypeSortDescend(ev, id) {
+    if (document.getElementById(id).style.color == "white")
+        Sort(ev, id, "descend", "type");
+}
+
+function Sort(ev, id, direction, type) {
     var comparisonRows = Array.prototype.slice.call(document.querySelectorAll(".comparisonRow"));
 
-    var max = 0;
-    for (var i = 0; i < comparisonRows.length; i++)
-    {
+    var sortedRows = [];
 
+    var max = 0;
+    for (var i = 0; i < comparisonRows.length; i++) {
+        if (comparisonRows[i].style.display != "none") {
+
+            var value = GetValue(comparisonRows[i].id, type);
+
+            var position = 0;
+            for (var j = 0; j < sortedRows.length; j++) {
+                if (direction == "ascend") {
+                    if (value > GetValue(sortedRows[j], type))
+                        position++;
+                }
+                else
+                    if (value < GetValue(sortedRows[j], type))
+                        position++;
+            }
+            sortedRows.splice(position, 0, comparisonRows[i].id);
+        }
     }
 
+    ApplySort(sortedRows);
 
+    ClearArrowColors(id);
 }
+
+function ApplySort(sortedRows) {
+
+    var table = document.getElementById("theTable");
+    for (var i = sortedRows.length - 1; i >= 0; i--) {
+        var elementToAppendAfterId = "breakRow";
+
+        var draggedNumber = sortedRows[i].match(/\d+$/);
+        $('#'.concat('reviewRow').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
+        $('#'.concat(sortedRows[i])).insertAfter('#'.concat(elementToAppendAfterId));
+        $('#'.concat('moveRow').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
+        $('#'.concat('heightFor').concat(draggedNumber)).insertAfter('#'.concat(elementToAppendAfterId));
+    }
+}
+
+function ClearArrowColors(id)
+{
+    document.getElementById("priceSortDescend").style.color = "white";
+    document.getElementById("priceSortAscend").style.color = "white";
+    document.getElementById("ratingSortDescend").style.color = "white";
+    document.getElementById("ratingSortAscend").style.color = "white";
+    document.getElementById("servingSizeSortAscend").style.color = "white";
+    document.getElementById("servingSizeSortDescend").style.color = "white";
+    document.getElementById("colorSortAscend").style.color = "white";
+    document.getElementById("colorSortDescend").style.color = "white";
+    document.getElementById("durabilitySortAscend").style.color = "white";
+    document.getElementById("durabilitySortDescend").style.color = "white";
+    document.getElementById("brewingTimeSortAscend").style.color = "white";
+    document.getElementById("brewingTimeSortDescend").style.color = "white";
+    document.getElementById("warrantySortAscend").style.color = "white";
+    document.getElementById("warrantySortDescend").style.color = "white";
+    document.getElementById("brandSortAscend").style.color = "white";
+    document.getElementById("brandSortDescend").style.color = "white";
+    document.getElementById("typeSortAscend").style.color = "white";
+    document.getElementById("typeSortDescend").style.color = "white";
+
+    document.getElementById(id).style.color = "var(--yellow)";
+}
+
+
+
 
 function ChangeToAnnotationMode(ev, id)
 {
@@ -272,6 +534,7 @@ function Drop(ev, id) {
 function TrashDragEnter(ev, id) {
     if (mode == "MoveMode") {
         ev.preventDefault();
+        document.getElementById(id).style.boxShadow = "0 0 20px var(--pink)";
         //document.getElementById(id).style.cursor = "move";
     }
 }
@@ -279,6 +542,7 @@ function TrashDragEnter(ev, id) {
 function TrashDragExit(ev, id) {
     if (mode == "MoveMode") {
         ev.preventDefault();
+        document.getElementById(id).style.boxShadow = "none";
         //document.getElementById(id).style.cursor = "default";
     }
 }
@@ -300,6 +564,7 @@ function TrashDrop(ev, id) {
         reviewRow.style.display = "none";
 
         delete selected[productNumber];
+        document.getElementById(id).style.boxShadow = "none";
     }
 }
 

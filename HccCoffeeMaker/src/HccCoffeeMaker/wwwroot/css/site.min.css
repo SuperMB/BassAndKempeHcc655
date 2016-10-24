@@ -2,6 +2,7 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
     background-color:var(--lightSeafoam);
+    /*background-color:black;*/
 }
 
 /* Wrapping element */
@@ -64,11 +65,11 @@ textarea {
     --brightBlueTransparent:rgba(119,196,210,0.7);
     --greenTransparent:rgba(0,128,0,.3);
     --smallFont:10px;
-    --smallMediumFont:18px;
-    --mediumFont:25px;
-    --largeFont:40px;
-    --extraLargeFont:50px;
-    --extraExtraLargeFont:60px;
+    --smallMediumFont:14px;
+    --mediumFont:20px;
+    --largeFont:30px;
+    --extraLargeFont:37px;
+    --extraExtraLargeFont:45px;
 }
 
 
@@ -104,9 +105,12 @@ hr {
 #leftArrow {
     display:block;
     position:fixed;
-    left:10px;
+    left:-30px;
     top:40%;
     z-index:5;
+    transform:scale(.3, 1); 
+    -webkit-transform:scale(.3, 1);
+    color:var(--navyTransparent);
 }
 
 #leftArrow:hover{
@@ -116,9 +120,12 @@ hr {
 #rightArrow {
     display:block;
     position:fixed;
-    right:10px;
+    right:-30px;
     top:40%;
     z-index:5;
+    transform:scale(.3, 1); 
+    -webkit-transform:scale(.3, 1);
+    color:var(--navyTransparent);
 }
 
 #rightArrow:hover{

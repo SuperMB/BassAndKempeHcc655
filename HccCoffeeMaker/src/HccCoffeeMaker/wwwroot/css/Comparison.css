@@ -120,6 +120,27 @@
     font-size:var(--mediumFont);
 }
 
+.comparisonServingSize{
+}
+
+.comparisonColor{
+}
+
+.comparisonDurability{
+}
+
+.comparisonBrewingTime{
+}
+
+.comparisonWarranty{
+}
+
+.comparisonBrand{
+}
+
+.comparisonType{
+}
+
 .comparisonDescription{
     max-width:400px;
     border-right:none;
@@ -140,6 +161,6 @@
     background-color:var(--navyHeavyTransparent);
     text-align:left;
     font-size:var(--smallMediumFont);
-    color:white;
+    /*color:white;*/
     padding:10px;
 }

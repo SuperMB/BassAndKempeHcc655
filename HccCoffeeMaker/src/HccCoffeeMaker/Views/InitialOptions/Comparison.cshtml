@@ -68,7 +68,7 @@
 @*//MBSTART*@
 
 <div style="text-align:center;width:100%;display:block;position:absolute;left:0;">
-    <table class="comparisonTable" align="center">
+    <table class="comparisonTable" align="center" id="theTable">
         @*<thead >*@
         <tr class="headerRow" id="productHeader"
             style="/*display:table-header-group;*/
@@ -83,42 +83,61 @@
             Title
         </th>
         <th class="comparisonCell " style="text-align:center;">
-            Brand
+            Brand<br />
+            <span id="brandSortAscend" onclick="BrandSortAscend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9650;</span>
+            <span id="brandSortDescend" onclick="BrandSortDescend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9660;</span>
         </th>
         <th class="comparisonCell " style="text-align:center;">
             Price <br />
-            <span id="priceSortUp" onclick="sort(event, this.id)" onmouseover="MouseOverReview(event,this.id)" onmouseout="MouseOutReview(event,this.id)">Sort</span>
+            <span id="priceSortAscend" onclick="PriceSortAscend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9650;</span>
+            <span id="priceSortDescend" onclick="PriceSortDescend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9660;</span>
         </th>
         <th class="comparisonCell " style="text-align:center;">
-            Type
+            Type<br />
+            <span id="typeSortAscend" onclick="TypeSortAscend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9650;</span>
+            <span id="typeSortDescend" onclick="TypeSortDescend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9660;</span>
         </th>
         <th class="comparisonCell " style="text-align:center;">
-            Overall Rating
+            Overall Rating <br />
+            <span id="ratingSortAscend" onclick="RatingSortAscend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9650;</span>
+            <span id="ratingSortDescend" onclick="RatingSortDescend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9660;</span>
         </th>
         <th class="comparisonCell " style="text-align:center;">
             Description
         </th>
-
-
         <th class="comparisonCell" style="text-align:center;">
-            Color
+            Color <br />
+            <span id="colorSortAscend" onclick="ColorSortAscend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9650;</span>
+            <span id="colorSortDescend" onclick="ColorSortDescend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9660;</span>
         </th>
         <th class="comparisonCell" style="text-align:center;">
-            Durability
+            Durability <br />
+            <span id="durabilitySortAscend" onclick="DurabilitySortAscend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9650;</span>
+            <span id="durabilitySortDescend" onclick="DurabilitySortDescend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9660;</span>
         </th>
         <th class="comparisonCell" style="text-align:center;">
-            Serving Size
+            Serving Size <br />
+            <span id="servingSizeSortAscend" onclick="ServingSizeSortAscend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9650;</span>
+            <span id="servingSizeSortDescend" onclick="ServingSizeSortDescend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9660;</span>
         </th>
         <th class="comparisonCell" style="text-align:center;">
-            Brewing Time
+            Brewing Time <br />
+            <span id="brewingTimeSortAscend" onclick="BrewingTimeSortAscend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9650;</span>
+            <span id="brewingTimeSortDescend" onclick="BrewingTimeSortDescend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9660;</span>
         </th>
         <th class="comparisonCell" style="text-align:center;">
-            Warranty
+            Warranty <br />
+            <span id="warrantySortAscend" onclick="WarrantySortAscend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9650;</span>
+            <span id="warrantySortDescend" onclick="WarrantySortDescend(event, this.id)" onmouseover="MouseOverReview(event, this.id)" onmouseout="MouseOutReview(event, this.id)" style="color:white;">&#9660;</span>
         </th>
 
         <th class="comparisonCell " style="border:none;background-color:var(--lightSeafoam);color:var(--navy);vertical-align:bottom;padding-bottom:0;padding-left:2px;text-align:center;">
             Row Annotations
         </th>
+        </tr>
+
+        <tr id="breakRow">
+
         </tr>
         @*</thead>
             <tbody >*@
@@ -195,13 +214,13 @@
                 <td class="comparisonCell comparisonTitle">
                     @product.Title
                 </td>
-                <td class="comparisonCell ">
+                <td class="comparisonCell comparisonBrand">
                         @product.Brand
                 </td>
                 <td class="comparisonCell comparisonPrice">
                     $@string.Format("{0:0.00}", product.Price)
                 </td>
-                <td class="comparisonCell ">
+                <td class="comparisonCell comparisonType">
                     @product.TypeOfMachine
                 </td>
                 <td class="comparisonCell comparisonOverallRating">
@@ -210,19 +229,19 @@
                 <td class="comparisonCell comparisonDescription">
                     @product.Description
                 </td>
-                <td class="comparisonCell " style="text-align:center;">
+                <td class="comparisonCell comparisonColor" style="text-align:center;">
                     @product.Color
                 </td>
-                <td class="comparisonCell " style="text-align:center;">
+                <td class="comparisonCell comparisonDurability" style="text-align:center;">
                     @product.Durability
                 </td>
-                <td class="comparisonCell " style="text-align:center;">
+                <td class="comparisonCell comparisonServingSize" style="text-align:center;">
                     @product.ServingSize
                 </td>
-                <td class="comparisonCell " style="text-align:center;">
+                <td class="comparisonCell comparisonBrewingTime" style="text-align:center;">
                         @product.BrewingTime
                 </td>
-                <td class="comparisonCell " style="text-align:center;">
+                <td class="comparisonCell comparisonWarranty" style="text-align:center;">
                         @product.Warranty
 
                 </td>

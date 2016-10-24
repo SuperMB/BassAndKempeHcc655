@@ -52,7 +52,7 @@ function clickClose(id) {
 
     var facetId = facetAddedId.substring(0, facetAddedId.length - 5);
     var facet = document.getElementById(facetId);
-    facet.style.backgroundColor = "var(--navyTransparent)";
+    facet.style.backgroundColor = "var(--navy)";
     facet.style.boxShadow = "0 0 0";
     facet.style.color = "var(--lightSeafoam)";
 
@@ -77,7 +77,6 @@ function clickClose(id) {
         if (checkBoxes[i].type == "checkbox")
             checkBoxes[i].checked = false;
     }
-
 }
 
 function clickSelect(id) {
